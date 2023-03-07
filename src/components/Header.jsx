@@ -82,7 +82,7 @@ const Header = () => {
         <nav className={openMenu ? "header__menu active" : "header__menu"}>
           <ul ref={orderRef} className="menu__item nav">
             <FaShoppingBag
-              onClick={() => setCartOpen((cartOpen) => !cartOpen)}
+              onClick={() => setCartOpen((cartOpen) => !cartOpen)}git
               className={`shop-cart-button ${cartOpen && "active"}`}
             />
             {totalPrice > 0 && <span className="total__price">{totalPrice} $</span>}
