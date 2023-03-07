@@ -88,7 +88,9 @@ const Header = () => {
             {totalPrice > 0 && <span className="total__price">{totalPrice} $</span>}
 
             <li className="menu__link">Избранное</li>
-            <li className="menu__link">Контакты</li>
+            <Link to="/order">
+              <li className="menu__link">Корзина</li>
+            </Link>
             <li className="menu__link">Кабинет</li>
           </ul>
         </nav>

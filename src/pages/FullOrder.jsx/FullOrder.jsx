@@ -5,7 +5,9 @@ import { useSelector } from "react-redux";
 
 const FullOrder = () => {
   const order = useSelector((state) => state.order.items);
-  const totalPrice = order.reduce((sum, acc) => Number(acc.price) + sum, 0).toFixed(2);
+  const totalPrice = order
+    .reduce((sum, acc) => Number(acc.price) * Number(acc.count) + sum, 0)
+    .toFixed(2);
 
   React.useEffect(() => {
     document.title = "Корзина";

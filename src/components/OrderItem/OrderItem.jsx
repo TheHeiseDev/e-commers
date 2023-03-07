@@ -3,7 +3,13 @@ import "./OrderItem.css";
 import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { deleteOrder } from "../../redux/slice/orderSlice";
+import {
+  deleteOrder,
+  minusOrderCount,
+  plusOrderCount,
+} from "../../redux/slice/orderSlice";
+import { IoRemoveCircleOutline } from "react-icons/io5";
+import { IoAddCircleOutline } from "react-icons/io5";
 
 const OrderItem = ({ item }) => {
   const dispatch = useDispatch();
@@ -11,6 +17,13 @@ const OrderItem = ({ item }) => {
   const handleCartRemove = () => {
     dispatch(deleteOrder(item.id));
   };
+  const plusProductCount = () => {
+    dispatch(plusOrderCount(item.productCode));
+  };
+  const minusProductCount = () => {
+    dispatch(minusOrderCount(item.productCode));
+  };
+  const totalSum = (item.count * item.price).toFixed(2);
 
   return (
     <div className="order__item-wrapper">
@@ -54,13 +67,17 @@ const OrderItem = ({ item }) => {
         <div className="product-cart__count">
           <div className="count-buttons">
             <span className="mobile--info">Кол-во:</span>
-            <span className="count-buttons__input">2шт.</span>
+            <IoRemoveCircleOutline onClick={minusProductCount} />
+
+            <span className="count-buttons__input">{item.count}шт.</span>
+
+            <IoAddCircleOutline onClick={plusProductCount} />
           </div>
         </div>
         <div className="product-cart__sum">
           <div className="price--current">
             <span className="mobile--info">Итого: </span>
-            12 380 Р.
+            {totalSum} $
           </div>
         </div>
         <button onClick={handleCartRemove} className="product__delete">

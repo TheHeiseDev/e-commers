@@ -3,7 +3,6 @@ import React from "react";
 import FurnitureList from "../components/FurnitureList/FurnitureList";
 import Categories from "../components/Categories/Categories";
 import Presentation from "../components/Presentation/Presentation";
-import Subscribe from "../components/Subscribe/Subscribe";
 import PopularCategoryList from "../components/PopularCategoryList/PopularCategoryList";
 
 import { useDispatch } from "react-redux";
@@ -28,7 +27,7 @@ const Home = () => {
 
   // Set the title of the current page
   React.useEffect(() => {
-    document.title = "Главная страница";
+    document.title = "Главная";
   }, []);
 
   return (
@@ -37,7 +36,6 @@ const Home = () => {
       <Categories setCategory={setCategoryName} categoyName={categoyName} />
       <FurnitureList handlePostLimitCart={handlePage} />
       <PopularCategoryList />
-      <Subscribe />
     </>
   );
 };

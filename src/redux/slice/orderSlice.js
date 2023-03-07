@@ -17,14 +17,39 @@ export const orderSlice = createSlice({
         );
         state.items = newOrderArrar;
       } else {
-        state.items.push(action.payload);
+        state.items.push({
+          ...action.payload,
+          count: 1,
+        });
       }
     },
+
     deleteOrder(state, action) {
       const returnToNewOrders = state.items.filter((el) => el.id !== action.payload);
       state.items = returnToNewOrders;
     },
+    plusOrderCount(state, action) {
+      const checkOrderItem = state.items.find(
+        (order) => order.productCode === action.payload
+      );
+
+      if (checkOrderItem) {
+        checkOrderItem.count++;
+      }
+    },
+    minusOrderCount(state, action) {
+      const checkOrderItem = state.items.find(
+        (order) => order.productCode === action.payload
+      );
+
+      if (checkOrderItem) {
+        if (checkOrderItem.count > 1) {
+          checkOrderItem.count--;
+        }
+      }
+    },
   },
 });
-export const { addOrder, deleteOrder } = orderSlice.actions;
+export const { addOrder, deleteOrder, plusOrderCount, minusOrderCount } =
+  orderSlice.actions;
 export default orderSlice.reducer;

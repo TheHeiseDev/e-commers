@@ -77,6 +77,21 @@
 .product-cart__count {
   flex: 1 1 13.333%;
 }
+
+.product-cart__count .count-buttons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.product-cart__count .count-buttons svg {
+  font-size: 18px;
+}
+.product-cart__count .count-buttons svg:hover {
+  color: blue;
+}
+
 .product-cart__sum {
   flex: 1 1 13.333%;
 }
