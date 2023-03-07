@@ -1,0 +1,225 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 0 20%;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 20px;
+  border-radius: 10px 10px 0 0;
+}
+
+header {
+  position: relative;
+}
+
+.item img {
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  transition: transform 0.6s ease;
+}
+.item img:hover {
+  transform: scale(1.03);
+  cursor: pointer;
+}
+
+.item h2,
+.item p,
+.item b {
+  margin: 10px 20px;
+  color: #333;
+}
+.item b {
+  color: #5fa36a;
+}
+.item h2 {
+  font-size: 18px;
+  transition: opacity 0.3s ease;
+}
+
+.item h2:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.item .add-to-cart {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  border-color: #1c1818;
+  border: 1px solid #1c1818;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  color: #1c1818;
+  border-radius: 20%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.item .add-to-cart:hover {
+  background: #1c1818;
+  color: white;
+}
+.item .add-to-cart.active {
+  background: #1c1818;
+  color: white;
+}
+.item .add-to-cart.active:hover {
+  background: #3c3a3a;
+}
+
+header .shop-cart-button {
+  cursor: pointer;
+  transition: color 500ms ease;
+}
+
+header .shop-cart-button:hover {
+}
+header .shop-cart-button:hover,
+header .shop-cart-button.active {
+  color: #43884a;
+}
+
+header .shop-cart-button-mobile {
+  cursor: pointer;
+  transition: color 500ms ease;
+}
+
+header .shop-cart-button-mobile:hover,
+header .shop-cart-button-mobile.active {
+  color: #43884a;
+}
+
+header .shop-cart {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  min-width: 300px;
+  background: #fafafa;
+  box-shadow: 4px 5px 15px -7px #606060;
+  z-index: 100;
+  padding: 20px 20px 0 20px;
+
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+header .shop-cart .empty h2 {
+  /* font min-13; max-20; */
+  font-size: clamp(0.813rem, 0.625rem + 0.77vw, 1.25rem);
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+header .shop-cart .empty {
+  display: flex;
+  justify-content: space-between;
+}
+header .shop-cart {
+  overflow: hidden;
+}
+header .shop-cart .item {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 10px 0 0 10px;
+  transform: translate(5px);
+  transition: transform 0.4s ease;
+}
+
+header .shop-cart .item .delete-icon {
+  transform: translate(25px);
+  transition: transform 0.4s ease;
+}
+
+header .shop-cart .item:hover .delete-icon {
+  transform: translate(0);
+}
+
+header .shop-cart .item:hover {
+  background-color: rgba(205, 249, 213, 0.196);
+  transform: translate(0px);
+
+  /* cursor: pointer; */
+}
+header .shop-cart img {
+  width: 70px;
+  margin-right: 20px;
+  border-radius: 0;
+}
+
+header .shop-cart h2 {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+header .shop-cart b {
+  white-space: nowrap;
+  color: #797979;
+  font-weight: 600;
+}
+header .shop-cart .item .delete-icon:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+header .shop-cart .item .delete-icon svg {
+}
+header .shop-cart .item-box {
+  display: flex;
+  height: 60px;
+}
+
+header .shop-cart-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .shop-cart .summa {
+  font-weight: 600;
+  /* font:  min-13; max-20; */
+  font-size: clamp(0.813rem, 0.625rem + 0.77vw, 1.25rem);
+  margin: 20px 0;
+}
+
+.item__picture {
+  position: relative;
+  /* height: 360px; */
+}
+
+.item__instock {
+  opacity: 0.9;
+  pointer-events: none;
+  position: absolute;
+  bottom: 17px;
+  left: 10px;
+  gap: 10px;
+  height: 20px;
+  display: inline-flex;
+  background-color: white !important;
+  display: flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+.item__instock div {
+  color: black;
+  background-color: white;
+  width: 100%;
+  font-size: 12px;
+}
+.item__instock svg {
+  fill: green;
+  height: 20px !important;
+  width: 20px !important;
+}
+
+.item__instock svg.inStock {
+  fill: gray;
+}
