@@ -2,12 +2,13 @@ import React from "react";
 import "./Header.css";
 import { FaShoppingBag } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { menuList } from "../../constants/menuList";
 import Order from "../Order/Order";
+import { selectOrderData } from "../../redux/slice/orderSlice/orderSlice";
 
 const Header = () => {
-  const orders = useSelector((state) => state.order.items);
+  const orders = useSelector(selectOrderData);
 
   const [cartOpen, setCartOpen] = React.useState(false);
   const [cartOpenMobile, setCartOpenMobile] = React.useState(false);
@@ -37,9 +38,10 @@ const Header = () => {
     }
     setCartOpenMobile(false);
   };
-  const handleClickEvent = (event) => {
-    const path = event.composedPath().includes(orderRef.current);
-    const pathDouble = event.composedPath().includes(orderRefDouble.current);
+  const handleClickEvent = (event: MouseEvent) => {
+    const path = orderRef.current && event.composedPath().includes(orderRef.current);
+    const pathDouble =
+      orderRefDouble.current && event.composedPath().includes(orderRefDouble.current);
     if (!path) {
       setCartOpen(false);
     }
@@ -47,8 +49,8 @@ const Header = () => {
       setCartOpen(true);
     }
   };
-  const handleKeyEvent = (event) => {
-    const path = event.composedPath().includes(orderRef.current);
+  const handleKeyEvent = (event: KeyboardEvent) => {
+    const path = orderRef.current && event.composedPath().includes(orderRef.current);
     if (event.key === "Escape") {
       if (!path) {
         setCartOpen(false);
@@ -88,7 +90,9 @@ const Header = () => {
               onClick={() => setCartOpen((cartOpen) => !cartOpen)}
               className={`shop-cart-button ${cartOpen && "active"}`}
             />
-            {totalPrice > 0 && <span className="total__price">{totalPrice} $</span>}
+            {parseFloat(totalPrice) > 0 && (
+              <span className="total__price">{totalPrice} $</span>
+            )}
 
             {menuList.map((item, index) => (
               <Link key={index} to={item.link}>

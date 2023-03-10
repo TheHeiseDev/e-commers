@@ -65,11 +65,12 @@ header {
   color: white;
 }
 .item .add-to-cart.active {
-  background: #1c1818;
+  background: #5fa36a;
+  border-color: #5fa36a;
   color: white;
 }
 .item .add-to-cart.active:hover {
-  background: #3c3a3a;
+  opacity: 0.8;
 }
 
 header .shop-cart-button {
