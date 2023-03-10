@@ -106,7 +106,7 @@
   border: 1px solid #7e9bbd75;
 }
 
-.form-button {
+.form-button-disabled {
   pointer-events: none;
   opacity: 0.6;
 }
