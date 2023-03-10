@@ -15,7 +15,7 @@ const FullOrder = () => {
   }, []);
 
   if (order.length <= 0) {
-    return <h1>Корзина пустая</h1>;
+    return <h2 style={{ textAlign: "center" }}>Корзина пустая</h2>;
   }
 
   return (

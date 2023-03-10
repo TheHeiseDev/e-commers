@@ -47,6 +47,13 @@
   align-items: center;
 }
 
+.validate {
+  position: absolute;
+  top: -30px;
+  left: 2px;
+  width: 100%;
+}
+
 .sub__form-input button {
   background-color: #fde24b;
   color: #262626;
@@ -99,7 +106,10 @@
   border: 1px solid #7e9bbd75;
 }
 
-/* Новые стили  */
+.form-button {
+  pointer-events: none;
+  opacity: 0.6;
+}
 
 .form-group {
   flex: 1 1 50%;

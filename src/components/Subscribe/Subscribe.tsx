@@ -1,51 +1,34 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import "./Subscribe.css";
 import { AiOutlineMail } from "react-icons/ai";
-import { validateEmail, validatePhone } from "../../utils/validateForm";
 import { selectList, SelectListType } from "../../constants/subscribeItem";
+import { useInput } from "../../hooks/validateForm";
 
 const Subscribe = () => {
-  const [value, setValue] = useState("");
   const [selectValue, setSelectValue] = useState("Email рассылка");
   const [openDropDown, setOpenDropDown] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
   const titleSelect = selectValue;
-  const dynamicPlaceholder =
-    selectValue === "Sms рассылка" ? "Введите номер телефона  +7(...)" : "Email";
 
-  const changeInputValue = (value: string) => {
-    setValue(value);
-  };
+  const email = useInput("", { isEmpty: true, minLength: 10, emailError: false });
+  const phone = useInput("", { isEmpty: true, minLength: 11, maxLength: 11 });
+
   const handleSelect = (el: SelectListType) => {
     setSelectValue(el.value);
     setOpenDropDown(false);
   };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const checkEmail = validateEmail(value);
-    const checkPhone = validatePhone(value);
-
     if (selectValue === "Email рассылка") {
-      if (value) {
-        if (checkEmail) {
-          alert("Подписка оформлена!");
-          setValue("");
-        } else {
-          alert("Введите корректный адрес почты");
-        }
-      }
+      email.setValue("");
+      email.setDirty(false);
     }
     if (selectValue === "Sms рассылка") {
-      if (value) {
-        if (checkPhone) {
-          alert("Спасибо за подписку");
-          setValue("");
-        } else {
-          alert("Номер должен начинаться с +7 и содержать не более 12 символов");
-        }
-      }
+      phone.setValue("");
+      phone.setDirty(false);
     }
   };
 
@@ -76,8 +59,24 @@ const Subscribe = () => {
   }, []);
 
   useEffect(() => {
-    setValue("");
+    email.setDirty(false);
+    phone.setDirty(false);
   }, [selectValue]);
+
+  function renderValidationMessage(input: any) {
+    if (input.isDirty) {
+      if (input.isEmpty) {
+        return <p style={{ color: "red" }}>Поле не может быть пустым</p>;
+      } else if (input.minLengthError) {
+        return <p style={{ color: "red" }}>Некорректная длина</p>;
+      } else if (input.emailError) {
+        return <p style={{ color: "red" }}>Некорректный email</p>;
+      } else {
+        input.inputValid = true;
+      }
+    }
+    return null;
+  }
 
   return (
     <div className="subscripe">
@@ -113,13 +112,38 @@ const Subscribe = () => {
           </div>
 
           <div className="sub__form-input">
-            <input
-              value={value}
-              onChange={(e) => changeInputValue(e.target.value)}
-              type="tel"
-              placeholder={dynamicPlaceholder}
-            />
-            <button type="submit">ОК</button>
+            {selectValue === "Email рассылка" ? (
+              <div className="validate">{renderValidationMessage(email)}</div>
+            ) : (
+              <div className="validate">{renderValidationMessage(phone)}</div>
+            )}
+            {selectValue === "Email рассылка" ? (
+              <input
+                onChange={(e) => email.onChange(e)}
+                onBlur={(e) => email.onBlur(e)}
+                value={email.value}
+                type="text"
+                placeholder="Email..."
+              />
+            ) : (
+              <input
+                onChange={(e) => phone.onChange(e)}
+                onBlur={(e) => phone.onBlur(e)}
+                value={phone.value}
+                type="text"
+                placeholder="Телефон в формате 8..."
+              />
+            )}
+
+            {selectValue === "Email рассылка" ? (
+              <button className={!email.inputValid ? "form-button" : ""} type="submit">
+                ОК
+              </button>
+            ) : (
+              <button className={!phone.inputValid ? "form-button" : ""} type="submit">
+                ОК
+              </button>
+            )}
           </div>
         </form>
       </div>
