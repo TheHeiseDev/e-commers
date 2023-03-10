@@ -136,11 +136,17 @@ const Subscribe = () => {
             )}
 
             {selectValue === "Email рассылка" ? (
-              <button className={!email.inputValid ? "form-button" : ""} type="submit">
+              <button
+                className={!email.inputValid ? "form-button-disabled" : ""}
+                type="submit"
+              >
                 ОК
               </button>
             ) : (
-              <button className={!phone.inputValid ? "form-button" : ""} type="submit">
+              <button
+                className={!phone.inputValid ? "form-button-disabled" : ""}
+                type="submit"
+              >
                 ОК
               </button>
             )}
