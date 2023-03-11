@@ -3,8 +3,9 @@ import FurnitureList from "../components/FurnitureList/FurnitureList";
 import Categories from "../components/Categories/Categories";
 import Presentation from "../components/Presentation/Presentation";
 import PopularCategoryList from "../components/PopularCategoryList/PopularCategoryList";
-import { fetchFurnitures } from "../redux/slice/furnitureSlice/furnitureSlice";
+
 import { useAppDispatch } from "../redux/store";
+import { fetchFurnitures } from "../redux/slice/furnitureSlice/furnitureThunk";
 
 const Home = () => {
   const dispatch = useAppDispatch();

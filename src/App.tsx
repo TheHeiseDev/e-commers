@@ -10,9 +10,10 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
-        <Route path="/" element={<Home />} />
+        <Route path="" element={<Home />} />
         <Route path="/order" element={<FullOrder />} />
         <Route path="/furniture/:id" element={<FullFurniture />} />
+        <Route path="*" element={<Home />} />
       </Route>
     </Routes>
   );

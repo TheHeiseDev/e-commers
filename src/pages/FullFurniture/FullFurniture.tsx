@@ -2,22 +2,22 @@ import React from "react";
 import "./FullFurniture.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { addOrder, selectOrderData } from "../../redux/slice/orderSlice/orderSlice";
 
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-
 import VerifiedIcon from "@mui/icons-material/Verified"; // товар в наличии
 import FmdGoodIcon from "@mui/icons-material/FmdGood"; // на экспозиции
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"; //календарь
 import LocalShippingIcon from "@mui/icons-material/LocalShipping"; // доставка
+import Loader from "../../components/UI/Loader/Loader";
 
-import LabTabs from "../../components/Tabs/Tabs";
-import Carousel from "../../components/Carousel/Carousel";
+import LabTabs from "../../components/UI/Tabs/Tabs";
+import Carousel from "../../components/UI/Carousel/Carousel";
 import FurnitureItem from "../../components/FurnitureItem/FurnitureItem";
 import FurnitureSkeleton from "../../components/FurnitureItem/FurnitureSkeleton";
-import Loader from "../../components/Loader/Loader";
+
+import { useDispatch, useSelector } from "react-redux";
+import { addOrder, selectOrderData } from "../../redux/slice/orderSlice/orderSlice";
 import { FurnitureType } from "../../redux/slice/furnitureSlice/furnitueTypes";
 
 const FullFurniture = () => {

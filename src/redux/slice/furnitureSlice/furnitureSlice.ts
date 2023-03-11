@@ -1,24 +1,13 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { apiService } from "../../../api/apiService";
+import { createSlice } from "@reduxjs/toolkit";
+
 import { RootState } from "../../store";
-import { FurnitureSliceStateType, ParamsType, FurnitureType } from "./furnitueTypes";
+import { FurnitureSliceStateType } from "./furnitueTypes";
+import { fetchFurnitures } from "./furnitureThunk";
 
 const initialState: FurnitureSliceStateType = {
   items: [],
   status: "success",
 };
-
-export const fetchFurnitures = createAsyncThunk(
-  "furniture/fetchFurnitures",
-  async (params: ParamsType) => {
-    const { category, postLimit } = params;
-    const { data } = await axios.get<FurnitureType[]>(
-      `${apiService.getFurniture}${postLimit}${category}`
-    );
-    return data;
-  }
-);
 
 export const furnitureSlice = createSlice({
   name: "furniture",
