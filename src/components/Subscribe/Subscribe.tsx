@@ -3,6 +3,8 @@ import "./Subscribe.css";
 import { AiOutlineMail } from "react-icons/ai";
 import { selectList, SelectListType } from "../../constants/subscribeItem";
 import { useInput } from "../../hooks/validateForm";
+import CustomizedSnackbars from "../UI/Alerts/Alert";
+import { EmailSharp } from "@mui/icons-material";
 
 const Subscribe = () => {
   const [selectValue, setSelectValue] = useState("Email рассылка");
@@ -16,7 +18,7 @@ const Subscribe = () => {
     setOpenDropDown(false);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement | HTMLDivElement>) => {
     event.preventDefault();
 
     if (selectValue === "Email рассылка") {
@@ -148,21 +150,19 @@ const Subscribe = () => {
             )}
 
             {selectValue === "Email рассылка" ? (
-              <button
+              <div
                 className={!email.inputValid ? "form-button-disabled" : ""}
-                type="submit"
-                onClick={() => alert("Вы успешно подписались на email рассылку!")}
+                onClick={handleSubmit}
               >
-                ОК
-              </button>
+                <CustomizedSnackbars />
+              </div>
             ) : (
-              <button
+              <div
                 className={!phone.inputValid ? "form-button-disabled" : ""}
-                type="submit"
-                onClick={() => alert("Вы успешно подписались на sms рассылку!")}
+                onClick={handleSubmit}
               >
-                ОК
-              </button>
+                <CustomizedSnackbars />
+              </div>
             )}
           </div>
         </form>

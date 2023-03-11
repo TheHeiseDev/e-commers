@@ -55,25 +55,32 @@
   font-size: 14px;
 }
 
-.sub__form-input button {
-  background-color: #fde24b;
+.sub__form-input .MuiStack-root {
+  width: auto;
+}
+.sub__form-input .MuiStack-root button {
+  padding: 5px 0px;
+  border-radius: 20px !important;
+  min-width: 0;
+}
+.sub__form-input .MuiStack-root {
   color: #262626;
   border-radius: 50%;
   border: 0;
   outline: none;
   cursor: pointer;
   position: absolute;
-  right: 5px;
+  right: 15px;
   height: 43px;
-  width: 43px;
+  min-width: 43px;
   padding: 0;
   font-size: 14px;
-  font-weight: 600;
+  top: 12px;
   transition: background-color 0.3s ease;
 }
-.sub__form-input button:hover {
+/* .sub__form-input button:hover {
   background-color: #efd023;
-}
+} */
 .select__continer {
   flex: 1 1 50%;
   height: 60px;
@@ -108,9 +115,15 @@
   border: 1px solid #7e9bbd75;
 }
 
-.form-button-disabled {
+.form-button-disabled .MuiStack-root button {
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.9;
+  border-color: rgb(210, 210, 210);
+  color: rgb(210, 210, 210);
+}
+.MuiAlert-action button {
+  pointer-events: all !important;
+  color: white !important;
 }
 
 .form-group {
@@ -203,4 +216,7 @@
   border-bottom-right-radius: 6px;
 
   border-bottom: 1px solid #7e9bbd75;
+}
+
+.MuiStack-root {
 }

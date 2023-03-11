@@ -73,7 +73,7 @@ const FullFurniture = () => {
             <div>
               <HalfRating rating={item.rating} /> {item.rating}
             </div>
-            <span>Код товара: {item.productCode}</span>
+            <span>Артикул: {item.productCode}</span>
           </div>
           <div className="product__price">
             <b className="price">{item.price} $</b>
