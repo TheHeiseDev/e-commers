@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import "./FullFurniture.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -19,15 +19,16 @@ import FurnitureSkeleton from "../../components/FurnitureItem/FurnitureSkeleton"
 import { useDispatch, useSelector } from "react-redux";
 import { addOrder, selectOrderData } from "../../redux/slice/orderSlice/orderSlice";
 import { FurnitureType } from "../../redux/slice/furnitureSlice/furnitueTypes";
+import { searchCardInBasket } from "../../utils/searchCardInBasket";
 
 const FullFurniture = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const orders = useSelector(selectOrderData);
-  const [item, setItem] = React.useState<FurnitureType>();
+  const [item, setItem] = useState<FurnitureType>();
 
-  const checkItemInCart = orders.some((item) => item.id === id);
+  const checkItemInCart = item && searchCardInBasket(orders, item);
 
   const onAddToCart = () => {
     if (item) {
@@ -36,7 +37,7 @@ const FullFurniture = () => {
   };
 
   // Fetching a product card
-  React.useEffect(() => {
+  useEffect(() => {
     async function fetchFurnitureById() {
       const { data } = await axios.get(
         `https://63c3b1edf0028bf85f9c9068.mockapi.io/furniture/${id}`
@@ -49,7 +50,7 @@ const FullFurniture = () => {
   }, [id]);
 
   // Setting the title of the html page
-  React.useEffect(() => {
+  useEffect(() => {
     if (item) {
       document.title = item.title ? item.title : "";
     }
@@ -63,7 +64,7 @@ const FullFurniture = () => {
     <>
       <div className="full-furniture">
         <div className="furniture__left">
-          <img src={item.imageUrl} alt="item" />
+          <img src={item.imageUrl} alt={item.title} />
         </div>
         <div className="furniture__right">
           <h2>{item.title}</h2>

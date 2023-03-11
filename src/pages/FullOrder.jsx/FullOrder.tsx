@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import "./FullOrder.css";
 import OrderItem from "../../components/OrderItem/OrderItem";
 import { useSelector } from "react-redux";
@@ -6,11 +6,13 @@ import { selectOrderData } from "../../redux/slice/orderSlice/orderSlice";
 
 const FullOrder = () => {
   const order = useSelector(selectOrderData);
+
+  // This variable sums the total cost of the items in the cart
   const totalPrice = order
     .reduce((sum, acc) => Number(acc.price) * Number(acc.count) + sum, 0)
     .toFixed(2);
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.title = "Корзина";
   }, []);
 

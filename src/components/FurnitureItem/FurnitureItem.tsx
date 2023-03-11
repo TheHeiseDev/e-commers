@@ -4,6 +4,7 @@ import { addOrder, selectOrderData } from "../../redux/slice/orderSlice/orderSli
 import "./FurnitureItem.css";
 import VerifiedIcon from "@mui/icons-material/Verified"; // товар в наличии
 import { FurnitureType } from "../../redux/slice/furnitureSlice/furnitueTypes";
+import { searchCardInBasket } from "../../utils/searchCardInBasket";
 
 type FurnitureItemProps = {
   item: FurnitureType;
@@ -13,7 +14,7 @@ const FurnitureItem = ({ item }: FurnitureItemProps) => {
   const dispatch = useDispatch();
   const orders = useSelector(selectOrderData);
 
-  const checkItemInCart = orders.some((order) => order.id === item.id);
+  const checkItemInCart = searchCardInBasket(orders, item);
 
   const onAdd = () => {
     dispatch(addOrder(item));
