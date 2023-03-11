@@ -72,8 +72,8 @@ const Subscribe = () => {
     let errorMessage = null;
     if (isDirty) {
       if (isEmpty) errorMessage = "Поле не может быть пустым";
-      else if (minLengthError) errorMessage = "Минимальная длина 11 цифр";
-      else if (maxLengthError) errorMessage = "Максимальная длина 11 цифр";
+      else if (minLengthError) errorMessage = "Некорректная минимальная длина символов";
+      else if (maxLengthError) errorMessage = "Некорректная максимальная длина символов ";
       else if (emailError) errorMessage = "Некорректный email";
       else if (hasStrings) errorMessage = "Поле (Телефон) не должно содержать строки";
       input.inputValid = !errorMessage;
