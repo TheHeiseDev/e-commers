@@ -30,7 +30,7 @@ export const useValidation = (value: string, validations: any) => {
   const [maxLengthError, setMaxLengthError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [inputValid, setInputValid] = useState(false);
-  const [hasStrings, setHasStringsError] = useState(false);
+  const [hasNumber, setHasNumberError] = useState(false);
 
   useEffect(() => {
     for (const validation in validations) {
@@ -48,27 +48,27 @@ export const useValidation = (value: string, validations: any) => {
         regular.test(String(value).toLowerCase())
           ? setEmailError(false)
           : setEmailError(true);
-      } else if (validation === "hasStrings") {
+      } else if (validation === "hasNumber") {
         const stringRegex = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?\d{7,10})$/;
 
-        stringRegex.test(value) ? setHasStringsError(false) : setHasStringsError(true);
+        stringRegex.test(value) ? setHasNumberError(false) : setHasNumberError(true);
       }
     }
   }, [value]);
 
   useEffect(() => {
-    if (isEmpty || maxLengthError || minLengthError || emailError || hasStrings) {
+    if (isEmpty || maxLengthError || minLengthError || emailError || hasNumber) {
       setInputValid(false);
     } else {
       setInputValid(true);
     }
-  }, [isEmpty, maxLengthError, minLengthError, emailError, hasStrings]);
+  }, [isEmpty, maxLengthError, minLengthError, emailError, hasNumber]);
   return {
     isEmpty,
     minLengthError,
     maxLengthError,
     emailError,
     inputValid,
-    hasStrings,
+    hasNumber,
   };
 };
