@@ -49,14 +49,15 @@ export const useValidation = (value: string, validations: any) => {
           ? setEmailError(false)
           : setEmailError(true);
       } else if (validation === "hasStrings") {
-        const stringRegex = /^([^a-zA-Z]*|[^a-zA-Z].*[^a-zA-Z]|.*[^a-zA-Z])$/;
-        stringRegex.test(value) ? setHasStringsError(true) : setHasStringsError(false);
+        const stringRegex = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?\d{7,10})$/;
+
+        stringRegex.test(value) ? setHasStringsError(false) : setHasStringsError(true);
       }
     }
   }, [value]);
 
   useEffect(() => {
-    if (isEmpty || maxLengthError || minLengthError || emailError) {
+    if (isEmpty || maxLengthError || minLengthError || emailError || hasStrings) {
       setInputValid(false);
     } else {
       setInputValid(true);
