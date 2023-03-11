@@ -1,5 +1,4 @@
-import { ChangeEvent, FocusEvent, useState } from "react";
-import React, { useEffect } from "react";
+import { ChangeEvent, FocusEvent, useState, useEffect } from "react";
 
 export const useInput = (initialValue: string, validations: any) => {
   const [value, setValue] = useState(initialValue);
@@ -33,30 +32,20 @@ export const useValidation = (value: string, validations: any) => {
 
   useEffect(() => {
     for (const validation in validations) {
-      switch (validation) {
-        case "minLength":
-          value.length < validations[validation]
-            ? setMinLengthError(true)
-            : setMinLengthError(false);
-          break;
-
-        case "maxLength":
-          value.length > 15 ? setMaxLengthError(true) : setMaxLengthError(false);
-          break;
-        case "isEmpty":
-          value ? setEmpty(false) : setEmpty(true);
-          break;
-
-        case "emailError":
-          const regular =
-            /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-          regular.test(String(value).toLowerCase())
-            ? setEmailError(false)
-            : setEmailError(true);
-          break;
-
-        default:
-          break;
+      if (validation === "minLength") {
+        value.length < validations[validation]
+          ? setMinLengthError(true)
+          : setMinLengthError(false);
+      } else if (validation === "maxLength") {
+        value.length > 15 ? setMaxLengthError(true) : setMaxLengthError(false);
+      } else if (validation === "isEmpty") {
+        value ? setEmpty(false) : setEmpty(true);
+      } else if (validation === "emailError") {
+        const regular =
+          /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        regular.test(String(value).toLowerCase())
+          ? setEmailError(false)
+          : setEmailError(true);
       }
     }
   }, [value]);

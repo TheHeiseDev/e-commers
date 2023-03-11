@@ -49,9 +49,10 @@
 
 .validate {
   position: absolute;
-  top: -30px;
+  bottom: -25px;
   left: 2px;
   width: 100%;
+  font-size: 14px;
 }
 
 .sub__form-input button {
@@ -93,6 +94,7 @@
   outline: none;
   width: 100%;
   border-radius: 2px;
+  font-family: "Montserrat";
   background: #fff;
   font-size: 15px;
   padding-right: 60px;
