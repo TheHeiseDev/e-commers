@@ -66,24 +66,19 @@ const Subscribe = () => {
     email.setDirty(false);
     phone.setDirty(false);
   }, [selectValue]);
-
   function renderValidationMessage(input: any) {
-    if (input.isDirty) {
-      if (input.isEmpty) {
-        return <p style={{ color: "red" }}>Поле не может быть пустым</p>;
-      } else if (input.minLengthError) {
-        return <p style={{ color: "red" }}>Минимальная длина 11 цифр</p>;
-      } else if (input.maxLengthError) {
-        return <p style={{ color: "red" }}>Максимальная длина 11 цифр</p>;
-      } else if (input.emailError) {
-        return <p style={{ color: "red" }}>Некорректный email</p>;
-      } else if (input.hasStrings) {
-        return <p style={{ color: "red" }}>Поле (Телефон) не должно содержать строки </p>;
-      } else {
-        input.inputValid = true;
-      }
+    const { isDirty, isEmpty, minLengthError, maxLengthError, emailError, hasStrings } =
+      input;
+    let errorMessage = null;
+    if (isDirty) {
+      if (isEmpty) errorMessage = "Поле не может быть пустым";
+      else if (minLengthError) errorMessage = "Минимальная длина 11 цифр";
+      else if (maxLengthError) errorMessage = "Максимальная длина 11 цифр";
+      else if (emailError) errorMessage = "Некорректный email";
+      else if (hasStrings) errorMessage = "Поле (Телефон) не должно содержать строки";
+      input.inputValid = !errorMessage;
     }
-    return null;
+    return errorMessage ? <p style={{ color: "red" }}>{errorMessage}</p> : null;
   }
 
   return (
