@@ -68,17 +68,24 @@ const Subscribe = () => {
   }, [selectValue]);
 
   function renderValidationMessage(input: any) {
-    if (input.isDirty) {
-      if (input.isEmpty) {
+    const { isDirty, isEmpty, minLengthError, maxLengthError, emailError, hasStrings } =
+      input;
+
+    if (isDirty) {
+      if (isEmpty) {
         return <p style={{ color: "red" }}>Поле не может быть пустым</p>;
-      } else if (input.minLengthError) {
+      } else if (minLengthError) {
         return <p style={{ color: "red" }}>Некорректная минимальная длина</p>;
-      } else if (input.maxLengthError) {
+      } else if (maxLengthError) {
         return <p style={{ color: "red" }}>Некорректная максимальная длина</p>;
-      } else if (input.emailError) {
+      } else if (emailError) {
         return <p style={{ color: "red" }}>Некорректный email</p>;
-      } else if (input.hasStrings) {
-        return <p style={{ color: "red" }}>В поле есть буквы, удалите их пожалуйста</p>;
+      } else if (hasStrings) {
+        return (
+          <p style={{ color: "red" }}>
+            В поле есть буквы или символы, удалите их пожалуйста
+          </p>
+        );
       } else {
         input.inputValid = true;
       }
