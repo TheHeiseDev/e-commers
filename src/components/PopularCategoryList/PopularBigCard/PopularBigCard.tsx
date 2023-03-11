@@ -1,8 +1,8 @@
 import { PopulaCategoryType } from "../../../constants/productCategories";
 
-iterface PopularBigCardProps {
+interface PopularBigCardProps {
   item: PopulaCategoryType[];
-};
+}
 const PopularBigCard = ({ item }: PopularBigCardProps) => {
   return (
     <div className="popular__wrapper-big">
