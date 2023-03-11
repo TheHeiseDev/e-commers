@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addOrder, selectOrderData } from "../../redux/slice/orderSlice/orderSlice";
 import { FurnitureType } from "../../redux/slice/furnitureSlice/furnitueTypes";
 import { searchCardInBasket } from "../../utils/searchCardInBasket";
+import HalfRating from "../../components/UI/Rating/Rating";
 
 const FullFurniture = () => {
   const dispatch = useDispatch();
@@ -69,7 +70,9 @@ const FullFurniture = () => {
         <div className="furniture__right">
           <h2>{item.title}</h2>
           <div className="product__info">
-            <span>Рейтинг: {item.rating}</span>
+            <div>
+              <HalfRating rating={item.rating} /> {item.rating}
+            </div>
             <span>Код товара: {item.productCode}</span>
           </div>
           <div className="product__price">

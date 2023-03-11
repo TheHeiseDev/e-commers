@@ -16,6 +16,10 @@
   line-height: 1.5;
   font-weight: 300;
 }
+.full-furniture .product__info div {
+  display: flex;
+  gap: 10px;
+}
 
 .full-furniture .product__price {
   display: flex;

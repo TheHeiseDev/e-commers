@@ -13,7 +13,7 @@ type RecomendationItemType = {
   oldPrice: string;
   productCode: string;
   itemInStock: boolean;
-  rating: string;
+  rating: Float32Array;
   count?: number;
 };
 
@@ -27,7 +27,7 @@ export type FurnitureType = {
   oldPrice: string;
   productCode: string;
   itemInStock: boolean;
-  rating: string;
+  rating: Float32Array;
   recomendation?: RecomendationItemType[];
   count?: number;
 };

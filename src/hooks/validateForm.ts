@@ -1,5 +1,5 @@
 import { ChangeEvent, FocusEvent, useState } from "react";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 export const useInput = (initialValue: string, validations: any) => {
   const [value, setValue] = useState(initialValue);
@@ -43,12 +43,14 @@ export const useValidation = (value: string, validations: any) => {
       } else if (validation === "isEmpty") {
         value ? setEmpty(false) : setEmpty(true);
       } else if (validation === "emailError") {
+        //regular expression to check the correctness of entering an email address
         const regular =
           /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         regular.test(String(value).toLowerCase())
           ? setEmailError(false)
           : setEmailError(true);
       } else if (validation === "hasNumber") {
+        // regular expression to check if a phone number is entered correctly
         const stringRegex = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?\d{7,10})$/;
 
         stringRegex.test(value) ? setHasNumberError(false) : setHasNumberError(true);

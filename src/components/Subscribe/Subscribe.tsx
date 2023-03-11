@@ -8,13 +8,6 @@ const Subscribe = () => {
   const [selectValue, setSelectValue] = useState("Email рассылка");
   const [openDropDown, setOpenDropDown] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
-  const email = useInput("", { isEmpty: true, minLength: 10, emailError: false });
-  const phone = useInput("", {
-    isEmpty: true,
-    minLength: 11,
-    maxLength: 11,
-    hasNumber: false,
-  });
 
   const titleSelect = selectValue;
 
@@ -67,6 +60,14 @@ const Subscribe = () => {
     phone.setDirty(false);
   }, [selectValue]);
 
+  const email = useInput("", { isEmpty: true, minLength: 10, emailError: false });
+  const phone = useInput("", {
+    isEmpty: true,
+    minLength: 11,
+    maxLength: 11,
+    hasNumber: false,
+  });
+
   function renderValidationMessage(input: any) {
     const { isDirty, isEmpty, minLengthError, maxLengthError, emailError, hasNumber } =
       input;
@@ -75,11 +76,7 @@ const Subscribe = () => {
       if (isEmpty) {
         return <p style={{ color: "red" }}>Поле не может быть пустым</p>;
       } else if (hasNumber) {
-        return (
-          <p style={{ color: "red" }}>
-            В поле есть буквы или символы, удалите их пожалуйста
-          </p>
-        );
+        return <p style={{ color: "red" }}>Удалите cимволы, буквы и пробелы!</p>;
       } else if (minLengthError) {
         return <p style={{ color: "red" }}>Некорректная минимальная длина</p>;
       } else if (maxLengthError) {
@@ -154,6 +151,7 @@ const Subscribe = () => {
               <button
                 className={!email.inputValid ? "form-button-disabled" : ""}
                 type="submit"
+                onClick={() => alert("Вы успешно подписались на email рассылку!")}
               >
                 ОК
               </button>
@@ -161,6 +159,7 @@ const Subscribe = () => {
               <button
                 className={!phone.inputValid ? "form-button-disabled" : ""}
                 type="submit"
+                onClick={() => alert("Вы успешно подписались на sms рассылку!")}
               >
                 ОК
               </button>
