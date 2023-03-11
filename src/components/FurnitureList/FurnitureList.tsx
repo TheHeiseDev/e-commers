@@ -4,7 +4,7 @@ import FurnitureItem from "../FurnitureItem/FurnitureItem";
 import FurnitureSkeleton from "../FurnitureItem/FurnitureSkeleton";
 import "./FurnitureList.css";
 
-type FurnitureListProps = {
+interface FurnitureListProps  {
   handlePostLimitCart: () => void;
 };
 

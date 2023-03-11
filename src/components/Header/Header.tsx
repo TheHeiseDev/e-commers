@@ -1,10 +1,10 @@
 import React from "react";
 import "./Header.css";
+import Order from "../Order/Order";
 import { FaShoppingBag } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { menuList } from "../../constants/menuList";
-import Order from "../Order/Order";
 import { selectOrderData } from "../../redux/slice/orderSlice/orderSlice";
 
 const Header = () => {

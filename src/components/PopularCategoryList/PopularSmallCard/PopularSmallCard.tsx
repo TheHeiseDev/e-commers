@@ -1,8 +1,8 @@
 import { PopulaCategoryType } from "../../../constants/productCategories";
 
-type PopularSmallCardProps = {
+interface PopularSmallCardProps {
   item: PopulaCategoryType[];
-};
+}
 const PopularSmallCard = ({ item }: PopularSmallCardProps) => {
   return (
     <>

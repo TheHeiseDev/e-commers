@@ -11,9 +11,9 @@ import { IoRemoveCircleOutline } from "react-icons/io5";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { FurnitureType } from "../../redux/slice/furnitureSlice/furnitueTypes";
 
-type OrderItemProps = {
+interface OrderItemProps {
   item: FurnitureType;
-};
+}
 const OrderItem = ({ item }: OrderItemProps) => {
   const dispatch = useDispatch();
 

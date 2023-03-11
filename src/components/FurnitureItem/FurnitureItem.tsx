@@ -6,17 +6,18 @@ import VerifiedIcon from "@mui/icons-material/Verified"; // товар в нал
 import { FurnitureType } from "../../redux/slice/furnitureSlice/furnitueTypes";
 import { searchCardInBasket } from "../../utils/searchCardInBasket";
 
-type FurnitureItemProps = {
+interface FurnitureItemProps {
   item: FurnitureType;
-};
+}
 
 const FurnitureItem = ({ item }: FurnitureItemProps) => {
   const dispatch = useDispatch();
   const orders = useSelector(selectOrderData);
 
+  // Search for item in cart, if item found then get true, else false
   const checkItemInCart = searchCardInBasket(orders, item);
 
-  const onAdd = () => {
+  const onAddToCart = () => {
     dispatch(addOrder(item));
   };
 
@@ -35,7 +36,10 @@ const FurnitureItem = ({ item }: FurnitureItemProps) => {
       </Link>
       <p>{item.desc}</p>
       <b>{item.price} $</b>
-      <div onClick={onAdd} className={`add-to-cart ${checkItemInCart ? "active" : ""} `}>
+      <div
+        onClick={onAddToCart}
+        className={`add-to-cart ${checkItemInCart ? "active" : ""} `}
+      >
         +
       </div>
     </div>

@@ -8,11 +8,10 @@ const Subscribe = () => {
   const [selectValue, setSelectValue] = useState("Email рассылка");
   const [openDropDown, setOpenDropDown] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
-
-  const titleSelect = selectValue;
-
   const email = useInput("", { isEmpty: true, minLength: 10, emailError: false });
   const phone = useInput("", { isEmpty: true, minLength: 11, maxLength: 11 });
+
+  const titleSelect = selectValue;
 
   const handleSelect = (el: SelectListType) => {
     setSelectValue(el.value);

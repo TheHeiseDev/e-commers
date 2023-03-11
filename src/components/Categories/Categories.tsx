@@ -1,10 +1,10 @@
 import "./Categories.css";
 import { categories } from "../../constants/productCategories";
 
-type CategoriesPropsType = {
+interface CategoriesPropsType {
   categoyName: string;
   setCategory: (key: string) => void;
-};
+}
 
 const Categories = ({ setCategory, categoyName }: CategoriesPropsType) => {
   return (
