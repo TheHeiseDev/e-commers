@@ -15,10 +15,6 @@ export const categories = [
     key: "sofa",
     name: "Диваны",
   },
-  {
-    key: "light",
-    name: "Свет",
-  },
 ];
 
 export type PopulaCategoryType = {

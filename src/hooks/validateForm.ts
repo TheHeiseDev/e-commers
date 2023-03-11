@@ -1,4 +1,5 @@
-import { ChangeEvent, FocusEvent, useState, useEffect } from "react";
+import { ChangeEvent, FocusEvent, useState } from "react";
+import React, { useEffect } from "react";
 
 export const useInput = (initialValue: string, validations: any) => {
   const [value, setValue] = useState(initialValue);
@@ -29,6 +30,7 @@ export const useValidation = (value: string, validations: any) => {
   const [maxLengthError, setMaxLengthError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [inputValid, setInputValid] = useState(false);
+  const [hasStrings, setHasStringsError] = useState(false);
 
   useEffect(() => {
     for (const validation in validations) {
@@ -37,7 +39,7 @@ export const useValidation = (value: string, validations: any) => {
           ? setMinLengthError(true)
           : setMinLengthError(false);
       } else if (validation === "maxLength") {
-        value.length > 15 ? setMaxLengthError(true) : setMaxLengthError(false);
+        value.length > 11 ? setMaxLengthError(true) : setMaxLengthError(false);
       } else if (validation === "isEmpty") {
         value ? setEmpty(false) : setEmpty(true);
       } else if (validation === "emailError") {
@@ -46,6 +48,9 @@ export const useValidation = (value: string, validations: any) => {
         regular.test(String(value).toLowerCase())
           ? setEmailError(false)
           : setEmailError(true);
+      } else if (validation === "hasStrings") {
+        const stringRegex = /^([^a-zA-Z]*|[^a-zA-Z].*[^a-zA-Z]|.*[^a-zA-Z])$/;
+        stringRegex.test(value) ? setHasStringsError(true) : setHasStringsError(false);
       }
     }
   }, [value]);
@@ -56,12 +61,13 @@ export const useValidation = (value: string, validations: any) => {
     } else {
       setInputValid(true);
     }
-  }, [isEmpty, maxLengthError, minLengthError, emailError]);
+  }, [isEmpty, maxLengthError, minLengthError, emailError, hasStrings]);
   return {
     isEmpty,
     minLengthError,
     maxLengthError,
     emailError,
     inputValid,
+    hasStrings,
   };
 };

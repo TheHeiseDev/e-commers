@@ -9,7 +9,12 @@ const Subscribe = () => {
   const [openDropDown, setOpenDropDown] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
   const email = useInput("", { isEmpty: true, minLength: 10, emailError: false });
-  const phone = useInput("", { isEmpty: true, minLength: 11, maxLength: 11 });
+  const phone = useInput("", {
+    isEmpty: true,
+    minLength: 11,
+    maxLength: 11,
+    hasStrings: false,
+  });
 
   const titleSelect = selectValue;
 
@@ -67,9 +72,13 @@ const Subscribe = () => {
       if (input.isEmpty) {
         return <p style={{ color: "red" }}>Поле не может быть пустым</p>;
       } else if (input.minLengthError) {
-        return <p style={{ color: "red" }}>Некорректная длина</p>;
+        return <p style={{ color: "red" }}>Минимальная длина 11 цифр</p>;
+      } else if (input.maxLengthError) {
+        return <p style={{ color: "red" }}>Максимальная длина 11 цифр</p>;
       } else if (input.emailError) {
         return <p style={{ color: "red" }}>Некорректный email</p>;
+      } else if (input.hasStrings) {
+        return <p style={{ color: "red" }}>Поле (Телефон) не должно содержать строки </p>;
       } else {
         input.inputValid = true;
       }
