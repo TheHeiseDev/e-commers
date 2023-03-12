@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import "./Subscribe.css";
 import { AiOutlineMail } from "react-icons/ai";
 import { selectList, SelectListType } from "../../constants/subscribeItem";
-import { useInput } from "../../hooks/validateForm";
+import { useInput, UseInputType, UseValidationType } from "../../hooks/validateForm";
 import CustomizedSnackbars from "../UI/Alerts/Alert";
 import { EmailSharp } from "@mui/icons-material";
 
@@ -62,15 +62,19 @@ const Subscribe = () => {
     phone.setDirty(false);
   }, [selectValue]);
 
-  const email = useInput("", { isEmpty: true, minLength: 10, emailError: false });
+  const email = useInput("", {
+    isEmpty: true,
+    minLengthError: 10,
+    emailError: false,
+  } as UseInputType);
   const phone = useInput("", {
     isEmpty: true,
-    minLength: 11,
-    maxLength: 11,
+    minLengthError: 11,
+    maxLengthError: 11,
     hasNumber: false,
-  });
+  } as UseInputType);
 
-  function renderValidationMessage(input: any) {
+  function renderValidationMessage(input: UseValidationType) {
     const { isDirty, isEmpty, minLengthError, maxLengthError, emailError, hasNumber } =
       input;
 

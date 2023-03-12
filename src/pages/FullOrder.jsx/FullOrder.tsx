@@ -1,8 +1,10 @@
-import { useEffect } from "react";
 import "./FullOrder.css";
-import OrderItem from "../../components/OrderItem/OrderItem";
+import { useEffect } from "react";
+
 import { useSelector } from "react-redux";
 import { selectOrderData } from "../../redux/slice/orderSlice/orderSlice";
+
+import OrderItem from "../../components/OrderItem/OrderItem";
 
 const FullOrder = () => {
   const order = useSelector(selectOrderData);

@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
+
+import { useAppDispatch } from "../redux/store";
+import { fetchFurnitures } from "../redux/slice/furnitureSlice/furnitureThunk";
+
 import FurnitureList from "../components/FurnitureList/FurnitureList";
 import Categories from "../components/Categories/Categories";
 import Presentation from "../components/Presentation/Presentation";
 import PopularCategoryList from "../components/PopularCategoryList/PopularCategoryList";
 
-import { useAppDispatch } from "../redux/store";
-import { fetchFurnitures } from "../redux/slice/furnitureSlice/furnitureThunk";
-
 const Home = () => {
   const dispatch = useAppDispatch();
 
   const [categoyName, setCategoryName] = useState("");
-  const [postLimit, setpostLimit] = useState(4);
+  const [postLimit, setPostLimit] = useState(4);
 
   const handlePage = () => {
-    setpostLimit((prev) => (prev += 4));
+    setPostLimit((prev) => (prev += 4));
   };
 
   // fetchData from mockapi.io
   useEffect(() => {
-    const category = categoyName && `&category=${categoyName}`;
+    const category = `&category=${categoyName}`;
 
     dispatch(fetchFurnitures({ category, postLimit }));
   }, [categoyName, postLimit]);

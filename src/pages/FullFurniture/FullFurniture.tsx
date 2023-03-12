@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
 import "./FullFurniture.css";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -9,18 +10,18 @@ import VerifiedIcon from "@mui/icons-material/Verified"; // товар в нал
 import FmdGoodIcon from "@mui/icons-material/FmdGood"; // на экспозиции
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"; //календарь
 import LocalShippingIcon from "@mui/icons-material/LocalShipping"; // доставка
-import Loader from "../../components/UI/Loader/Loader";
 
+import Loader from "../../components/UI/Loader/Loader";
 import LabTabs from "../../components/UI/Tabs/Tabs";
 import Carousel from "../../components/UI/Carousel/Carousel";
+import HalfRating from "../../components/UI/Rating/Rating";
 import FurnitureItem from "../../components/FurnitureItem/FurnitureItem";
 import FurnitureSkeleton from "../../components/FurnitureItem/FurnitureSkeleton";
 
-import { useDispatch, useSelector } from "react-redux";
 import { addOrder, selectOrderData } from "../../redux/slice/orderSlice/orderSlice";
 import { FurnitureType } from "../../redux/slice/furnitureSlice/furnitueTypes";
 import { searchCardInBasket } from "../../utils/searchCardInBasket";
-import HalfRating from "../../components/UI/Rating/Rating";
+
 
 const FullFurniture = () => {
   const dispatch = useDispatch();

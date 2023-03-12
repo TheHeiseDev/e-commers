@@ -74,7 +74,7 @@
 .order__action {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
   text-align: center;
   margin-top: 20px;
 }

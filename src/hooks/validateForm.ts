@@ -1,7 +1,22 @@
-import { ChangeEvent, FocusEvent, useState } from "react";
+import React, { ChangeEvent, FocusEvent, useState } from "react";
 import { useEffect } from "react";
 
-export const useInput = (initialValue: string, validations: any) => {
+export type UseInputType = {
+  isDirty: boolean;
+  isEmpty: boolean;
+  minLengthError: number;
+  maxLengthError: number;
+  emailError: boolean;
+  inputValid: boolean;
+  hasNumber: boolean;
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  setDirty: React.Dispatch<HTMLInputElement>;
+  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+};
+
+export const useInput = (initialValue: string, validations: UseInputType) => {
   const [value, setValue] = useState(initialValue);
   const [isDirty, setDirty] = useState(false);
   const valid = useValidation(value, validations);
@@ -24,7 +39,20 @@ export const useInput = (initialValue: string, validations: any) => {
     ...valid,
   };
 };
-export const useValidation = (value: string, validations: any) => {
+
+export type UseValidationType = {
+  isDirty?: boolean;
+  isEmpty: boolean;
+  minLengthError: boolean;
+  maxLengthError: boolean;
+  emailError: boolean;
+  inputValid: boolean;
+  hasNumber: boolean;
+};
+export const useValidation = (
+  value: string,
+  validations: UseInputType
+): UseValidationType => {
   const [isEmpty, setEmpty] = useState(true);
   const [minLengthError, setMinLengthError] = useState(false);
   const [maxLengthError, setMaxLengthError] = useState(false);
@@ -34,11 +62,11 @@ export const useValidation = (value: string, validations: any) => {
 
   useEffect(() => {
     for (const validation in validations) {
-      if (validation === "minLength") {
+      if (validation === "minLengthError") {
         value.length < validations[validation]
           ? setMinLengthError(true)
           : setMinLengthError(false);
-      } else if (validation === "maxLength") {
+      } else if (validation === "maxLengthError") {
         value.length > 11 ? setMaxLengthError(true) : setMaxLengthError(false);
       } else if (validation === "isEmpty") {
         value ? setEmpty(false) : setEmpty(true);
