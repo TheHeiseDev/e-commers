@@ -1,20 +1,20 @@
-import React from "react";
+import { memo, useState, useEffect, useRef } from "react";
 import "./Header.css";
 import Order from "../Order/Order";
 import { FaShoppingBag } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { menuList } from "../../constants/menuList";
-import { selectOrderData } from "../../redux/slice/orderSlice/orderSlice";
+import { selectOrderData } from "../../store/slice/orderSlice/orderSlice";
 
-const Header = () => {
+const Header = memo(() => {
   const orders = useSelector(selectOrderData);
 
-  const [cartOpen, setCartOpen] = React.useState(false);
-  const [cartOpenMobile, setCartOpenMobile] = React.useState(false);
-  const [openMenu, setOpenMenu] = React.useState(false);
-  const orderRef = React.useRef(null);
-  const orderRefDouble = React.useRef(null);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [cartOpenMobile, setCartOpenMobile] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
+  const orderRef = useRef(null);
+  const orderRefDouble = useRef(null);
 
   const totalPrice = orders
     .reduce((sum, item) => sum + parseFloat(item.price), 0)
@@ -58,7 +58,7 @@ const Header = () => {
     }
   };
   // Closing the pop-up when clicking on body and when clicking on escape
-  React.useEffect(() => {
+  useEffect(() => {
     document.body.addEventListener("click", handleClickEvent);
     document.body.addEventListener("keyup", handleKeyEvent);
 
@@ -68,7 +68,7 @@ const Header = () => {
     };
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     hiddenBody();
   }, [openMenu]);
 
@@ -181,6 +181,6 @@ const Header = () => {
       </div>
     </header>
   );
-};
+});
 
 export default Header;

@@ -1,10 +1,9 @@
 import "./FullOrder.css";
-import { useEffect } from "react";
-
 import { useSelector } from "react-redux";
-import { selectOrderData } from "../../redux/slice/orderSlice/orderSlice";
+import { selectOrderData } from "../../store/slice/orderSlice/orderSlice";
 
 import OrderItem from "../../components/OrderItem/OrderItem";
+import { useTitle } from "../../hooks/useTitle";
 
 const FullOrder = () => {
   const order = useSelector(selectOrderData);
@@ -14,9 +13,8 @@ const FullOrder = () => {
     .reduce((sum, acc) => Number(acc.price) * Number(acc.count) + sum, 0)
     .toFixed(2);
 
-  useEffect(() => {
-    document.title = "Корзина";
-  }, []);
+  // Set the title of the current page
+  useTitle("Корзина");
 
   if (order.length <= 0) {
     return <h2 style={{ textAlign: "center" }}>Корзина пустая</h2>;

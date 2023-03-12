@@ -34,5 +34,6 @@ export type FurnitureType = {
 
 export interface FurnitureSliceStateType {
   items: FurnitureType[];
+  item?: FurnitureType;
   status: "success" | "error" | "loading";
 }

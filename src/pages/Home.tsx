@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 
-import { useAppDispatch } from "../redux/store";
-import { fetchFurnitures } from "../redux/slice/furnitureSlice/furnitureThunk";
+import { useAppDispatch } from "../store/store";
+import { fetchFurnitures } from "../store/slice/furnitureSlice/furnitureThunk";
 
 import FurnitureList from "../components/FurnitureList/FurnitureList";
 import Categories from "../components/Categories/Categories";
 import Presentation from "../components/Presentation/Presentation";
 import PopularCategoryList from "../components/PopularCategoryList/PopularCategoryList";
+
+import { useTitle } from "../hooks/useTitle";
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -26,9 +28,7 @@ const Home = () => {
   }, [categoyName, postLimit]);
 
   // Set the title of the current page
-  useEffect(() => {
-    document.title = "Главная";
-  }, []);
+  useTitle("Главная");
 
   return (
     <>

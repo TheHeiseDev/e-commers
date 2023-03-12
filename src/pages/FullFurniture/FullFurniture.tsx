@@ -1,9 +1,7 @@
 import "./FullFurniture.css";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-import { apiService } from "../../api/apiService";
 
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -12,23 +10,27 @@ import FmdGoodIcon from "@mui/icons-material/FmdGood"; // на экспозиц�
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"; //календарь
 import LocalShippingIcon from "@mui/icons-material/LocalShipping"; // доставка
 
-import Loader from "../../components/UI/Loader/Loader";
-import LabTabs from "../../components/UI/Tabs/Tabs";
-import Carousel from "../../components/UI/Carousel/Carousel";
-import HalfRating from "../../components/UI/Rating/Rating";
+import Loader from "../../components/ui/Loader/Loader";
+import LabTabs from "../../components/ui/Tabs/Tabs";
+import Carousel from "../../components/ui/Carousel/Carousel";
+import HalfRating from "../../components/ui/Rating/Rating";
 import FurnitureItem from "../../components/FurnitureItem/FurnitureItem";
 import FurnitureSkeleton from "../../components/FurnitureItem/FurnitureSkeleton";
 
-import { addOrder, selectOrderData } from "../../redux/slice/orderSlice/orderSlice";
-import { FurnitureType } from "../../redux/slice/furnitureSlice/furnitueTypes";
+import { useAppDispatch } from "../../store/store";
+import { addOrder, selectOrderData } from "../../store/slice/orderSlice/orderSlice";
+import { selectFurnitureData } from "../../store/slice/furnitureSlice/furnitureSlice";
+import { fetchFurnitureById } from "../../store/slice/furnitureSlice/furnitureThunk";
+
+import { useTitle } from "../../hooks/useTitle";
 import { searchCardInBasket } from "../../utils/searchCardInBasket";
 
 const FullFurniture = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { id } = useParams();
 
   const orders = useSelector(selectOrderData);
-  const [item, setItem] = useState<FurnitureType>();
+  const { item, status } = useSelector(selectFurnitureData);
 
   const checkItemInCart = item && searchCardInBasket(orders, item);
 
@@ -37,30 +39,26 @@ const FullFurniture = () => {
       dispatch(addOrder(item));
     }
   };
-
   // Fetching a product card
   useEffect(() => {
-    async function fetchFurnitureById() {
-      const { data } = await axios.get(`${apiService.getFurnitureById}${id}`);
-
-      setItem(data);
-    }
+    dispatch(fetchFurnitureById(id!));
     window.scrollTo(0, 0);
-    fetchFurnitureById();
   }, [id]);
 
   // Setting the title of the html page
-  useEffect(() => {
-    if (item) {
-      document.title = item.title ? item.title : "";
-    }
-  }, [item]);
-
+  useTitle(item?.title);
   if (!item) {
     return <Loader />;
   }
-
-  return (
+  return status === "loading" ? (
+    <Loader />
+  ) : status === "error" ? (
+    <>
+      <div className="full-furniture">
+        <h2>Ошибка загрузки данных. Попробуйте обновить страницу</h2>
+      </div>
+    </>
+  ) : status === "success" ? (
     <>
       <div className="full-furniture">
         <div className="furniture__left">
@@ -124,7 +122,7 @@ const FullFurniture = () => {
           : [...Array(4)].map((_, index) => <FurnitureSkeleton key={index} />)}
       </Carousel>
     </>
-  );
+  ) : null;
 };
 
 export default FullFurniture;

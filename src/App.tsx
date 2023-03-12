@@ -4,14 +4,14 @@ import { Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
 import MainLayout from "./layout/MainLayout";
-import Loader from "./components/UI/Loader/Loader";
+import Loader from "./components/ui/Loader/Loader";
 
 const FullFurniture = lazy(
   () =>
     import(/* webpachChunkName: "FullFurniture" */ "./pages/FullFurniture/FullFurniture")
 );
 const FullOrder = lazy(
-  () => import(/* webpachChunkName: "FullOrder" */ "./pages/FullOrder.jsx/FullOrder")
+  () => import(/* webpachChunkName: "FullOrder" */ "./pages/FullOrder/FullOrder")
 );
 
 function App() {

@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { RootState } from "../../store";
-import { FurnitureSliceStateType } from "./furnitueTypes";
-import { fetchFurnitures } from "./furnitureThunk";
+import { FurnitureSliceStateType, FurnitureType } from "./furnitueTypes";
+import { fetchFurnitureById, fetchFurnitures } from "./furnitureThunk";
 
 const initialState: FurnitureSliceStateType = {
   items: [],
+  item: {} as FurnitureType,
   status: "success",
 };
 
@@ -27,9 +28,21 @@ export const furnitureSlice = createSlice({
       .addCase(fetchFurnitures.rejected, (state) => {
         state.status = "error";
         state.items = [];
+      })
+      .addCase(fetchFurnitureById.pending, (state) => {
+        state.status = "loading";
+        state.item = {} as FurnitureType;
+      })
+      .addCase(fetchFurnitureById.fulfilled, (state, action) => {
+        state.status = "success";
+        state.item = action.payload;
+      })
+      .addCase(fetchFurnitureById.rejected, (state) => {
+        state.status = "error";
+        state.item = {} as FurnitureType;
       });
   },
 });
-// export const {} = furnitureSlice.actions;
+export const {} = furnitureSlice.actions;
 export const selectFurnitureData = (state: RootState) => state.furniture;
 export default furnitureSlice.reducer;

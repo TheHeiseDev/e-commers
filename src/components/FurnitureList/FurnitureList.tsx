@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectFurnitureData } from "../../redux/slice/furnitureSlice/furnitureSlice";
+import { selectFurnitureData } from "../../store/slice/furnitureSlice/furnitureSlice";
 import FurnitureItem from "../FurnitureItem/FurnitureItem";
 import FurnitureSkeleton from "../FurnitureItem/FurnitureSkeleton";
 import "./FurnitureList.css";

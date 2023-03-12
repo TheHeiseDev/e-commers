@@ -1,16 +1,17 @@
+import { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { addOrder, selectOrderData } from "../../redux/slice/orderSlice/orderSlice";
+import { addOrder, selectOrderData } from "../../store/slice/orderSlice/orderSlice";
 import "./FurnitureItem.css";
 import VerifiedIcon from "@mui/icons-material/Verified"; // товар в наличии
-import { FurnitureType } from "../../redux/slice/furnitureSlice/furnitueTypes";
+import { FurnitureType } from "../../store/slice/furnitureSlice/furnitueTypes";
 import { searchCardInBasket } from "../../utils/searchCardInBasket";
 
 interface IFurnitureItemProps {
   item: FurnitureType;
 }
 
-const FurnitureItem = ({ item }: IFurnitureItemProps) => {
+const FurnitureItem = memo(({ item }: IFurnitureItemProps) => {
   const dispatch = useDispatch();
   const orders = useSelector(selectOrderData);
 
@@ -44,6 +45,6 @@ const FurnitureItem = ({ item }: IFurnitureItemProps) => {
       </div>
     </div>
   );
-};
+});
 
 export default FurnitureItem;

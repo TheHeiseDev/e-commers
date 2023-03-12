@@ -1,4 +1,4 @@
-import { FurnitureType } from "./../furnitureSlice/furnitueTypes";
+import { FurnitureType } from "../furnitureSlice/furnitueTypes";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { OrderSliceStateType } from "./orderType";
 import { RootState } from "../../store";

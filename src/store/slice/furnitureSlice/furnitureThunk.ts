@@ -13,3 +13,13 @@ export const fetchFurnitures = createAsyncThunk(
     return data;
   }
 );
+export const fetchFurnitureById = createAsyncThunk(
+  "furniture/fetchFurnitureById",
+  async (id: string) => {
+    const { data } = await axios.get<FurnitureType>(
+      `${apiService.getFurnitureById}${id}`
+    );
+
+    return data;
+  }
+);

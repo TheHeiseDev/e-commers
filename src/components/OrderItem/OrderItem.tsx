@@ -6,10 +6,10 @@ import {
   deleteOrder,
   minusOrderCount,
   plusOrderCount,
-} from "../../redux/slice/orderSlice/orderSlice";
+} from "../../store/slice/orderSlice/orderSlice";
 import { IoRemoveCircleOutline } from "react-icons/io5";
 import { IoAddCircleOutline } from "react-icons/io5";
-import { FurnitureType } from "../../redux/slice/furnitureSlice/furnitueTypes";
+import { FurnitureType } from "../../store/slice/furnitureSlice/furnitueTypes";
 
 interface IOrderItemProps {
   item: FurnitureType;

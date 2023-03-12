@@ -1,3 +1,4 @@
+import { regexEmail, regexPhone } from "./../constants/regex";
 import React, { ChangeEvent, FocusEvent, useState } from "react";
 import { useEffect } from "react";
 
@@ -68,19 +69,20 @@ export const useValidation = (
           : setMinLengthError(false);
       } else if (validation === "maxLengthError") {
         value.length > 11 ? setMaxLengthError(true) : setMaxLengthError(false);
-      } else if (validation === "isEmpty") {
+      }
+      if (validation === "isEmpty") {
         value ? setEmpty(false) : setEmpty(true);
-      } else if (validation === "emailError") {
+      }
+      if (validation === "emailError") {
         //regular expression to check the correctness of entering an email address
-        const regular =
-          /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        const regular = regexEmail;
         regular.test(String(value).toLowerCase())
           ? setEmailError(false)
           : setEmailError(true);
-      } else if (validation === "hasNumber") {
+      }
+      if (validation === "hasNumber") {
         // regular expression to check if a phone number is entered correctly
-        const stringRegex = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?\d{7,10})$/;
-
+        const stringRegex = regexPhone;
         stringRegex.test(value) ? setHasNumberError(false) : setHasNumberError(true);
       }
     }

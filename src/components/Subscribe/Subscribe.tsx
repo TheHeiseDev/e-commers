@@ -5,10 +5,15 @@ import { AiOutlineMail } from "react-icons/ai";
 import { selectList, SelectListType } from "../../constants/subscribeItem";
 import { useInput, UseInputType, UseValidationType } from "../../hooks/validateForm";
 
-import CustomizedSnackbars from "../UI/Alerts/Alert";
+import CustomizedSnackbars from "../ui/Alerts/Alert";
+
+const SubscribeType = {
+  Email: "Email рассылка",
+  Sms: "Sms рассылка",
+};
 
 const Subscribe = () => {
-  const [selectValue, setSelectValue] = useState("Email рассылка");
+  const [selectValue, setSelectValue] = useState(SubscribeType.Email);
   const [openDropDown, setOpenDropDown] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
@@ -22,11 +27,11 @@ const Subscribe = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement | HTMLDivElement>) => {
     event.preventDefault();
 
-    if (selectValue === "Email рассылка") {
+    if (selectValue === SubscribeType.Email) {
       email.setValue("");
       email.setDirty(false);
     }
-    if (selectValue === "Sms рассылка") {
+    if (selectValue === SubscribeType.Sms) {
       phone.setValue("");
       phone.setDirty(false);
     }
@@ -75,7 +80,7 @@ const Subscribe = () => {
     hasNumber: false,
   } as UseInputType);
 
-  function renderValidationMessage(input: UseValidationType) {
+  const renderValidationMessage = (input: UseValidationType) => {
     const { isDirty, isEmpty, minLengthError, maxLengthError, emailError, hasNumber } =
       input;
 
@@ -95,7 +100,7 @@ const Subscribe = () => {
       }
     }
     return null;
-  }
+  };
 
   return (
     <div className="subscripe">
@@ -131,44 +136,45 @@ const Subscribe = () => {
           </div>
 
           <div className="sub__form-input">
-            {selectValue === "Email рассылка" ? (
+            {selectValue === SubscribeType.Email ? (
               <div className="validate">{renderValidationMessage(email)}</div>
-            ) : (
+            ) : selectValue === SubscribeType.Sms ? (
               <div className="validate">{renderValidationMessage(phone)}</div>
-            )}
-            {selectValue === "Email рассылка" ? (
+            ) : null}
+
+            {selectValue === SubscribeType.Email ? (
               <input
                 onChange={(e) => email.onChange(e)}
                 onBlur={(e) => email.onBlur(e)}
                 value={email.value}
-                type="text"
+                type="email"
                 placeholder="Email..."
               />
-            ) : (
+            ) : selectValue === SubscribeType.Sms ? (
               <input
                 onChange={(e) => phone.onChange(e)}
                 onBlur={(e) => phone.onBlur(e)}
                 value={phone.value}
-                type="text"
+                type="tel"
                 placeholder="Телефон в формате 8..."
               />
-            )}
+            ) : null}
 
-            {selectValue === "Email рассылка" ? (
+            {selectValue === SubscribeType.Email ? (
               <div
                 className={!email.inputValid ? "form-button-disabled" : ""}
                 onClick={handleSubmit}
               >
                 <CustomizedSnackbars />
               </div>
-            ) : (
+            ) : selectValue === SubscribeType.Sms ? (
               <div
                 className={!phone.inputValid ? "form-button-disabled" : ""}
                 onClick={handleSubmit}
               >
                 <CustomizedSnackbars />
               </div>
-            )}
+            ) : null}
           </div>
         </form>
       </div>
