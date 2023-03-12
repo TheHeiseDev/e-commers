@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { apiService } from "../../api/apiService";
 
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -40,9 +41,7 @@ const FullFurniture = () => {
   // Fetching a product card
   useEffect(() => {
     async function fetchFurnitureById() {
-      const { data } = await axios.get(
-        `https://63c3b1edf0028bf85f9c9068.mockapi.io/furniture/${id}`
-      );
+      const { data } = await axios.get(`${apiService.getFurnitureById}${id}`);
 
       setItem(data);
     }
