@@ -1,9 +1,9 @@
 import { PopulaCategoryType } from "../../../constants/productCategories";
 
-interface PopularSmallCardProps {
+interface IPopularSmallCardProps {
   item: PopulaCategoryType[];
 }
-const PopularSmallCard = ({ item }: PopularSmallCardProps) => {
+const PopularSmallCard = ({ item }: IPopularSmallCardProps) => {
   return (
     <>
       {item.map((popularItem) => (

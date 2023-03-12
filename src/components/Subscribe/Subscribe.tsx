@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef, useCallback } from "react";
 import "./Subscribe.css";
+import { useState, useEffect, useRef } from "react";
+
 import { AiOutlineMail } from "react-icons/ai";
 import { selectList, SelectListType } from "../../constants/subscribeItem";
 import { useInput, UseInputType, UseValidationType } from "../../hooks/validateForm";
+
 import CustomizedSnackbars from "../UI/Alerts/Alert";
-import { EmailSharp } from "@mui/icons-material";
 
 const Subscribe = () => {
   const [selectValue, setSelectValue] = useState("Email рассылка");

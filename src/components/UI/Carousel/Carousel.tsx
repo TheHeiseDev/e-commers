@@ -3,7 +3,7 @@ import "./Carousel.css";
 
 const PAGE_WIDTH = 450;
 
-const Carousel = ({ children }: HTMLAttributes<HTMLDivElement>) => {
+const Carousel = ({ children }: HTMLAttributes<HTMLElement>) => {
   return (
     <>
       <h2 className="carousel-title">С этим товаром покупают</h2>

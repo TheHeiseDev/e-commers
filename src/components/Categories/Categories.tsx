@@ -1,12 +1,12 @@
 import "./Categories.css";
 import { categories } from "../../constants/productCategories";
 
-interface CategoriesPropsType {
+interface ICategoriesProps {
   categoyName: string;
   setCategory: (key: string) => void;
 }
 
-const Categories = ({ setCategory, categoyName }: CategoriesPropsType) => {
+const Categories = ({ setCategory, categoyName }: ICategoriesProps) => {
   return (
     <ul className="categories">
       {categories.map((category) => (

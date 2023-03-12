@@ -6,11 +6,11 @@ import VerifiedIcon from "@mui/icons-material/Verified"; // товар в нал
 import { FurnitureType } from "../../redux/slice/furnitureSlice/furnitueTypes";
 import { searchCardInBasket } from "../../utils/searchCardInBasket";
 
-interface FurnitureItemProps {
+interface IFurnitureItemProps {
   item: FurnitureType;
 }
 
-const FurnitureItem = ({ item }: FurnitureItemProps) => {
+const FurnitureItem = ({ item }: IFurnitureItemProps) => {
   const dispatch = useDispatch();
   const orders = useSelector(selectOrderData);
 

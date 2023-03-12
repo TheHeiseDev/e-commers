@@ -4,11 +4,11 @@ import FurnitureItem from "../FurnitureItem/FurnitureItem";
 import FurnitureSkeleton from "../FurnitureItem/FurnitureSkeleton";
 import "./FurnitureList.css";
 
-interface FurnitureListProps  {
+interface IFurnitureListProps {
   handlePostLimitCart: () => void;
-};
+}
 
-const FurnitureList = ({ handlePostLimitCart }: FurnitureListProps) => {
+const FurnitureList = ({ handlePostLimitCart }: IFurnitureListProps) => {
   const { items, status } = useSelector(selectFurnitureData);
 
   return (

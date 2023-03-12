@@ -6,13 +6,13 @@ import { useDispatch } from "react-redux";
 import { deleteOrder } from "../../redux/slice/orderSlice/orderSlice";
 import { FurnitureType } from "../../redux/slice/furnitureSlice/furnitueTypes";
 
-interface OrderProps  {
+interface IOrderProps {
   item: FurnitureType;
   closeMenu: (toogle: boolean) => void;
   closeMenuMobile: (toogle: boolean) => void;
-};
+}
 
-const Order = ({ item, closeMenu, closeMenuMobile }: OrderProps) => {
+const Order = ({ item, closeMenu, closeMenuMobile }: IOrderProps) => {
   const dispatch = useDispatch();
 
   const onRemove = () => {

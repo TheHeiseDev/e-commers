@@ -22,7 +22,6 @@ import { addOrder, selectOrderData } from "../../redux/slice/orderSlice/orderSli
 import { FurnitureType } from "../../redux/slice/furnitureSlice/furnitueTypes";
 import { searchCardInBasket } from "../../utils/searchCardInBasket";
 
-
 const FullFurniture = () => {
   const dispatch = useDispatch();
   const { id } = useParams();

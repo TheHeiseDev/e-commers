@@ -11,10 +11,10 @@ import { IoRemoveCircleOutline } from "react-icons/io5";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { FurnitureType } from "../../redux/slice/furnitureSlice/furnitueTypes";
 
-interface OrderItemProps {
+interface IOrderItemProps {
   item: FurnitureType;
 }
-const OrderItem = ({ item }: OrderItemProps) => {
+const OrderItem = ({ item }: IOrderItemProps) => {
   const dispatch = useDispatch();
 
   const handleCartRemove = () => {
