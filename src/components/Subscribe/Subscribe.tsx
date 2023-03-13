@@ -2,10 +2,10 @@ import "./Subscribe.css";
 import { useState, useEffect, useRef } from "react";
 
 import { AiOutlineMail } from "react-icons/ai";
+import CustomizedSnackbars from "../ui/Alerts/Alert";
+
 import { selectList, SelectListType } from "../../constants/subscribeItem";
 import { useInput, UseInputType, UseValidationType } from "../../hooks/validateForm";
-
-import CustomizedSnackbars from "../ui/Alerts/Alert";
 
 const SubscribeType = {
   Email: "Email рассылка",
@@ -102,6 +102,52 @@ const Subscribe = () => {
     return null;
   };
 
+  const renderForm = () => {
+    return (
+      <div className="sub__form-input">
+        {selectValue === SubscribeType.Email ? (
+          <div className="validate">{renderValidationMessage(email)}</div>
+        ) : selectValue === SubscribeType.Sms ? (
+          <div className="validate">{renderValidationMessage(phone)}</div>
+        ) : null}
+
+        {selectValue === SubscribeType.Email ? (
+          <input
+            onChange={(e) => email.onChange(e)}
+            onBlur={(e) => email.onBlur(e)}
+            value={email.value}
+            type="email"
+            placeholder="Email..."
+          />
+        ) : selectValue === SubscribeType.Sms ? (
+          <input
+            onChange={(e) => phone.onChange(e)}
+            onBlur={(e) => phone.onBlur(e)}
+            value={phone.value}
+            type="tel"
+            placeholder="Телефон в формате 8..."
+          />
+        ) : null}
+
+        {selectValue === SubscribeType.Email ? (
+          <div
+            className={!email.inputValid ? "form-button-disabled" : ""}
+            onClick={handleSubmit}
+          >
+            <CustomizedSnackbars />
+          </div>
+        ) : selectValue === SubscribeType.Sms ? (
+          <div
+            className={!phone.inputValid ? "form-button-disabled" : ""}
+            onClick={handleSubmit}
+          >
+            <CustomizedSnackbars />
+          </div>
+        ) : null}
+      </div>
+    );
+  };
+
   return (
     <div className="subscripe">
       <div className="subscripe__wrapper">
@@ -135,47 +181,7 @@ const Subscribe = () => {
             </div>
           </div>
 
-          <div className="sub__form-input">
-            {selectValue === SubscribeType.Email ? (
-              <div className="validate">{renderValidationMessage(email)}</div>
-            ) : selectValue === SubscribeType.Sms ? (
-              <div className="validate">{renderValidationMessage(phone)}</div>
-            ) : null}
-
-            {selectValue === SubscribeType.Email ? (
-              <input
-                onChange={(e) => email.onChange(e)}
-                onBlur={(e) => email.onBlur(e)}
-                value={email.value}
-                type="email"
-                placeholder="Email..."
-              />
-            ) : selectValue === SubscribeType.Sms ? (
-              <input
-                onChange={(e) => phone.onChange(e)}
-                onBlur={(e) => phone.onBlur(e)}
-                value={phone.value}
-                type="tel"
-                placeholder="Телефон в формате 8..."
-              />
-            ) : null}
-
-            {selectValue === SubscribeType.Email ? (
-              <div
-                className={!email.inputValid ? "form-button-disabled" : ""}
-                onClick={handleSubmit}
-              >
-                <CustomizedSnackbars />
-              </div>
-            ) : selectValue === SubscribeType.Sms ? (
-              <div
-                className={!phone.inputValid ? "form-button-disabled" : ""}
-                onClick={handleSubmit}
-              >
-                <CustomizedSnackbars />
-              </div>
-            ) : null}
-          </div>
+          {renderForm()}
         </form>
       </div>
     </div>

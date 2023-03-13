@@ -1,5 +1,5 @@
 import "./FullFurniture.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -53,11 +53,9 @@ const FullFurniture = () => {
   return status === "loading" ? (
     <Loader />
   ) : status === "error" ? (
-    <>
-      <div className="full-furniture">
-        <h2>Ошибка загрузки данных. Попробуйте обновить страницу</h2>
-      </div>
-    </>
+    <div className="full-furniture">
+      <h2>Ошибка загрузки данных. Попробуйте обновить страницу</h2>
+    </div>
   ) : status === "success" ? (
     <>
       <div className="full-furniture">
