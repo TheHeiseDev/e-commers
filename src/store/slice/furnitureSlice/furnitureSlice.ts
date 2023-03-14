@@ -1,13 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { RootState } from "../../store";
-import { FurnitureSliceStateType, FurnitureType } from "./furnitueTypes";
+import { FurnitureSliceStateType } from "./furnitueTypes";
 import { fetchFurnitureById, fetchFurnitures } from "./furnitureThunk";
 
 const initialState: FurnitureSliceStateType = {
-  items: [],
-  item: {} as FurnitureType,
-  status: "success",
+  items: {
+    data: null,
+    status: "loading",
+  },
+  item: {
+    data: null,
+    status: "loading",
+  },
 };
 
 export const furnitureSlice = createSlice({
@@ -18,31 +23,32 @@ export const furnitureSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchFurnitures.pending, (state) => {
-        state.status = "loading";
-        state.items = [];
+        state.items.status = "loading";
+        state.items.data = null;
       })
       .addCase(fetchFurnitures.fulfilled, (state, action) => {
-        state.status = "success";
-        state.items = action.payload;
+        state.items.status = "success";
+        state.items.data = action.payload;
       })
       .addCase(fetchFurnitures.rejected, (state) => {
-        state.status = "error";
-        state.items = [];
+        state.items.status = "error";
+        state.items.data = null;
       })
       .addCase(fetchFurnitureById.pending, (state) => {
-        state.status = "loading";
-        state.item = {} as FurnitureType;
+        state.item.status = "loading";
+        state.item.data = null;
       })
       .addCase(fetchFurnitureById.fulfilled, (state, action) => {
-        state.status = "success";
-        state.item = action.payload;
+        state.item.status = "success";
+        state.item.data = action.payload;
       })
       .addCase(fetchFurnitureById.rejected, (state) => {
-        state.status = "error";
-        state.item = {} as FurnitureType;
+        state.item.status = "error";
+        state.item.data = null;
       });
   },
 });
-export const {} = furnitureSlice.actions;
-export const selectFurnitureData = (state: RootState) => state.furniture;
+// export const {} = furnitureSlice.actions;
+export const selectFurnitureAllData = (state: RootState) => state.furniture.items;
+export const selectFurnitureByIdData = (state: RootState) => state.furniture.item;
 export default furnitureSlice.reducer;

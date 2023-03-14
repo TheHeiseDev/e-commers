@@ -1,7 +1,7 @@
 import "./FullFurniture.css";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -19,7 +19,7 @@ import FurnitureSkeleton from "../../components/FurnitureItem/FurnitureSkeleton"
 
 import { useAppDispatch } from "../../store/store";
 import { addOrder, selectOrderData } from "../../store/slice/orderSlice/orderSlice";
-import { selectFurnitureData } from "../../store/slice/furnitureSlice/furnitureSlice";
+import { selectFurnitureByIdData } from "../../store/slice/furnitureSlice/furnitureSlice";
 import { fetchFurnitureById } from "../../store/slice/furnitureSlice/furnitureThunk";
 
 import { useTitle } from "../../hooks/useTitle";
@@ -27,52 +27,57 @@ import { searchCardInBasket } from "../../utils/searchCardInBasket";
 
 const FullFurniture = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
-
   const orders = useSelector(selectOrderData);
-  const { item, status } = useSelector(selectFurnitureData);
+  const { data, status } = useSelector(selectFurnitureByIdData);
 
-  const checkItemInCart = item && searchCardInBasket(orders, item);
+  const checkItemInCart = data && searchCardInBasket(orders, data);
 
   const onAddToCart = () => {
-    if (item) {
-      dispatch(addOrder(item));
+    if (data) {
+      dispatch(addOrder(data));
     }
   };
   // Fetching a product card
   useEffect(() => {
-    dispatch(fetchFurnitureById(id!));
+    if (id) {
+      dispatch(fetchFurnitureById(id));
+    }
     window.scrollTo(0, 0);
   }, [id]);
 
+  // If the product was not found by the passed id, then we redirect to the main page
+  useEffect(() => {
+    if (status === "error") {
+      navigate("/", { replace: false });
+    }
+  }, [status]);
+
   // Setting the title of the html page
-  useTitle(item?.title);
-  if (!item) {
+  useTitle(data?.title);
+
+  if (!data) {
     return <Loader />;
   }
-  return status === "loading" ? (
-    <Loader />
-  ) : status === "error" ? (
-    <div className="full-furniture">
-      <h2>Ошибка загрузки данных. Попробуйте обновить страницу</h2>
-    </div>
-  ) : status === "success" ? (
+
+  return (
     <>
       <div className="full-furniture">
         <div className="furniture__left">
-          <img src={item.imageUrl} alt={item.title} />
+          <img src={data.imageUrl} alt={data.title} />
         </div>
         <div className="furniture__right">
-          <h2>{item.title}</h2>
+          <h2>{data.title}</h2>
           <div className="product__info">
             <div>
-              <HalfRating rating={item.rating} /> {item.rating}
+              <HalfRating rating={data.rating} /> {data.rating}
             </div>
-            <span>Артикул: {item.productCode}</span>
+            <span>Артикул: {data.productCode}</span>
           </div>
           <div className="product__price">
-            <b className="price">{item.price} $</b>
-            {item.oldPrice && <b className="old__price">{item.oldPrice} $</b>}
+            <b className="price">{data.price} $</b>
+            {data.oldPrice && <b className="old__price">{data.oldPrice} $</b>}
           </div>
 
           <div className="product__action">
@@ -83,7 +88,7 @@ const FullFurniture = () => {
               <AddShoppingCartIcon />
               {checkItemInCart ? "Из корзины" : "В корзину"}
             </button>
-            <button className={`add-to-buy ${item.itemInStock ? "" : "disabled"}`}>
+            <button className={`add-to-buy ${data.itemInStock ? "" : "disabled"}`}>
               Купить в 1 клик
             </button>
             <div className="add-to-favorite">
@@ -94,7 +99,7 @@ const FullFurniture = () => {
           <div className="product__delivery">
             <div>
               <VerifiedIcon />
-              <span>{item.itemInStock ? "Товар в налии" : "Нет в наличии"}</span>
+              <span>{data.itemInStock ? "Товар в налии" : "Нет в наличии"}</span>
             </div>
 
             <div>
@@ -115,12 +120,12 @@ const FullFurniture = () => {
       <LabTabs />
 
       <Carousel>
-        {item.recomendation
-          ? item.recomendation.map((data) => <FurnitureItem key={data.id} item={data} />)
+        {data.recomendation
+          ? data.recomendation.map((data) => <FurnitureItem key={data.id} item={data} />)
           : [...Array(4)].map((_, index) => <FurnitureSkeleton key={index} />)}
       </Carousel>
     </>
-  ) : null;
+  );
 };
 
 export default FullFurniture;

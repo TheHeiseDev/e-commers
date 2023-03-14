@@ -28,12 +28,22 @@ export type FurnitureType = {
   productCode: string;
   itemInStock: boolean;
   rating: Float32Array;
-  recomendation?: RecomendationItemType[];
+  recomendation?: RecomendationItemType[] | null;
   count?: number;
 };
 
+// export interface FurnitureSliceStateType {
+//   items: FurnitureType[] | null;
+//   item: FurnitureType | null;
+//   status: "success" | "error" | "loading";
+// }
 export interface FurnitureSliceStateType {
-  items: FurnitureType[];
-  item?: FurnitureType;
-  status: "success" | "error" | "loading";
+  items: {
+    data: FurnitureType[] | null;
+    status: "success" | "error" | "loading";
+  } ,
+  item: {
+    data: FurnitureType | null;
+    status: "success" | "error" | "loading";
+  } ;
 }

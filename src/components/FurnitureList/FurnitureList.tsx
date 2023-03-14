@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectFurnitureData } from "../../store/slice/furnitureSlice/furnitureSlice";
+import { selectFurnitureAllData } from "../../store/slice/furnitureSlice/furnitureSlice";
 import FurnitureItem from "../FurnitureItem/FurnitureItem";
 import FurnitureSkeleton from "../FurnitureItem/FurnitureSkeleton";
 import "./FurnitureList.css";
@@ -9,15 +9,15 @@ interface IFurnitureListProps {
 }
 
 const FurnitureList = ({ handlePostLimitCart }: IFurnitureListProps) => {
-  const { items, status } = useSelector(selectFurnitureData);
+  const { data, status } = useSelector(selectFurnitureAllData);
 
   return (
     <main className="furniture__wrapper">
       <div className="furniture__wrapper-item">
-        {status === "loading" ? (
+        {status === "loading" || data === null ? (
           [...Array(4)].map((_, index) => <FurnitureSkeleton key={index} />)
         ) : status === "success" ? (
-          items.map((item) => <FurnitureItem key={Number(item.id)} item={item} />)
+          data.map((item) => <FurnitureItem key={Number(item.id)} item={item} />)
         ) : (
           <>
             <h4>Ошибка загрузки данных...</h4>
@@ -25,7 +25,7 @@ const FurnitureList = ({ handlePostLimitCart }: IFurnitureListProps) => {
         )}
       </div>
       <div className="button__wrapper">
-        {items.length < 8 && items.length >= 4 && (
+        {data && data.length < 8 && data.length >= 4 && (
           <button onClick={handlePostLimitCart}>Показать еще</button>
         )}
       </div>
