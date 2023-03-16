@@ -8,7 +8,7 @@ import Categories from "../components/Categories/Categories";
 import Presentation from "../components/Presentation/Presentation";
 import PopularCategoryList from "../components/PopularCategoryList/PopularCategoryList";
 
-import { useTitle } from "../hooks/useTitle";
+import { useTitle } from "../hooks/use-title";
 
 const Home = () => {
   const dispatch = useAppDispatch();

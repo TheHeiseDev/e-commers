@@ -3,15 +3,14 @@ import { useSelector } from "react-redux";
 import { selectOrderData } from "../../store/slice/orderSlice/orderSlice";
 
 import OrderItem from "../../components/OrderItem/OrderItem";
-import { useTitle } from "../../hooks/useTitle";
+import { useTitle } from "../../hooks/use-title";
+import { useCalculateTotalPrice } from "../../hooks/use-totalPrice";
 
 const FullOrder = () => {
   const order = useSelector(selectOrderData);
 
   // This variable sums the total cost of the items in the cart
-  const totalPrice = order
-    .reduce((sum, acc) => Number(acc.price) * Number(acc.count) + sum, 0)
-    .toFixed(2);
+  const {totalPrice} = useCalculateTotalPrice()
 
   // Set the title of the current page
   useTitle("Корзина");

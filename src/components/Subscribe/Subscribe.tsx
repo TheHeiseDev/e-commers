@@ -5,7 +5,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import CustomizedSnackbars from "../ui/Alerts/Alert";
 
 import { selectList, SelectListType } from "../../constants/subscribeItem";
-import { useInput, UseInputType, UseValidationType } from "../../hooks/validateForm";
+import { useInput, UseInputType, UseValidationType } from "../../hooks/use-validateForm";
 
 const SubscribeType = {
   Email: "Email рассылка",

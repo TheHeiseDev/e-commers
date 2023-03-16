@@ -1,11 +1,14 @@
-import { memo, useState, useEffect, useRef } from "react";
 import "./Header.css";
-import Order from "../Order/Order";
-import { FaShoppingBag } from "react-icons/fa";
+import { memo, useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { menuList } from "../../constants/menuList";
+
+import Order from "../Order/Order";
+import { FaShoppingBag } from "react-icons/fa";
+
 import { selectOrderData } from "../../store/slice/orderSlice/orderSlice";
+import { useCalculateTotalPrice } from "../../hooks/use-totalPrice";
+import { menuList } from "../../constants/menuList";
 
 const Header = memo(() => {
   const orders = useSelector(selectOrderData);
@@ -16,9 +19,7 @@ const Header = memo(() => {
   const orderRef = useRef(null);
   const orderRefDouble = useRef(null);
 
-  const totalPrice = orders
-    .reduce((sum, item) => sum + parseFloat(item.price), 0)
-    .toFixed(2);
+  const { totalPrice } = useCalculateTotalPrice();
 
   const hiddenBody = () => {
     if (openMenu) {
@@ -90,9 +91,7 @@ const Header = memo(() => {
               onClick={() => setCartOpen((cartOpen) => !cartOpen)}
               className={`shop-cart-button ${cartOpen && "active"}`}
             />
-            {parseFloat(totalPrice) > 0 && (
-              <span className="total__price">{totalPrice} $</span>
-            )}
+            {totalPrice > 0 && <span className="total__price">{totalPrice} $</span>}
 
             {menuList.map((item, index) => (
               <Link key={index} to={item.link}>

@@ -22,7 +22,7 @@ import { addOrder, selectOrderData } from "../../store/slice/orderSlice/orderSli
 import { selectFurnitureByIdData } from "../../store/slice/furnitureSlice/furnitureSlice";
 import { fetchFurnitureById } from "../../store/slice/furnitureSlice/furnitureThunk";
 
-import { useTitle } from "../../hooks/useTitle";
+import { useTitle } from "../../hooks/use-title";
 import { searchCardInBasket } from "../../utils/searchCardInBasket";
 
 const FullFurniture = () => {
