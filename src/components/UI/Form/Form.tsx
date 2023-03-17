@@ -1,24 +1,18 @@
-import { useState, CSSProperties } from "react";
-
-const formStyle: CSSProperties = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  gap: "20px",
-  width: "300px",
-  margin: "0 auto",
-};
+import "./Form.css";
+import { useState } from "react";
+import Loader from "../Loader/Loader";
 
 interface IForm {
   title: string;
   handleClick: (email: string, pass: string) => void;
+  loading: boolean;
 }
-export const Form = ({ title, handleClick }: IForm) => {
+export const Form = ({ title, handleClick, loading }: IForm) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
   return (
-    <div style={formStyle}>
+    <div className="form-auth__wrapper">
       <input
         type="email"
         value={email}
@@ -31,7 +25,10 @@ export const Form = ({ title, handleClick }: IForm) => {
         onChange={(e) => setPass(e.target.value)}
         placeholder="password"
       />
-      <button onClick={() => handleClick(email, pass)}>{title}</button>
+      <button onClick={() => handleClick(email, pass)}>
+        {title}
+        {loading && <Loader />}
+      </button>
     </div>
   );
 };

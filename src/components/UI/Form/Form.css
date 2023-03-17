@@ -1,0 +1,17 @@
+.form-auth__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 300px;
+  margin: "0 auto";
+}
+.form-auth__wrapper button div span {
+  width: 15px !important;
+  height: 15px !important;
+  margin-top: 5px;
+}
+
+.form-auth__wrapper button:hover {
+  opacity: 0.8;
+}
