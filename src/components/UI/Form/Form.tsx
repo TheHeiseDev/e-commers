@@ -25,9 +25,13 @@ export const Form = ({ title, handleClick, loading }: IForm) => {
         onChange={(e) => setPass(e.target.value)}
         placeholder="password"
       />
-      <button onClick={() => handleClick(email, pass)}>
-        {title}
-        {loading && <Loader />}
+      <button
+        className={loading ? "active" : ""}
+        onClick={() => handleClick(email, pass)}
+      >
+        <span className="form-auth__button-titile">
+          {title} {loading && <Loader />}
+        </span>
       </button>
     </div>
   );
