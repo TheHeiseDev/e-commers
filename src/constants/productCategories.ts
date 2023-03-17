@@ -65,7 +65,7 @@ export const populaCategoryAll: PopulaCategoryType[] = [
   {
     id: 4,
     imageUrl:
-      "https://mnogomebeli.com/upload/resize_cache/iblock/bc8/14csj250cj8f2s30b9xxv1m08pjwp9ks/950_450_1/1284kh1000_0005_INT_Kitchen_2021_sonoma_white_naklad_yellow_wall.jpg",
+      "https://mnogomebeli.com/upload/resize_cache/iblock/22d/t452l0e1nso6vw8oweuqhsj4q93boarg/950_450_1/INT_Kitchen_2021_sonoma_white_0001_1280kh1000.jpg",
     title: "Кухни",
     variable: ["Кухни Люкс", "Все кухни"],
   },

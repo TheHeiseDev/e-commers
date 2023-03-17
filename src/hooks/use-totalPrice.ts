@@ -6,9 +6,7 @@ export function useCalculateTotalPrice() {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const orders = useSelector(selectOrderData);
-  // const totalPrice = orders
-  //   .reduce((sum, item) => sum + parseFloat(item.price), 0)
-  //   .toFixed(2);
+
   useEffect(() => {
     const totalPrice = orders
       .reduce((sum, item) => sum + parseFloat(item.price) * item.count!, 0)
@@ -16,6 +14,5 @@ export function useCalculateTotalPrice() {
     setTotalPrice(Number(totalPrice));
   }, [orders]);
 
-  console.log(totalPrice);
   return { totalPrice };
 }

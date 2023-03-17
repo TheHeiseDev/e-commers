@@ -10,11 +10,12 @@ import {
 import { IoRemoveCircleOutline } from "react-icons/io5";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { FurnitureType } from "../../store/slice/furnitureSlice/furnitueTypes";
+import { memo } from "react";
 
 interface IOrderItemProps {
   item: FurnitureType;
 }
-const OrderItem = ({ item }: IOrderItemProps) => {
+const OrderItem = memo(({ item }: IOrderItemProps) => {
   const dispatch = useDispatch();
 
   const handleCartRemove = () => {
@@ -90,6 +91,6 @@ const OrderItem = ({ item }: IOrderItemProps) => {
       </div>
     </div>
   );
-};
+});
 
 export default OrderItem;

@@ -1,7 +1,7 @@
 import "./Header.css";
 import { memo, useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import Order from "../Order/Order";
 import { FaShoppingBag } from "react-icons/fa";
@@ -12,6 +12,7 @@ import { menuList } from "../../constants/menuList";
 
 const Header = memo(() => {
   const orders = useSelector(selectOrderData);
+  const { pathname } = useLocation();
 
   const [cartOpen, setCartOpen] = useState(false);
   const [cartOpenMobile, setCartOpenMobile] = useState(false);
@@ -73,6 +74,12 @@ const Header = memo(() => {
     hiddenBody();
   }, [openMenu]);
 
+  const renderTotalCount = () => {
+    if (totalPrice > 0 && pathname !== "/order") {
+      return <span className="total__price">{totalPrice} $</span>;
+    }
+  };
+
   return (
     <header>
       <div className="header__wrapper">
@@ -87,12 +94,13 @@ const Header = memo(() => {
 
         <nav className={openMenu ? "header__menu active" : "header__menu"}>
           <ul ref={orderRef} className="menu__item nav">
-            <FaShoppingBag
-              onClick={() => setCartOpen((cartOpen) => !cartOpen)}
-              className={`shop-cart-button ${cartOpen && "active"}`}
-            />
-            {totalPrice > 0 && <span className="total__price">{totalPrice} $</span>}
-
+            {pathname !== "/order" && (
+              <FaShoppingBag
+                onClick={() => setCartOpen((cartOpen) => !cartOpen)}
+                className={`shop-cart-button ${cartOpen && "active"}`}
+              />
+            )}
+            {renderTotalCount()}
             {menuList.map((item, index) => (
               <Link key={index} to={item.link}>
                 <li className="menu__link" onClick={handleBurger}>
