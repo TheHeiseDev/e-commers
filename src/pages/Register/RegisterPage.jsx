@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import "./RegisterPage.css";
 import { SignUp } from "../../components/Auth/SignUp/SignUp";
 
 const RegisterPage = () => {
   return (
-    <div>
+    <div className="registerpage__wrapper">
       <h1>Регистрация</h1>
       <SignUp />
       <p>

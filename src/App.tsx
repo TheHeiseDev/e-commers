@@ -5,9 +5,10 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import MainLayout from "./layout/MainLayout";
 import Loader from "./components/ui/Loader/Loader";
-import { PrivateRouter } from "./utils/ router/privateRouter";
 import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
+import UserPage from "./pages/UserPage/UserPage";
+import { PrivateRouter } from "./utils/ router/privateRouter";
 
 const FullFurniture = lazy(
   () =>
@@ -30,6 +31,7 @@ function App() {
               </Suspense>
             }
           />
+          <Route path="/user" element={<UserPage />} />
         </Route>
 
         <Route path="" element={<Home />} />

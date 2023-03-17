@@ -13,15 +13,9 @@ export const SignUp = () => {
 
   const handleRegister = (email: string, password: string) => {
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password).then(({ user }) => {
-      dispatch(
-        setUser({
-          email: user.email,
-          token: user.refreshToken,
-          id: user.uid,
-        })
-      );
-    });
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {})
+      .catch((error) => console.log(error));
     navigate("/login", { replace: false });
   };
 

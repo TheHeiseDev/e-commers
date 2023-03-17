@@ -2,10 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { InitialStateUser } from "./userType";
 
+//Get auth data from localStorage
+const authData = JSON.parse(localStorage.getItem("authData") || "{}");
+
 const initialState: InitialStateUser = {
-  email: null,
-  token: null,
-  id: null,
+  email: authData.email || null,
+  token: authData.token || null,
+  id: authData.id || null,
 };
 
 export const userSlice = createSlice({

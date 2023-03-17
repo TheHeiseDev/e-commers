@@ -1,0 +1,13 @@
+.user__wrapper div {
+  padding: 20px 0px;
+}
+
+.user__wrapper button {
+  background-color: black;
+  color: white;
+  border: 1px solid gray;
+  outline: none;
+  padding: 10px 20px;
+}
+.user__wrapper button {
+}

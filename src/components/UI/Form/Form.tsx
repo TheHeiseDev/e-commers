@@ -3,7 +3,8 @@ import { useState, CSSProperties } from "react";
 const formStyle: CSSProperties = {
   display: "flex",
   flexDirection: "column",
-  gap: "10px",
+  alignItems: "center",
+  gap: "20px",
   width: "300px",
   margin: "0 auto",
 };

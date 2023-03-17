@@ -5,14 +5,17 @@ import { Link, useLocation } from "react-router-dom";
 
 import Order from "../Order/Order";
 import { FaShoppingBag } from "react-icons/fa";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import { selectOrderData } from "../../store/slice/orderSlice/orderSlice";
 import { useCalculateTotalPrice } from "../../hooks/use-totalPrice";
 import { menuList } from "../../constants/menuList";
+import { useAuth } from "../../hooks/use-auth";
 
 const Header = memo(() => {
   const orders = useSelector(selectOrderData);
   const { pathname } = useLocation();
+  const {isAuth} = useAuth()
 
   const [cartOpen, setCartOpen] = useState(false);
   const [cartOpenMobile, setCartOpenMobile] = useState(false);
@@ -108,6 +111,9 @@ const Header = memo(() => {
                 </li>
               </Link>
             ))}
+            <Link to="/user">
+              <AccountCircleIcon className={`header__menu-user ${isAuth ? "active" : ""}` }/>
+            </Link>
           </ul>
         </nav>
         {cartOpen && (
@@ -144,6 +150,7 @@ const Header = memo(() => {
             </Link>
           </div>
         )}
+
         {cartOpenMobile && (
           <div className="shop-cart">
             {orders.length > 0 ? (

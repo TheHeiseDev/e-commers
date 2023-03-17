@@ -27,6 +27,12 @@ header ul.nav li {
 header ul.nav li:hover {
   opacity: 0.6;
 }
+.header__menu-user {
+  cursor: pointer;
+}
+.header__menu-user.active {
+  fill: #43884a;
+}
 
 .header__burger {
   display: none;
