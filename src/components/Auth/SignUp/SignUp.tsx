@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
 import { useAuth } from "../../../hooks/use-auth";
 import { Form } from "../../ui/Form/Form";
 import { useAppDispatch } from "../../../store/store";
-import { selectUserError, setError } from "../../../store/slice/userSlice/userSlice";
-import { useSelector } from "react-redux";
+import { setError } from "../../../store/slice/userSlice/userSlice";
+
+enum ErrorCodeSignUp {
+  inUse = "auth/email-already-in-use",
+}
 
 export const SignUp = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const error = useSelector(selectUserError);
   const { isAuth } = useAuth();
 
   const handleSetError = (status: boolean, message: string) => {
@@ -20,6 +23,14 @@ export const SignUp = () => {
       message,
     };
     dispatch(setError(objError));
+  };
+
+  const errorHandler = (errorMessage: string) => {
+    if (errorMessage === ErrorCodeSignUp.inUse) {
+      handleSetError(true, "Такой пользователь уже существует");
+    } else {
+      handleSetError(true, "Возникла ошибка при регистрации");
+    }
   };
 
   useEffect(() => {
@@ -35,12 +46,8 @@ export const SignUp = () => {
           navigate("/login", { replace: false });
         }
       })
-      .catch((error) => {
-        if ((error.code = "auth/email-already-in-use")) {
-          handleSetError(true, "Такой пользователь уже существует");
-        } else {
-          handleSetError(true, "Возникла ошибка при регистрации");
-        }
+      .catch(({ code }) => {
+        errorHandler(code);
       })
       .finally(() => setLoading(false));
   };

@@ -56,16 +56,16 @@ const OrderItem = memo(({ item }: IOrderItemProps) => {
 
         <div className="product-cart__price">
           <div className="cart-price__flex_order">
+            <div className="price--current">
+              <span className="mobile--info">Цена:</span>
+              {item.price} $
+            </div>
             {item.oldPrice && (
               <div className="price--old">
                 <span className="mobile--info">Старая цена:</span>
                 {item.oldPrice} $
               </div>
             )}
-            <div className="price--current">
-              <span className="mobile--info">Цена:</span>
-              {item.price} $
-            </div>
           </div>
         </div>
         <div className="product-cart__count">

@@ -28,7 +28,7 @@ export default function CustomizedSnackbars() {
       <Button variant="outlined" onClick={handleClick}>
         OK
       </Button>
-      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+      <Snackbar open={open} autoHideDuration={2500} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
           Подписка успешно оформлена!
         </Alert>
