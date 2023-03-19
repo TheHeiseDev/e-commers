@@ -1,7 +1,7 @@
 export const menuList = [
   {
     title: "Избранное",
-    link: "/",
+    link: "/favorite",
   },
   {
     title: "Корзина",

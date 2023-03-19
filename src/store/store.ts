@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
+import favoriteSlice from "./slice/favoriteSlice/favoriteSlice";
 import furnitureSlice from "./slice/furnitureSlice/furnitureSlice";
 import orderSlice from "./slice/orderSlice/orderSlice";
 import userSlice from "./slice/userSlice/userSlice";
@@ -9,6 +10,7 @@ export const store = configureStore({
     furniture: furnitureSlice,
     order: orderSlice,
     user: userSlice,
+    favorite: favoriteSlice,
   },
 });
 

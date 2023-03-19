@@ -190,7 +190,6 @@ header .shop-cart .summa {
 
 .item__picture {
   position: relative;
-  /* height: 360px; */
 }
 
 .item__instock {
@@ -223,4 +222,33 @@ header .shop-cart .summa {
 
 .item__instock svg.inStock {
   fill: gray;
+}
+.item__infavorite {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 20px;
+  border-radius: 50%;
+  padding: 7px;
+  background-color: #fafafa7a;
+  z-index: 2;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.item__infavorite svg {
+  fill: black;
+  opacity: 0.8;
+}
+
+.item__infavorite:hover .favorite {
+  transform: scale(1.08);
+}
+
+.item__infavorite .favorite.isFavorite {
+  fill: red !important;
+  opacity: 1;
+}
+.item__infavorite:active .favorite {
+  transform: scale(0.9);
 }

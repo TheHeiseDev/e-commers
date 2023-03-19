@@ -17,6 +17,9 @@ const FullFurniture = lazy(
 const FullOrder = lazy(
   () => import(/* webpachChunkName: "FullOrder" */ "./pages/FullOrder/FullOrder")
 );
+const FullFavorite = lazy(
+  () => import(/* webpachChunkName: "FullFavorite" */ "./pages/FullFavorite/FullFavorite")
+);
 
 function App() {
   return (
@@ -28,6 +31,14 @@ function App() {
             element={
               <Suspense fallback={<Loader />}>
                 <FullOrder />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/favorite"
+            element={
+              <Suspense fallback={<Loader />}>
+                <FullFavorite />
               </Suspense>
             }
           />

@@ -4,8 +4,13 @@ import { Link } from "react-router-dom";
 import { addOrder, selectOrderData } from "../../store/slice/orderSlice/orderSlice";
 import "./FurnitureItem.css";
 import VerifiedIcon from "@mui/icons-material/Verified"; // товар в наличии
+import FavoriteIcon from "@mui/icons-material/Favorite"; //избранное
 import { FurnitureType } from "../../store/slice/furnitureSlice/furnitueTypes";
 import { searchCardInBasket } from "../../utils/searchCardInBasket";
+import {
+  addFavorite,
+  selectFavorite,
+} from "../../store/slice/favoriteSlice/favoriteSlice";
 
 interface IFurnitureItemProps {
   item: FurnitureType;
@@ -14,25 +19,38 @@ interface IFurnitureItemProps {
 const FurnitureItem = memo(({ item }: IFurnitureItemProps) => {
   const dispatch = useDispatch();
   const orders = useSelector(selectOrderData);
+  const favorites = useSelector(selectFavorite);
 
   // Search for item in cart, if item found then get true, else false
   const checkItemInCart = searchCardInBasket(orders, item);
 
+  const isFavorite = favorites.some(
+    (favorite) => favorite.productCode === item.productCode
+  );
+  console.log(isFavorite);
   const onAddToCart = () => {
     dispatch(addOrder(item));
+  };
+  const onAddToFavorite = () => {
+    dispatch(addFavorite(item));
   };
 
   return (
     <div className="item">
-      <Link to={`/furniture/${item.id}`}>
-        <div className="item__picture">
+      <div className="item__picture">
+        <Link to={`/furniture/${item.id}`}>
           <img src={item.imageUrl} alt="product" />
-          <div className="item__instock">
-            <VerifiedIcon className={item.itemInStock ? "" : "inStock"} />
-            <div>{item.itemInStock ? "Есть в наличии" : "Нет в наличии"} </div>
-          </div>
+        </Link>
+        <div className="item__instock">
+          <VerifiedIcon className={item.itemInStock ? "" : "inStock"} />
+          <div>{item.itemInStock ? "Есть в наличии" : "Нет в наличии"} </div>
         </div>
 
+        <div onClick={onAddToFavorite} className="item__infavorite">
+          <FavoriteIcon className={`favorite ${isFavorite ? "isFavorite" : ""}`} />
+        </div>
+      </div>
+      <Link to={`/furniture/${item.id}`}>
         <h2>{item.title}</h2>
       </Link>
       <p>{item.desc}</p>
