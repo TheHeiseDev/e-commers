@@ -34,4 +34,26 @@
 .form-auth__wrapper input {
   box-sizing: border-box;
   border-radius: 4px;
+  width: 100%;
+}
+
+.form-auth__email {
+}
+.form-auth__pass {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+.form__svg {
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
+  top: 17px;
+  right: 20px;
+}
+.form__svg svg {
+  transition: all 0.3s ease;
+}
+.form__svg:hover svg {
+  fill: blue;
 }
