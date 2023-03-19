@@ -35,12 +35,12 @@ header {
 }
 .item h2 {
   font-size: 18px;
-  transition: opacity 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .item h2:hover {
   cursor: pointer;
-  opacity: 0.8;
+  color: blue;
 }
 
 .item .add-to-cart {

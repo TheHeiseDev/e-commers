@@ -23,14 +23,14 @@
 }
 .popular__sofa p:hover,
 .popular__tables p:hover {
-  color: rgba(0, 0, 0, 0.627);
+  color: blue;
 }
 
 .popular__sofa img,
 .popular__tables img {
   width: 100%;
   border-radius: 10px;
-  transition: transform 0.3s ease;
+  transition: transform 0.9s ease;
   cursor: pointer;
 }
 

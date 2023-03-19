@@ -150,6 +150,12 @@
 .full-furniture .add-to-favorite svg {
   font-size: 26px;
 }
+.full-furniture .add-to-favorite.isFavorite svg {
+  fill: red;
+}
+.full-furniture .add-to-favorite:active svg {
+  transform: scale(0.9);
+}
 
 .furniture__right {
   display: flex;

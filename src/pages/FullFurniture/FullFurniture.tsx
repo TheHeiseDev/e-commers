@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite"; //избранное
 import VerifiedIcon from "@mui/icons-material/Verified"; // товар в наличии
 import FmdGoodIcon from "@mui/icons-material/FmdGood"; // на экспозиции
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"; //календарь
@@ -24,6 +24,8 @@ import { fetchFurnitureById } from "../../store/slice/furnitureSlice/furnitureTh
 
 import { useTitle } from "../../hooks/use-title";
 import { searchCardInBasket } from "../../utils/searchCardInBasket";
+import { useFavorite } from "../../hooks/use-favorite";
+import { addFavorite } from "../../store/slice/favoriteSlice/favoriteSlice";
 
 const FullFurniture = () => {
   const dispatch = useAppDispatch();
@@ -33,12 +35,19 @@ const FullFurniture = () => {
   const { data, status } = useSelector(selectFurnitureByIdData);
 
   const checkItemInCart = data && searchCardInBasket(orders, data);
+  const isFavorite = useFavorite(data);
 
   const onAddToCart = () => {
     if (data) {
       dispatch(addOrder(data));
     }
   };
+  const handleFavorite = () => {
+    if (data) {
+      dispatch(addFavorite(data));
+    }
+  };
+
   // Fetching a product card
   useEffect(() => {
     if (id) {
@@ -91,8 +100,11 @@ const FullFurniture = () => {
             <button className={`add-to-buy ${data.itemInStock ? "" : "disabled"}`}>
               Купить в 1 клик
             </button>
-            <div className="add-to-favorite">
-              <FavoriteBorderIcon />
+            <div
+              onClick={handleFavorite}
+              className={`add-to-favorite ${isFavorite ? "isFavorite" : ""}`}
+            >
+              <FavoriteIcon />
             </div>
           </div>
 

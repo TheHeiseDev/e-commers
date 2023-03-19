@@ -9,8 +9,8 @@ import { FurnitureType } from "../../store/slice/furnitureSlice/furnitueTypes";
 import { searchCardInBasket } from "../../utils/searchCardInBasket";
 import {
   addFavorite,
-  selectFavorite,
 } from "../../store/slice/favoriteSlice/favoriteSlice";
+import { useFavorite } from "../../hooks/use-favorite";
 
 interface IFurnitureItemProps {
   item: FurnitureType;
@@ -19,14 +19,12 @@ interface IFurnitureItemProps {
 const FurnitureItem = memo(({ item }: IFurnitureItemProps) => {
   const dispatch = useDispatch();
   const orders = useSelector(selectOrderData);
-  const favorites = useSelector(selectFavorite);
-
+ 
   // Search for item in cart, if item found then get true, else false
   const checkItemInCart = searchCardInBasket(orders, item);
 
-  const isFavorite = favorites.some(
-    (favorite) => favorite.productCode === item.productCode
-  );
+  const isFavorite = useFavorite(item);
+
   console.log(isFavorite);
   const onAddToCart = () => {
     dispatch(addOrder(item));
