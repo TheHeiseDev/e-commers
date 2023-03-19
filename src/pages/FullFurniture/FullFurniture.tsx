@@ -21,11 +21,11 @@ import { useAppDispatch } from "../../store/store";
 import { addOrder, selectOrderData } from "../../store/slice/orderSlice/orderSlice";
 import { selectFurnitureByIdData } from "../../store/slice/furnitureSlice/furnitureSlice";
 import { fetchFurnitureById } from "../../store/slice/furnitureSlice/furnitureThunk";
+import { addFavorite } from "../../store/slice/favoriteSlice/favoriteSlice";
 
 import { useTitle } from "../../hooks/use-title";
-import { searchCardInBasket } from "../../utils/searchCardInBasket";
 import { useFavorite } from "../../hooks/use-favorite";
-import { addFavorite } from "../../store/slice/favoriteSlice/favoriteSlice";
+import { searchCardInBasket } from "../../utils/searchCardInBasket";
 
 const FullFurniture = () => {
   const dispatch = useAppDispatch();

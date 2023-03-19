@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  width: 300px;
+  width: 350px;
   margin: "0 auto";
 }
 .form-auth__wrapper button div span {
@@ -29,4 +29,8 @@
 .form-auth__wrapper button.active {
   pointer-events: none;
   cursor: none;
+}
+
+.form-auth__wrapper input {
+  box-sizing: border-box;
 }

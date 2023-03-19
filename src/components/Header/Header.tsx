@@ -15,7 +15,7 @@ import { useAuth } from "../../hooks/use-auth";
 const Header = memo(() => {
   const orders = useSelector(selectOrderData);
   const { pathname } = useLocation();
-  const {isAuth} = useAuth()
+  const { isAuth } = useAuth();
 
   const [cartOpen, setCartOpen] = useState(false);
   const [cartOpenMobile, setCartOpenMobile] = useState(false);
@@ -112,7 +112,10 @@ const Header = memo(() => {
               </Link>
             ))}
             <Link to="/user">
-              <AccountCircleIcon className={`header__menu-user ${isAuth ? "active" : ""}` }/>
+              <AccountCircleIcon
+                onClick={handleBurger}
+                className={`header__menu-user ${isAuth ? "active" : ""}`}
+              />
             </Link>
           </ul>
         </nav>

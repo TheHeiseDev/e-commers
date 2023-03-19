@@ -9,6 +9,7 @@ const initialState: InitialStateUser = {
   email: authData.email || null,
   token: authData.token || null,
   id: authData.id || null,
+  error: null,
 };
 
 export const userSlice = createSlice({
@@ -25,8 +26,12 @@ export const userSlice = createSlice({
       state.token = null;
       state.id = null;
     },
+    setError(state, action) {
+      state.error = action.payload;
+    },
   },
 });
+export const selectUserError = (state: RootState) => state.user.error;
 export const selectUser = (state: RootState) => state.user;
-export const { setUser, removeUser } = userSlice.actions;
+export const { setUser, removeUser, setError } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,6 +1,9 @@
 import "./Form.css";
 import { useState } from "react";
 import Loader from "../Loader/Loader";
+import AuthAlert from "../Alerts/AuthAlert/AuthAlert";
+import { useSelector } from "react-redux";
+import { selectUserError } from "../../../store/slice/userSlice/userSlice";
 
 interface IForm {
   title: string;
@@ -10,9 +13,11 @@ interface IForm {
 export const Form = ({ title, handleClick, loading }: IForm) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const error = useSelector(selectUserError);
 
   return (
     <div className="form-auth__wrapper">
+      <AuthAlert title={error?.message} display={error?.status} />
       <input
         type="email"
         value={email}

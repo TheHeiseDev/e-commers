@@ -25,7 +25,6 @@ const FurnitureItem = memo(({ item }: IFurnitureItemProps) => {
 
   const isFavorite = useFavorite(item);
 
-  console.log(isFavorite);
   const onAddToCart = () => {
     dispatch(addOrder(item));
   };
