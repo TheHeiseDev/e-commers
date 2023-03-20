@@ -1,7 +1,7 @@
 import "./FullFurniture.css";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite"; //избранное
@@ -26,16 +26,23 @@ import { addFavorite } from "../../store/slice/favoriteSlice/favoriteSlice";
 import { useTitle } from "../../hooks/use-title";
 import { useFavorite } from "../../hooks/use-favorite";
 import { searchCardInBasket } from "../../utils/searchCardInBasket";
+import { useAuth } from "../../hooks/use-auth";
+import { useHistory } from "../../hooks/use-history";
 
 const FullFurniture = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const { id } = useParams();
   const orders = useSelector(selectOrderData);
   const { data, status } = useSelector(selectFurnitureByIdData);
 
   const checkItemInCart = data && searchCardInBasket(orders, data);
   const isFavorite = useFavorite(data);
+  const { isAuth } = useAuth();
+
+  const { pathname } = useLocation();
+  const { setPathname } = useHistory();
 
   const onAddToCart = () => {
     if (data) {
@@ -44,7 +51,12 @@ const FullFurniture = () => {
   };
   const handleFavorite = () => {
     if (data) {
-      dispatch(addFavorite(data));
+      if (isAuth) {
+        dispatch(addFavorite(data));
+      } else {
+        setPathname(pathname);
+        navigate("/login", { replace: false });
+      }
     }
   };
 

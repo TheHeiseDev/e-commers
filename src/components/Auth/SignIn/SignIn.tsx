@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
@@ -7,17 +7,19 @@ import { useAppDispatch } from "../../../store/store";
 import { useAuth } from "../../../hooks/use-auth";
 import { saveInLocalStorage } from "../../../utils/saveInLocalStorage";
 import { Form } from "../../ui/Form/Form";
+import { useHistory } from "../../../hooks/use-history";
 
 enum ErrorCodeSignIn {
   login = "auth/user-not-found",
   password = "auth/wrong-password",
   anyRequest = "auth/too-many-requests",
 }
-export const SignIn = () => {
+export const SignIn = memo(() => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [laoding, setLoading] = useState(false);
   const { isAuth } = useAuth();
+  const { history } = useHistory();
 
   const handleSetError = (status: boolean, message: string) => {
     const objError = {
@@ -39,7 +41,7 @@ export const SignIn = () => {
       handleSetError(true, "Возникла ошибка при авторизации");
     }
   };
-
+  const path = history ? history : "/";
   useEffect(() => {
     dispatch(setError(null));
   }, []);
@@ -59,7 +61,8 @@ export const SignIn = () => {
 
         dispatch(setUser(authData));
         setLoading(false);
-        navigate("/", { replace: false });
+
+        navigate(path, { replace: false });
       })
       .catch(({ code }) => {
         errorHandler(code);
@@ -70,6 +73,6 @@ export const SignIn = () => {
   return !isAuth ? (
     <Form loading={laoding} title="Вход" handleClick={handleLogin} />
   ) : (
-    <Navigate to="/" />
+    <Navigate to={path} />
   );
-};
+});

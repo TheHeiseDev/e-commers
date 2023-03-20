@@ -28,3 +28,6 @@ body {
 button {
   cursor: pointer;
 }
+.content {
+  min-height: 300px;
+}

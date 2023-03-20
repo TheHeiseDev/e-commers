@@ -5,19 +5,29 @@ import { useAppDispatch } from "../../store/store";
 import { clearLocalStorage } from "../../utils/saveInLocalStorage";
 import { useSelector } from "react-redux";
 import { useTitle } from "../../hooks/use-title";
+import { useHistory } from "../../hooks/use-history";
+import { clearFavorites } from "../../store/slice/favoriteSlice/favoriteSlice";
 
 const UserPage = () => {
   const dispatch = useAppDispatch();
   const { email } = useSelector(selectUser);
-  useTitle("Личный кабинет")
+
+  // Before leaving, the visit history is cleared,
+  // which is used to return to the current page after authorization
+  const { claerHistory } = useHistory();
+
+  // Set the title of the current page
+  useTitle("Личный кабинет");
 
   const handleExit = () => {
     dispatch(removeUser());
+    dispatch(clearFavorites());
     clearLocalStorage();
+    claerHistory();
   };
   return (
     <div className="user__wrapper">
-      <h1>UserPage</h1>
+      <h1>Личный кабинет</h1>
       <div>
         <p>Email: {email}</p>
       </div>

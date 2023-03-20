@@ -32,6 +32,8 @@ export const Form = ({ title, handleClick, loading }: IForm) => {
     }
   };
 
+
+
   // Closing the pop-up when clicking on body and when clicking on escape
   useEffect(() => {
     document.body.addEventListener("click", handleClickEvent);
