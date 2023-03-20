@@ -1,16 +1,15 @@
 import { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addOrder, selectOrderData } from "../../store/slice/orderSlice/orderSlice";
 import "./FurnitureItem.css";
 import VerifiedIcon from "@mui/icons-material/Verified"; // товар в наличии
 import FavoriteIcon from "@mui/icons-material/Favorite"; //избранное
 import { FurnitureType } from "../../store/slice/furnitureSlice/furnitueTypes";
 import { searchCardInBasket } from "../../utils/searchCardInBasket";
-import {
-  addFavorite,
-} from "../../store/slice/favoriteSlice/favoriteSlice";
+import { addFavorite } from "../../store/slice/favoriteSlice/favoriteSlice";
 import { useFavorite } from "../../hooks/use-favorite";
+import { useAuth } from "../../hooks/use-auth";
 
 interface IFurnitureItemProps {
   item: FurnitureType;
@@ -18,18 +17,25 @@ interface IFurnitureItemProps {
 
 const FurnitureItem = memo(({ item }: IFurnitureItemProps) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const orders = useSelector(selectOrderData);
- 
+
   // Search for item in cart, if item found then get true, else false
   const checkItemInCart = searchCardInBasket(orders, item);
 
   const isFavorite = useFavorite(item);
+  const { isAuth } = useAuth();
 
   const onAddToCart = () => {
     dispatch(addOrder(item));
   };
   const onAddToFavorite = () => {
-    dispatch(addFavorite(item));
+    if (isAuth) {
+      dispatch(addFavorite(item));
+    } else {
+      navigate("login", { replace: false });
+      window.scrollTo(0, 0);
+    }
   };
 
   return (

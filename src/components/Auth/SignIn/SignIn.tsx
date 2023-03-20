@@ -13,7 +13,6 @@ enum ErrorCodeSignIn {
   password = "auth/wrong-password",
   anyRequest = "auth/too-many-requests",
 }
-
 export const SignIn = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -69,9 +68,7 @@ export const SignIn = () => {
   };
 
   return !isAuth ? (
-    <div>
-      <Form loading={laoding} title="Вход" handleClick={handleLogin} />
-    </div>
+    <Form loading={laoding} title="Вход" handleClick={handleLogin} />
   ) : (
     <Navigate to="/" />
   );
