@@ -12,8 +12,8 @@ import { useTitle } from "hooks/use-title";
 const Home = () => {
   const dispatch = useAppDispatch();
 
-  const [categoyName, setCategoryName] = useState("");
-  const [postLimit, setPostLimit] = useState(4);
+  const [categoyName, setCategoryName] = useState<string>("");
+  const [postLimit, setPostLimit] = useState<number>(4);
 
   const handlePage = () => {
     setPostLimit((prev) => (prev += 4));
@@ -27,7 +27,7 @@ const Home = () => {
   }, [categoyName, postLimit]);
 
   // Set the title of the current page
-  useTitle("Главная");
+  useTitle("House Staff");
 
   return (
     <>

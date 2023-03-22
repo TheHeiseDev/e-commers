@@ -12,7 +12,6 @@ export const categories = {
     value: "Стулья",
   },
 };
-
 export const setCategiesName = (category: string) => {
   let returnTranslateName = "Другая";
   if (category === categories.sofa.type) {

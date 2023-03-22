@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import favoriteSlice from "./slice/favoriteSlice/favoriteSlice";
+import filterSlice from "./slice/filterSlice/filterSlice";
 import furnitureSlice from "./slice/furnitureSlice/furnitureSlice";
 import historySlice from "./slice/historySlice /historySlice";
 import orderSlice from "./slice/orderSlice/orderSlice";
@@ -13,6 +14,7 @@ export const store = configureStore({
     user: userSlice,
     favorite: favoriteSlice,
     history: historySlice,
+    filter: filterSlice,
   },
 });
 

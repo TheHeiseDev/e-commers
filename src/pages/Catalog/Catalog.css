@@ -11,11 +11,17 @@
   gap: 20px;
 }
 
+.catalog__wrapper .catalogItem__wrapper:nth-child(2n) {
+  background-color: rgba(91, 81, 222, 0.08);
+  border-radius: 10px;
+}
+
 .catalog__wrapper {
   flex: 1 1 85%;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-height: 583px;
 }
 
 .catalog__params {
@@ -36,24 +42,7 @@
   margin-bottom: 30px;
 }
 
-.catalog__filter-title {
-  margin-bottom: 15px;
-}
-.category__item {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.category__item:not(:last-child) {
-  margin-bottom: 10px;
-}
-
-.category__item input {
-  margin-right: 10px;
-}
-.filter__installment .category__item div input {
-  margin-bottom: 10px;
-}
-.css-1v5z18m {
-  width: 200px;
+.catalog__pagination button.Mui-selected {
+  background-color: blue;
+  color: white;
 }

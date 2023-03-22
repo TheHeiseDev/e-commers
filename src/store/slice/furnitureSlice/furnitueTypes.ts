@@ -1,6 +1,7 @@
 export type ParamsType = {
   category: string;
   postLimit: number;
+  installment?: string;
 };
 
 type RecomendationItemType = {

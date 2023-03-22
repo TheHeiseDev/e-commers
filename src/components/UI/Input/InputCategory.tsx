@@ -6,7 +6,7 @@ interface IInputCategory {
 
 const InputCategory = ({ ckecked, categoryName, handleSetCategory }: IInputCategory) => {
   return (
-    <div className="category__item">
+    <div  className="category__item">
       <label>
         <input onChange={handleSetCategory} type="checkbox" name="" checked={ckecked} />
         <span>{categoryName}</span>

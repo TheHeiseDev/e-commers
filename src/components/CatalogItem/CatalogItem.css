@@ -6,10 +6,7 @@
   border-bottom: 1px solid #d2d9df;
 }
 
-.catalog__wrapper .catalogItem__wrapper:nth-child(2n) {
-  background-color: rgba(91, 81, 222, 0.08);
-  border-radius: 10px;
-}
+
 .catalogItem__image {
   box-sizing: border-box;
   flex: 35 35 300px;

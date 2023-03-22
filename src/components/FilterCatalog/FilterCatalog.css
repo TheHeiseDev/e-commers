@@ -1,0 +1,49 @@
+.catalog__filter-title {
+  margin-bottom: 15px;
+}
+.category__item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.category__item:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.category__item input {
+  margin-right: 10px;
+}
+.category__item label {
+  cursor: pointer;
+}
+.filter__installment .category__item div input {
+  margin-bottom: 10px;
+}
+
+/* Класс который принадлежит MUI */
+.css-1v5z18m {
+  width: 200px;
+}
+
+.filter__clear button {
+  height: 30px;
+  border: none;
+  outline: none;
+  text-align: center;
+  align-items: center;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 20px;
+  min-height: 40px;
+  min-width: 120px;
+  padding: 0 12px;
+  background-color: #005bff;
+  box-sizing: border-box;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.filter__clear button:hover {
+  background-color: #004fe2;
+}

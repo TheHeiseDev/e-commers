@@ -1,97 +1,49 @@
 import "./Catalog.css";
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
 import CatalogItem from "components/CatalogItem/CatalogItem";
-import InputCategory from "components/ui/Input/InputCategory";
 import Loader from "components/ui/Loader/Loader";
-import RangeSlider from "components/ui/Range/Range";
-import SwitchLabels from "components/ui/Toogle/Toogle";
-
+import FilterCatalog from "components/FilterCatalog/FilterCatalog";
+import { useTitle } from "hooks/use-title";
+import { selectAllFurniture } from "store/slice/filterSlice/filterSlice";
+import { useEffect, useState } from "react";
+import { fetchAllFurnitures } from "store/slice/filterSlice/filterThunk";
 import { useAppDispatch } from "store/store";
-import { selectFurnitureAllData } from "store/slice/furnitureSlice/furnitureSlice";
-import { fetchFurnitures } from "store/slice/furnitureSlice/furnitureThunk";
-
-import { setCategiesName, setManufacturerName } from "utils/TranslationOfMeanings";
-
-const filterCategoires = ["sofa", "tables", "chairs"];
-const filterManufacturers = ["Ukraine", "France", "Germany", "Italy"];
+import { Pagination } from "@mui/material";
+import CatalogSkeleton from "components/CatalogItem/CatalogSkeleton";
 
 const Catalog = () => {
   const dispatch = useAppDispatch();
-  const [categoryValue, setCategoryValue] = useState("");
-  const { data } = useSelector(selectFurnitureAllData);
-  const postLimit = 8;
+  const { data, status } = useSelector(selectAllFurniture);
+  const [pageValue, setPageValue] = useState(1);
 
   useEffect(() => {
-    const category = `&filter=${categoryValue}`;
+    const page = `&page=${pageValue}&limit=4`;
+    window.scrollTo(0, 0);
+    dispatch(fetchAllFurnitures({ page }));
+  }, [pageValue]);
 
-    dispatch(fetchFurnitures({ category, postLimit }));
-  }, [categoryValue, postLimit]);
+  useTitle("Каталог товаров");
 
-  if (!data) {
-    return <Loader />;
-  }
   return (
     <div className="catalog">
       <div className="catalog__tags">Теги</div>
       <div className="catalog__container">
-        <div className="catalog__params">
-          <div className="filter__categories">
-            <div className="catalog__filter-title">
-              <b>Категории</b>
-            </div>
-            {filterCategoires.map((categoryName, index) => (
-              <div key={index}>
-                <InputCategory
-                  ckecked={categoryValue === categoryName}
-                  categoryName={setCategiesName(categoryName)}
-                  handleSetCategory={() => setCategoryValue(categoryName)}
-                />
-              </div>
-            ))}
-          </div>
-
-          <div className="filter__manufacturer">
-            <div className="catalog__filter-title">
-              <b>Производитель</b>
-            </div>
-
-            {filterManufacturers.map((manufacturer, index) => (
-              <div key={index}>
-                <InputCategory
-                  ckecked={categoryValue === manufacturer}
-                  categoryName={setManufacturerName(manufacturer)}
-                  handleSetCategory={() => setCategoryValue(manufacturer)}
-                />
-              </div>
-            ))}
-          </div>
-
-          <div className="filter__installment">
-            <div className="catalog__filter-title">
-              <b>В Рассрочку</b>
-            </div>
-
-            <div className="category__item">
-              <SwitchLabels />
-            </div>
-          </div>
-
-          <div className="filter__price">
-            <div className="catalog__filter-title">
-              <b>Цена</b>
-            </div>
-
-            <div className="category__item">
-              <RangeSlider />
-            </div>
-          </div>
-        </div>
+        <FilterCatalog />
         <div className="catalog__wrapper">
-          {data.map((item) => (
-            <CatalogItem key={item.id} item={item} />
-          ))}
+          {status === "success" ? (
+            data?.map((item) => <CatalogItem key={item.id} item={item} />)
+          ) : status === "loading" ? (
+            [...Array(4)].map((_, index) => <CatalogSkeleton key={index} />)
+          ) : status === "error" ? (
+            <h2>Ошибка загрузки данных...</h2>
+          ) : null}
+
+          <Pagination
+            className="catalog__pagination"
+            count={2}
+            page={pageValue}
+            onChange={(_, num) => setPageValue(num)}
+          />
         </div>
       </div>
     </div>
