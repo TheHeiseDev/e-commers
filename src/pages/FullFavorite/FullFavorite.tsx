@@ -1,12 +1,10 @@
-import { AiFillDelete } from "react-icons/ai";
-import { useSelector } from "react-redux";
-import FurnitureItem from "../../components/FurnitureItem/FurnitureItem";
-import {
-  clearFavorites,
-  selectFavorite,
-} from "../../store/slice/favoriteSlice/favoriteSlice";
-import { useAppDispatch } from "../../store/store";
 import "./FullFavorite.css";
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "store/store";
+import { clearFavorites, selectFavorite } from "store/slice/favoriteSlice/favoriteSlice";
+
+import FurnitureItem from "components/FurnitureItem/FurnitureItem";
+import { AiFillDelete } from "react-icons/ai";
 
 const FullFavorite = () => {
   const favorites = useSelector(selectFavorite);

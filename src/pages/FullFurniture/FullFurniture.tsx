@@ -10,24 +10,24 @@ import FmdGoodIcon from "@mui/icons-material/FmdGood"; // на экспозиц�
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"; //календарь
 import LocalShippingIcon from "@mui/icons-material/LocalShipping"; // доставка
 
-import Loader from "../../components/ui/Loader/Loader";
-import LabTabs from "../../components/ui/Tabs/Tabs";
-import Carousel from "../../components/ui/Carousel/Carousel";
-import HalfRating from "../../components/ui/Rating/Rating";
-import FurnitureItem from "../../components/FurnitureItem/FurnitureItem";
-import FurnitureSkeleton from "../../components/FurnitureItem/FurnitureSkeleton";
+import Loader from "components/ui/Loader/Loader";
+import LabTabs from "components/ui/Tabs/Tabs";
+import Carousel from "components/ui/Carousel/Carousel";
+import HalfRating from "components/ui/Rating/Rating";
+import FurnitureItem from "components/FurnitureItem/FurnitureItem";
+import FurnitureSkeleton from "components/FurnitureItem/FurnitureSkeleton";
 
-import { useAppDispatch } from "../../store/store";
-import { addOrder, selectOrderData } from "../../store/slice/orderSlice/orderSlice";
-import { selectFurnitureByIdData } from "../../store/slice/furnitureSlice/furnitureSlice";
-import { fetchFurnitureById } from "../../store/slice/furnitureSlice/furnitureThunk";
-import { addFavorite } from "../../store/slice/favoriteSlice/favoriteSlice";
+import { useAppDispatch } from "store/store";
+import { addOrder, selectOrderData } from "store/slice/orderSlice/orderSlice";
+import { selectFurnitureByIdData } from "store/slice/furnitureSlice/furnitureSlice";
+import { fetchFurnitureById } from "store/slice/furnitureSlice/furnitureThunk";
+import { addFavorite } from "store/slice/favoriteSlice/favoriteSlice";
 
-import { useTitle } from "../../hooks/use-title";
-import { useFavorite } from "../../hooks/use-favorite";
-import { searchCardInBasket } from "../../utils/searchCardInBasket";
-import { useAuth } from "../../hooks/use-auth";
-import { useHistory } from "../../hooks/use-history";
+import { useTitle } from "hooks/use-title";
+import { useFavorite } from "hooks/use-favorite";
+import { searchCardInBasket } from "utils/searchCardInBasket";
+import { useAuth } from "hooks/use-auth";
+import { useHistory } from "hooks/use-history";
 
 const FullFurniture = () => {
   const dispatch = useAppDispatch();

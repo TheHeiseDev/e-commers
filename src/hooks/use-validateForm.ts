@@ -1,6 +1,5 @@
-import { regexEmail, regexPhone } from "../constants/regex";
-import React, { ChangeEvent, FocusEvent, useState } from "react";
-import { useEffect } from "react";
+import { regexEmail, regexPhone } from "constants/regex";
+import React, { ChangeEvent, FocusEvent, useState, useEffect } from "react";
 
 export type UseInputType = {
   isDirty: boolean;
@@ -15,6 +14,15 @@ export type UseInputType = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   setDirty: React.Dispatch<HTMLInputElement>;
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+};
+export type UseValidationType = {
+  isDirty?: boolean;
+  isEmpty: boolean;
+  minLengthError: boolean;
+  maxLengthError: boolean;
+  emailError: boolean;
+  inputValid: boolean;
+  hasNumber: boolean;
 };
 
 export const useInput = (initialValue: string, validations: UseInputType) => {
@@ -41,15 +49,6 @@ export const useInput = (initialValue: string, validations: UseInputType) => {
   };
 };
 
-export type UseValidationType = {
-  isDirty?: boolean;
-  isEmpty: boolean;
-  minLengthError: boolean;
-  maxLengthError: boolean;
-  emailError: boolean;
-  inputValid: boolean;
-  hasNumber: boolean;
-};
 export const useValidation = (
   value: string,
   validations: UseInputType

@@ -1,5 +1,6 @@
-import { HTMLAttributes } from "react";
 import "./Carousel.css";
+import { HTMLAttributes } from "react";
+
 
 const PAGE_WIDTH = 450;
 

@@ -12,7 +12,9 @@ ul,
 li {
   list-style: none;
 }
-
+input {
+  cursor: pointer;
+}
 body {
   background: #fff;
   color: #222;

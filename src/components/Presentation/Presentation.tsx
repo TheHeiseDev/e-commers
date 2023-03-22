@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
 import "./Presentation.css";
 
 const Presentation: React.FC = () => {
   return (
     <div className="presentation">
-      <button tabIndex={6}>Каталог товаров</button>
+      <Link to="/catalog">
+        <button>Каталог товаров</button>
+      </Link>
     </div>
   );
 };

@@ -1,15 +1,20 @@
+import "./FurnitureItem.css";
 import { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { addOrder, selectOrderData } from "../../store/slice/orderSlice/orderSlice";
-import "./FurnitureItem.css";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
 import VerifiedIcon from "@mui/icons-material/Verified"; // товар в наличии
 import FavoriteIcon from "@mui/icons-material/Favorite"; //избранное
-import { FurnitureType } from "../../store/slice/furnitureSlice/furnitueTypes";
-import { searchCardInBasket } from "../../utils/searchCardInBasket";
-import { addFavorite } from "../../store/slice/favoriteSlice/favoriteSlice";
-import { useFavorite } from "../../hooks/use-favorite";
-import { useAuth } from "../../hooks/use-auth";
+
+import { searchCardInBasket } from "utils/searchCardInBasket";
+
+import { addOrder, selectOrderData } from "store/slice/orderSlice/orderSlice";
+import { FurnitureType } from "store/slice/furnitureSlice/furnitueTypes";
+import { addFavorite } from "store/slice/favoriteSlice/favoriteSlice";
+
+import { useAuth } from "hooks/use-auth";
+import { useHistory } from "hooks/use-history";
+import { useFavorite } from "hooks/use-favorite";
 
 interface IFurnitureItemProps {
   item: FurnitureType;
@@ -18,6 +23,7 @@ interface IFurnitureItemProps {
 const FurnitureItem = memo(({ item }: IFurnitureItemProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const orders = useSelector(selectOrderData);
 
   // Search for item in cart, if item found then get true, else false
@@ -25,6 +31,7 @@ const FurnitureItem = memo(({ item }: IFurnitureItemProps) => {
 
   const isFavorite = useFavorite(item);
   const { isAuth } = useAuth();
+  const { setPathname } = useHistory();
 
   const onAddToCart = () => {
     dispatch(addOrder(item));
@@ -33,7 +40,8 @@ const FurnitureItem = memo(({ item }: IFurnitureItemProps) => {
     if (isAuth) {
       dispatch(addFavorite(item));
     } else {
-      navigate("login", { replace: false });
+      setPathname(pathname);
+      navigate("/login", { replace: false });
       window.scrollTo(0, 0);
     }
   };

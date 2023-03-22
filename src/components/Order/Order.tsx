@@ -1,10 +1,9 @@
-import React from "react";
 import "./Order.css";
 import { FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { deleteOrder } from "../../store/slice/orderSlice/orderSlice";
-import { FurnitureType } from "../../store/slice/furnitureSlice/furnitueTypes";
+import { deleteOrder } from "store/slice/orderSlice/orderSlice";
+import { FurnitureType } from "store/slice/furnitureSlice/furnitueTypes";
 
 interface IOrderProps {
   item: FurnitureType;

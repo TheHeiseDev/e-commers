@@ -1,5 +1,5 @@
 import "./Categories.css";
-import { categories } from "../../constants/productCategories";
+import { categories } from "constants/productCategories";
 
 interface ICategoriesProps {
   categoyName: string;

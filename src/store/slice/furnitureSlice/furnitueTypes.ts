@@ -15,6 +15,9 @@ type RecomendationItemType = {
   itemInStock: boolean;
   rating: Float32Array;
   count?: number;
+  Manufacturer: string;
+  Installment: boolean;
+  Weight: string;
 };
 
 export type FurnitureType = {
@@ -30,20 +33,18 @@ export type FurnitureType = {
   rating: Float32Array;
   recomendation?: RecomendationItemType[] | null;
   count?: number;
+  Manufacturer: string;
+  Installment: boolean;
+  Weight: string;
 };
 
-// export interface FurnitureSliceStateType {
-//   items: FurnitureType[] | null;
-//   item: FurnitureType | null;
-//   status: "success" | "error" | "loading";
-// }
 export interface FurnitureSliceStateType {
   items: {
     data: FurnitureType[] | null;
     status: "success" | "error" | "loading";
-  } ,
+  };
   item: {
     data: FurnitureType | null;
     status: "success" | "error" | "loading";
-  } ;
+  };
 }

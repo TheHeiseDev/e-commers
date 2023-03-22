@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { selectOrderData } from "../store/slice/orderSlice/orderSlice";
+import { selectOrderData } from "store/slice/orderSlice/orderSlice";
 
 export function useCalculateTotalPrice() {
   const [totalPrice, setTotalPrice] = useState(0);

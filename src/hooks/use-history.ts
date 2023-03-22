@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { selectHistory, setHistory } from "../store/slice/historySlice /historySlice";
-import { useAppDispatch } from "../store/store";
+import { useAppDispatch } from "store/store";
+import { selectHistory, setHistory } from "store/slice/historySlice /historySlice";
 
 export const useHistory = () => {
   const dispatch = useAppDispatch();

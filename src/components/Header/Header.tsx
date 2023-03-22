@@ -2,15 +2,15 @@ import "./Header.css";
 import { memo, useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { selectOrderData } from "store/slice/orderSlice/orderSlice";
 
 import Order from "../Order/Order";
 import { FaShoppingBag } from "react-icons/fa";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-import { selectOrderData } from "../../store/slice/orderSlice/orderSlice";
-import { useCalculateTotalPrice } from "../../hooks/use-totalPrice";
-import { menuList } from "../../constants/menuList";
-import { useAuth } from "../../hooks/use-auth";
+import { useCalculateTotalPrice } from "hooks/use-totalPrice";
+import { useAuth } from "hooks/use-auth";
+import { menuList } from "constants/menuList";
 
 const Header = memo(() => {
   const orders = useSelector(selectOrderData);

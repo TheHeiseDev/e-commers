@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
+import { useAppDispatch } from "store/store";
+import { fetchFurnitures } from "store/slice/furnitureSlice/furnitureThunk";
 
-import { useAppDispatch } from "../store/store";
-import { fetchFurnitures } from "../store/slice/furnitureSlice/furnitureThunk";
+import FurnitureList from "components/FurnitureList/FurnitureList";
+import Categories from "components/Categories/Categories";
+import Presentation from "components/Presentation/Presentation";
+import PopularCategoryList from "components/PopularCategoryList/PopularCategoryList";
 
-import FurnitureList from "../components/FurnitureList/FurnitureList";
-import Categories from "../components/Categories/Categories";
-import Presentation from "../components/Presentation/Presentation";
-import PopularCategoryList from "../components/PopularCategoryList/PopularCategoryList";
-
-import { useTitle } from "../hooks/use-title";
+import { useTitle } from "hooks/use-title";
 
 const Home = () => {
   const dispatch = useAppDispatch();

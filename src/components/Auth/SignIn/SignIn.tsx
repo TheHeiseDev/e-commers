@@ -1,25 +1,28 @@
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-import { setError, setUser } from "../../../store/slice/userSlice/userSlice";
-import { useAppDispatch } from "../../../store/store";
-import { useAuth } from "../../../hooks/use-auth";
-import { saveInLocalStorage } from "../../../utils/saveInLocalStorage";
+import { setError, setUser } from "store/slice/userSlice/userSlice";
+import { useAppDispatch } from "store/store";
+import { useHistory } from "hooks/use-history";
+import { useAuth } from "hooks/use-auth";
+
+import { saveInLocalStorage } from "utils/saveInLocalStorage";
 import { Form } from "../../ui/Form/Form";
-import { useHistory } from "../../../hooks/use-history";
 
 enum ErrorCodeSignIn {
   login = "auth/user-not-found",
   password = "auth/wrong-password",
   anyRequest = "auth/too-many-requests",
 }
-export const SignIn = memo(() => {
+export const SignIn = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [laoding, setLoading] = useState(false);
   const { isAuth } = useAuth();
   const { history } = useHistory();
+
+  const [laoding, setLoading] = useState(false);
+  const path = history ? history : "/";
 
   const handleSetError = (status: boolean, message: string) => {
     const objError = {
@@ -28,7 +31,6 @@ export const SignIn = memo(() => {
     };
     dispatch(setError(objError));
   };
-
   const errorHandler = (errorMessage: string) => {
     if (errorMessage === ErrorCodeSignIn.login) {
       handleSetError(true, "Неверный логин");
@@ -41,8 +43,9 @@ export const SignIn = memo(() => {
       handleSetError(true, "Возникла ошибка при авторизации");
     }
   };
-  const path = history ? history : "/";
+
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(setError(null));
   }, []);
 
@@ -75,4 +78,4 @@ export const SignIn = memo(() => {
   ) : (
     <Navigate to={path} />
   );
-});
+};

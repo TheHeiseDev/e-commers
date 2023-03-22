@@ -31,7 +31,7 @@ header ul.nav li:hover {
   cursor: pointer;
 }
 .header__menu-user.active {
-  fill: #43884a;
+  fill: #005bff;
 }
 
 .header__burger {
@@ -93,8 +93,6 @@ header ul.nav li:hover {
   .header__menu.active {
     left: 0;
   }
-  /*  */
-
   .header__menu.active {
     left: 0;
   }

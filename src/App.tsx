@@ -9,16 +9,20 @@ import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
 import UserPage from "./pages/UserPage/UserPage";
 import { PrivateRouter } from "./utils/ router/privateRouter";
+// import Catalog from "pages/Catalog/Catalog";
 
 const FullFurniture = lazy(
   () =>
-    import(/* webpachChunkName: "FullFurniture" */ "./pages/FullFurniture/FullFurniture")
+    import(/* webpachChunkName: "FullFurniture" */ "pages/FullFurniture/FullFurniture")
 );
 const FullOrder = lazy(
-  () => import(/* webpachChunkName: "FullOrder" */ "./pages/FullOrder/FullOrder")
+  () => import(/* webpachChunkName: "FullOrder" */ "pages/FullOrder/FullOrder")
 );
 const FullFavorite = lazy(
-  () => import(/* webpachChunkName: "FullFavorite" */ "./pages/FullFavorite/FullFavorite")
+  () => import(/* webpachChunkName: "FullFavorite" */ "pages/FullFavorite/FullFavorite")
+);
+const Catalog = lazy(
+  () => import(/* webpachChunkName: "Catalog" */ "pages/Catalog/Catalog")
 );
 
 function App() {
@@ -46,6 +50,15 @@ function App() {
         </Route>
 
         <Route path="" element={<Home />} />
+        <Route
+          path="/catalog"
+          element={
+            <Suspense fallback={<Loader />}>
+              {" "}
+              <Catalog />
+            </Suspense>
+          }
+        />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route

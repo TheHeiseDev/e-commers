@@ -1,12 +1,12 @@
-import React from "react";
 import "./UserPage.css";
-import { removeUser, selectUser } from "../../store/slice/userSlice/userSlice";
-import { useAppDispatch } from "../../store/store";
-import { clearLocalStorage } from "../../utils/saveInLocalStorage";
 import { useSelector } from "react-redux";
-import { useTitle } from "../../hooks/use-title";
-import { useHistory } from "../../hooks/use-history";
-import { clearFavorites } from "../../store/slice/favoriteSlice/favoriteSlice";
+import { useAppDispatch } from "store/store";
+import { removeUser, selectUser } from "store/slice/userSlice/userSlice";
+import { clearFavorites } from "store/slice/favoriteSlice/favoriteSlice";
+import { clearLocalStorage } from "utils/saveInLocalStorage";
+
+import { useTitle } from "hooks/use-title";
+import { useHistory } from "hooks/use-history";
 
 const UserPage = () => {
   const dispatch = useAppDispatch();

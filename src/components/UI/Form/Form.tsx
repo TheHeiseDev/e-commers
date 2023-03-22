@@ -1,7 +1,7 @@
 import "./Form.css";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { selectUserError } from "../../../store/slice/userSlice/userSlice";
+import { selectUserError } from "store/slice/userSlice/userSlice";
 
 import Loader from "../Loader/Loader";
 import AuthAlert from "../Alerts/AuthAlert/AuthAlert";
@@ -32,8 +32,6 @@ export const Form = ({ title, handleClick, loading }: IForm) => {
     }
   };
 
-
-
   // Closing the pop-up when clicking on body and when clicking on escape
   useEffect(() => {
     document.body.addEventListener("click", handleClickEvent);
@@ -45,7 +43,7 @@ export const Form = ({ title, handleClick, loading }: IForm) => {
 
   return (
     <div className="form-auth__wrapper">
-      <AuthAlert title={error?.message} display={error?.status} />
+      {error && <AuthAlert title={error.message} display={error.status} />}
       <input
         className="form-auth__email"
         type="email"

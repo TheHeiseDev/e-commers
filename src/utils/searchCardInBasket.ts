@@ -1,4 +1,4 @@
-import { FurnitureType } from "../store/slice/furnitureSlice/furnitueTypes";
+import { FurnitureType } from "store/slice/furnitureSlice/furnitueTypes";
 
 export function searchCardInBasket(orders: FurnitureType[], item: FurnitureType) {
   if (orders && item) {

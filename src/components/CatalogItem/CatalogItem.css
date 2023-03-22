@@ -1,0 +1,134 @@
+.catalogItem__wrapper {
+  display: flex;
+  align-items: stretch;
+  padding: 20px 0;
+  height: 100%;
+  border-bottom: 1px solid #d2d9df;
+}
+
+.catalog__wrapper .catalogItem__wrapper:nth-child(2n) {
+  background-color: rgba(91, 81, 222, 0.08);
+  border-radius: 10px;
+}
+.catalogItem__image {
+  box-sizing: border-box;
+  flex: 35 35 300px;
+  max-width: 300px;
+  min-width: 300px;
+  padding: 0 12px 0;
+  width: 300px;
+}
+.catalogItem__image img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+.catalogItem__info {
+  margin-right: auto;
+}
+.catalogItem__info h3 {
+  margin-bottom: 10px;
+  max-width: 400px;
+  transition: color 0.3s ease;
+}
+.catalogItem__info h3:hover {
+  color: #005bff;
+  opacity: 0.9;
+}
+
+.catalogItem__info div {
+  color: #707f8d;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 5px;
+}
+.catalogItem__info div span {
+  color: rgb(0, 26, 52);
+}
+
+.catalogItem__price {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.catalog-price {
+  display: flex;
+  gap: 10px;
+}
+.catalog-price .catalog-price-price {
+  color: #fff;
+  background-color: #10c44c;
+  border-radius: 6px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+  margin: 0 4px 2px 0;
+  padding: 0 6px;
+  white-space: nowrap;
+}
+.catalog-price .catalog-price-old {
+  color: rgb(112, 127, 141);
+  font-size: 14px;
+  line-height: 18px;
+  white-space: nowrap;
+  text-decoration: line-through;
+}
+.catalogItem__action {
+  display: flex;
+  align-items: center;
+  width: 200px;
+}
+
+.catalogItem__action button {
+  height: 30px;
+  border: none;
+  outline: none;
+  text-align: center;
+  align-items: center;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 20px;
+  min-height: 40px;
+  min-width: 120px;
+  padding: 0 12px;
+  background-color: #005bff;
+  box-sizing: border-box;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  margin-right: 20px;
+}
+.catalogItem__action button:hover {
+  background-color: #004fe2;
+}
+
+.catalog__favorite {
+  cursor: pointer;
+  background-color: #fff;
+  color: #262626;
+  border-radius: 50%;
+  height: 45px;
+  padding: 0;
+  flex: 0 0 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #eef2f6;
+  border-radius: 25px;
+  font-size: 13px;
+}
+.catalog__favorite svg {
+  fill: black;
+  opacity: 0.8;
+}
+.catalog__favorite:hover .favorite {
+  transform: scale(1.08);
+}
+
+.catalog__favorite .favorite.isFavorite {
+  fill: red !important;
+  opacity: 1;
+}
+.catalog__favorite:active .favorite {
+  transform: scale(0.9);
+}

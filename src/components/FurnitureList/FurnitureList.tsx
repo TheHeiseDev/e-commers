@@ -1,8 +1,8 @@
+import "./FurnitureList.css";
 import { useSelector } from "react-redux";
-import { selectFurnitureAllData } from "../../store/slice/furnitureSlice/furnitureSlice";
+import { selectFurnitureAllData } from "store/slice/furnitureSlice/furnitureSlice";
 import FurnitureItem from "../FurnitureItem/FurnitureItem";
 import FurnitureSkeleton from "../FurnitureItem/FurnitureSkeleton";
-import "./FurnitureList.css";
 
 interface IFurnitureListProps {
   handlePostLimitCart: () => void;
