@@ -28,6 +28,7 @@ import { useFavorite } from "hooks/use-favorite";
 import { searchCardInBasket } from "utils/searchCardInBasket";
 import { useAuth } from "hooks/use-auth";
 import { useHistory } from "hooks/use-history";
+import { smoothScroll } from "utils/smoothScroll";
 
 const FullFurniture = () => {
   const dispatch = useAppDispatch();
@@ -65,7 +66,7 @@ const FullFurniture = () => {
     if (id) {
       dispatch(fetchFurnitureById(id));
     }
-    window.scrollTo(0, 0);
+    smoothScroll(500);
   }, [id]);
 
   // If the product was not found by the passed id, then we redirect to the main page

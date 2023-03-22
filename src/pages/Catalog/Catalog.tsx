@@ -10,6 +10,7 @@ import { fetchAllFurnitures } from "store/slice/filterSlice/filterThunk";
 import { useAppDispatch } from "store/store";
 import { Pagination } from "@mui/material";
 import CatalogSkeleton from "components/CatalogItem/CatalogSkeleton";
+import { smoothScroll } from "utils/smoothScroll";
 
 const Catalog = () => {
   const dispatch = useAppDispatch();
@@ -17,8 +18,8 @@ const Catalog = () => {
   const [pageValue, setPageValue] = useState(1);
 
   useEffect(() => {
+    smoothScroll(500);
     const page = `&page=${pageValue}&limit=4`;
-    window.scrollTo(0, 0);
     dispatch(fetchAllFurnitures({ page }));
   }, [pageValue]);
 

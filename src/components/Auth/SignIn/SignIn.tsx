@@ -9,6 +9,7 @@ import { useAuth } from "hooks/use-auth";
 
 import { saveInLocalStorage } from "utils/saveInLocalStorage";
 import { Form } from "../../ui/Form/Form";
+import { smoothScroll } from "utils/smoothScroll";
 
 enum ErrorCodeSignIn {
   login = "auth/user-not-found",
@@ -45,7 +46,7 @@ export const SignIn = () => {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    smoothScroll(500);
     dispatch(setError(null));
   }, []);
 
