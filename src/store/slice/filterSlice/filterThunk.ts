@@ -2,16 +2,18 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { apiService } from "../../../api/apiService";
 import { FurnitureType } from "../furnitureSlice/furnitueTypes";
-import { FilterParamsType } from "./filterTypes";
+import { FilterParams } from "./filterTypes";
 
 export const fetchAllFurnitures = createAsyncThunk(
   "filter/fetchAllFurnitures",
-  async (params: FilterParamsType) => {
-    const { page, category, installment } = params;
-
+  async (params: FilterParams) => {
+    const { sortBy, order, category, currentPage, filter, installment, manufacturer } =
+      params;
     const { data } = await axios.get<FurnitureType[]>(
-      `${apiService.baseUrl}${page}${category ? category : ""}${
-        installment ? installment : ""
+      `${apiService.baseUrl}${
+        manufacturer ? `&Manufacturer=${manufacturer}` : ""
+      }&page=${currentPage}&limit=4&filter=${filter}&category=${category}&sortBy=${sortBy}&order=${order}${
+        installment ? `&Installment=${installment}` : ""
       }`
     );
     return data;

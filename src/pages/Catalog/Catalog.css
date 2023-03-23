@@ -24,6 +24,11 @@
   min-height: 583px;
 }
 
+/* Style of CatalogSkeleton */
+.catalog__wrapper .skeleton__wrapper:first-child {
+  padding: 20px 0 0px 0px;
+}
+
 .catalog__params {
   flex: 1 0 15%;
   border: 2px solid #eef2f6;

@@ -15,6 +15,7 @@ enum ErrorCodeSignIn {
   login = "auth/user-not-found",
   password = "auth/wrong-password",
   anyRequest = "auth/too-many-requests",
+  invalideEmail = "auth/invalid-email",
 }
 export const SignIn = () => {
   const dispatch = useAppDispatch();
@@ -39,6 +40,8 @@ export const SignIn = () => {
       handleSetError(true, "Неверный пароль");
     } else if (errorMessage === ErrorCodeSignIn.anyRequest) {
       handleSetError(true, "Много попыток, попробуйте позже");
+    } else if (errorMessage === ErrorCodeSignIn.invalideEmail) {
+      handleSetError(true, "Некорретный email адресс");
     } else {
       console.log(errorMessage);
       handleSetError(true, "Возникла ошибка при авторизации");

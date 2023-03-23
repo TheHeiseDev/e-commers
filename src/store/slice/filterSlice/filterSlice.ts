@@ -7,15 +7,56 @@ const initialState: FilterSliceStateType = {
   items: {
     data: null,
     status: "loading",
-  
+  },
+  category: "",
+  manufacturer: "",
+  installment: false,
+  filter: "",
+  currentPage: 1,
+  sort: {
+    name: "Популярности",
+    sortBy: "",
   },
 };
 
 export const filterSlice = createSlice({
   name: "filter",
   initialState,
+
   reducers: {
- 
+    setInstallment(state, action) {
+      state.installment = action.payload;
+    },
+    setSort(state, action) {
+      state.sort = action.payload;
+    },
+    setManufacturer(state, action) {
+      state.manufacturer = action.payload;
+    },
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload;
+    },
+    setCategory(state, action) {
+      state.category = action.payload;
+    },
+    setFilters(state, action) {
+      if (Object.keys(action.payload).length) {
+        state.sort = action.payload.sort;
+        state.currentPage = action.payload.currentPage;
+        state.filter = action.payload.filter;
+        state.manufacturer = action.payload.manufacturer;
+        state.installment = action.payload.installment;
+        state.category = action.payload.category;
+      } else {
+        state.currentPage = 1;
+        state.filter = "";
+        state.category = "";
+        state.sort = {
+          name: "Популярности",
+          sortBy: "rating",
+        };
+      }
+    },
   },
 
   extraReducers: (builder) => {
@@ -34,6 +75,14 @@ export const filterSlice = createSlice({
       });
   },
 });
-// export const { setPage, resetPage } = filterSlice.actions;
+export const {
+  setCurrentPage,
+  setFilters,
+  setCategory,
+  setSort,
+  setInstallment,
+  setManufacturer,
+} = filterSlice.actions;
 export const selectAllFurniture = (state: RootState) => state.filter.items;
+export const selectAllFurnitureData = (state: RootState) => state.filter;
 export default filterSlice.reducer;

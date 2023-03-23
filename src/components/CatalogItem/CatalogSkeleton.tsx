@@ -10,7 +10,7 @@ const CatalogSkeleton = () => (
     foregroundColor="#ecebeb"
   >
     <rect x="296" y="0" rx="2" ry="2" width="330" height="19" />
-    <rect x="7" y="0" rx="10" ry="10" width="276" height="236" />
+    <rect x="10" y="0" rx="10" ry="10" width="276" height="236" />
     <rect x="296" y="38" rx="2" ry="2" width="249" height="19" />
     <rect x="296" y="71" rx="2" ry="2" width="180" height="19" />
     <rect x="296" y="101" rx="2" ry="2" width="100" height="19" />

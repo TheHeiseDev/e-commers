@@ -9,6 +9,8 @@ import { setError } from "../../../store/slice/userSlice/userSlice";
 
 enum ErrorCodeSignUp {
   inUse = "auth/email-already-in-use",
+  invalideEmail = "auth/invalid-email",
+  weekPassword = "auth/weak-password",
 }
 
 export const SignUp = () => {
@@ -28,6 +30,10 @@ export const SignUp = () => {
   const errorHandler = (errorMessage: string) => {
     if (errorMessage === ErrorCodeSignUp.inUse) {
       handleSetError(true, "Такой пользователь уже существует");
+    } else if (errorMessage === ErrorCodeSignUp.invalideEmail) {
+      handleSetError(true, "Некорректный email адресс");
+    } else if (errorMessage === ErrorCodeSignUp.weekPassword) {
+      handleSetError(true, "Слишком короткий пароль");
     } else {
       handleSetError(true, "Возникла ошибка при регистрации");
     }
@@ -46,8 +52,8 @@ export const SignUp = () => {
           navigate("/login", { replace: false });
         }
       })
-      .catch(({ code }) => {
-        errorHandler(code);
+      .catch((error) => {
+        errorHandler(error.code);
       })
       .finally(() => setLoading(false));
   };

@@ -6,25 +6,60 @@ import { useAppDispatch } from "store/store";
 import { fetchAllFurnitures } from "store/slice/filterSlice/filterThunk";
 import { setCategiesName, setManufacturerName } from "utils/TranslationOfMeanings";
 import { filterCategoires, filterManufacturers } from "constants/catalogFilterItem";
-
+import { useSelector } from "react-redux";
+import {
+  selectAllFurnitureData,
+  setCategory,
+  setInstallment,
+  setManufacturer,
+} from "store/slice/filterSlice/filterSlice";
+import qs from "qs";
+import { useNavigate } from "react-router-dom";
 const FilterCatalog = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [categoryValue, setCategoryValue] = useState("");
-  const [pageValue, setPageValue] = useState(1);
+  const [manufacturerValue, setManufacturerValue] = useState("");
   const [installmentValue, setInstallmentValue] = useState<boolean>(false);
+  const { currentPage, category, sort, filter, installment, manufacturer } =
+    useSelector(selectAllFurnitureData);
 
   const handleClearFilter = () => {
     setCategoryValue("");
+    setManufacturerValue("");
     setInstallmentValue(false);
   };
 
+  //Запрос данных при первом рендере
   useEffect(() => {
-    const category = `&filter=${categoryValue}`;
-    const installment = `&Installment=${installmentValue ? installmentValue : ""}`;
-    const page = `&page=${pageValue}&limit=4`;
+    const queryParams = {
+      sortBy: sort.sortBy,
+      category: categoryValue,
+      filter: filter,
+      currentPage: currentPage,
+      order: sort.sortBy.includes("-") ? "asc" : "desc",
+      installment: installmentValue,
+      manufacturer: manufacturerValue,
+    };
+    dispatch(fetchAllFurnitures(queryParams));
+    dispatch(setCategory(categoryValue));
+    dispatch(setInstallment(installmentValue));
+    dispatch(setManufacturer(manufacturerValue));
+  }, [categoryValue, filter, installmentValue, manufacturerValue]);
 
-    dispatch(fetchAllFurnitures({ page, category, installment }));
-  }, [categoryValue, installmentValue, pageValue]);
+  useEffect(() => {
+    if (window.location.search) {
+      const queryString = qs.stringify({
+        sortBy: sort.sortBy,
+        category: category,
+        filter: filter,
+        page: currentPage,
+        installment: installment,
+        manufacturer: manufacturer,
+      });
+      navigate(`?${queryString}`);
+    }
+  }, [category, filter, currentPage, sort.sortBy, installment, manufacturer]);
 
   return (
     <div className="catalog__params">
@@ -51,9 +86,9 @@ const FilterCatalog = () => {
         {filterManufacturers.map((manufacturer, index) => (
           <div key={index}>
             <InputCategory
-              ckecked={categoryValue === manufacturer}
+              ckecked={manufacturer === manufacturerValue}
               categoryName={setManufacturerName(manufacturer)}
-              handleSetCategory={() => setCategoryValue(manufacturer)}
+              handleSetCategory={() => setManufacturerValue(manufacturer)}
             />
           </div>
         ))}
