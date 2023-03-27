@@ -32,8 +32,6 @@ const SortPopup: FC<ISortPopupProps> = memo(({ sortObj }) => {
       order: sortObj.sortBy.includes("-") ? "asc" : "desc",
     };
     dispatch(setSort(sortObj));
-    dispatch(fetchAllFurnitures(queryParms));
-
     setOpen(false);
   };
   const handleSort = () => {

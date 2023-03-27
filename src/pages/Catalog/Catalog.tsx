@@ -26,7 +26,7 @@ const Catalog = () => {
     useSelector(selectAllFurnitureData);
 
   const setPageHandle = (page: number) => {
-    smoothScroll(500);
+    smoothScroll(100);
     dispatch(setCurrentPage(page));
   };
 
@@ -45,8 +45,9 @@ const Catalog = () => {
       installment: installment,
       manufacturer: manufacturer,
     };
+
     dispatch(fetchAllFurnitures(queryParams));
-  }, [currentPage, sort.sortBy]);
+  }, [currentPage, category, manufacturer, installment, filter, sort]);
 
   useTitle("Каталог товаров");
 

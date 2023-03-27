@@ -6,7 +6,6 @@
   border-bottom: 1px solid #d2d9df;
 }
 
-
 .catalogItem__image {
   box-sizing: border-box;
   flex: 35 35 300px;
@@ -17,6 +16,7 @@
 }
 .catalogItem__image img {
   max-width: 100%;
+  width: 100%;
   border-radius: 10px;
 }
 .catalogItem__info {
