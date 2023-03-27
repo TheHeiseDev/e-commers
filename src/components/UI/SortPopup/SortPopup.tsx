@@ -2,13 +2,11 @@ import "./SortPopup.css";
 import { FC, memo, useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "store/store";
-import { fetchAllFurnitures } from "store/slice/filterSlice/filterThunk";
 import { selectAllFurnitureData, setSort } from "store/slice/filterSlice/filterSlice";
 import { Sort } from "store/slice/filterSlice/filterTypes";
 import SvgTriangle from "../SVG/SvgTriangle";
 import { sortList } from "constants/sortList";
-import qs from "qs";
-import { useNavigate } from "react-router-dom";
+
 
 interface ISortPopupProps {
   sortObj: Sort;

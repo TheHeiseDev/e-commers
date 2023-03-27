@@ -3,30 +3,36 @@
 }
 
 .catalog__tags {
-  margin: 0px 0px 30px 0;
+  display: flex;
+  overflow: scroll;
+}
+
+.catalog__tags::-webkit-scrollbar {
+  width: 0;
+}
+.catalog__tags span {
+  align-items: center;
+  background: #f2f5f9;
+  border-radius: 16px;
+  box-sizing: border-box;
+  color: #001a34;
+  display: flex;
+  flex: 0 0 auto;
+  font-size: 14px;
+  height: 45px;
+  margin: 0 6px 6px 0;
+  padding: 6px 16px;
+  transition: all 0.3s ease;
+}
+.catalog__tags span:hover {
+  background: #e2e7ec;
+  cursor: pointer;
+  color: #003ead;
 }
 
 .catalog__container {
   display: flex;
   gap: 20px;
-}
-
-@media (max-width: 500px) {
-  .catalog__container {
-    flex-direction: column;
-  }
-  .catalogItem__wrapper {
-    flex-direction: column;
-  }
-  .catalogItem__image {
-    width: 100%;
-    min-width: 100% !important;
-    max-width: 100% !important;
-  }
-  .catalogItem__info,
-  .catalogItem__price {
-    padding: 12px 12px 0 12px;
-  }
 }
 
 .catalog__wrapper .catalogItem__wrapper:nth-child(2n) {
@@ -41,7 +47,6 @@
   gap: 20px;
   min-height: 583px;
 }
-
 /* Style of CatalogSkeleton */
 .catalog__wrapper .skeleton__wrapper:first-child {
   padding: 20px 0 0px 0px;
@@ -57,6 +62,35 @@
   position: sticky;
   top: 20px;
   left: 0;
+}
+
+.filter__toogle-btn {
+  outline: none;
+  background: white;
+  font-family: "Montserrat";
+  font-size: 14px;
+  height: 40px;
+  background-color: #fff;
+  border: 2px solid #d2e3f3;
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: #001a34;
+  margin-bottom: 10px;
+}
+.filter__toogle-btn svg {
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+.filter__categories,
+.filter__manufacturer,
+.filter__installment {
+  margin-bottom: 30px;
+}
+
+.catalog__pagination button.Mui-selected {
+  background-color: blue;
+  color: white;
 }
 
 @media (min-width: 501px) {
@@ -85,31 +119,21 @@
     gap: 0;
   }
 }
-.filter__toogle-btn {
-  outline: none;
-  background: white;
-  font-family: "Montserrat";
-  font-size: 14px;
-  height: 40px;
-  background-color: #fff;
-  border: 2px solid #d2e3f3;
-  border-radius: 6px;
-  box-sizing: border-box;
-  color: #001a34;
-  margin-bottom: 10px;
-}
-.filter__toogle-btn svg {
-  margin-left: 10px;
-  transition: transform 0.3s ease;
-}
 
-.filter__categories,
-.filter__manufacturer,
-.filter__installment {
-  margin-bottom: 30px;
-}
-
-.catalog__pagination button.Mui-selected {
-  background-color: blue;
-  color: white;
+@media (max-width: 500px) {
+  .catalog__container {
+    flex-direction: column;
+  }
+  .catalogItem__wrapper {
+    flex-direction: column;
+  }
+  .catalogItem__image {
+    width: 100%;
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+  .catalogItem__info,
+  .catalogItem__price {
+    padding: 12px 12px 0 12px;
+  }
 }
