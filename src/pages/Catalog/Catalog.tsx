@@ -17,53 +17,7 @@ import SortPopup from "components/ui/SortPopup/SortPopup";
 import { Pagination } from "@mui/material";
 import { smoothScroll } from "utils/smoothScroll";
 import { useTitle } from "hooks/use-title";
-
-const tagsListCategory = [
-  {
-    name: "Популярные стулья",
-    path: "chairs",
-    sortBy: "rating",
-    order: "desc",
-  },
-  {
-    name: "Недорогие диваны",
-    path: "sofa",
-    sortBy: "price",
-    order: "asc",
-  },
-  {
-    name: "Недорогие столы",
-    path: "tables",
-    sortBy: "price",
-    order: "asc",
-  },
-  {
-    name: "Топ рейтингових",
-    path: "",
-    sortBy: "rating",
-    order: "desc",
-  },
-];
-const tagsListCountry = [
-  {
-    name: "Мебель из Италии",
-    path: "Italy",
-    sortBy: "",
-    order: "",
-  },
-  {
-    name: "Французкиая мебель",
-    path: "France",
-    sortBy: "",
-    order: "",
-  },
-  {
-    name: "Топ из Германии",
-    path: "Germany",
-    sortBy: "",
-    order: "",
-  },
-];
+import { tagsListCategory, tagsListCountry } from "constants/catalogTags";
 
 const Catalog = () => {
   const dispatch = useAppDispatch();

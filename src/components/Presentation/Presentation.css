@@ -9,6 +9,7 @@
   height: 500px;
   position: relative;
 }
+
 .presentation:after {
   content: "Лучшие товары для вашего дома";
   position: absolute;
@@ -54,15 +55,26 @@
 }
 
 @media (max-width: 500px) {
-  .presentation:after {
-    left: 30px;
+  .presentation {
+    height: 200px;
+    border-radius: 10px;
+    margin: 0px 0 30px 0;
   }
-  .presentation:befire {
+
+  .presentation:after {
+    top: 30px;
+    left: 30px;
+    font-size: 24px;
+  }
+  .presentation:before {
+    top: 90px;
     left: 30px;
   }
   .presentation button {
     background: #fde24b;
     color: dimgray;
+    top: 120px;
     left: 30px;
+    padding: 7px 10px;
   }
 }

@@ -24,3 +24,15 @@
   display: flex;
   overflow: scroll;
 }
+
+@media (max-width: 500px) {
+  .categories::-webkit-scrollbar {
+    width: 0;
+    display: none;
+  }
+  .categories li {
+    padding: 10px 20px;
+    margin-bottom: 0px;
+    margin-right: 10px;
+  }
+}
