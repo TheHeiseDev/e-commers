@@ -25,12 +25,13 @@
 
 .sort__label {
   display: inline-flex;
+  justify-content: space-between;
   flex: 1 1;
   align-items: center;
-  gap: 40px;
   min-height: 25px;
   padding: 5px 10px;
   cursor: pointer;
+  min-width: 210px;
 }
 
 .sort__popup {

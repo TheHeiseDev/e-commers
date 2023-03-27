@@ -1,12 +1,14 @@
 import "./SortPopup.css";
 import { FC, memo, useState, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import { useAppDispatch } from "store/store";
 import { fetchAllFurnitures } from "store/slice/filterSlice/filterThunk";
+import { selectAllFurnitureData, setSort } from "store/slice/filterSlice/filterSlice";
 import { Sort } from "store/slice/filterSlice/filterTypes";
 import SvgTriangle from "../SVG/SvgTriangle";
 import { sortList } from "constants/sortList";
-
 import qs from "qs";
+import { useNavigate } from "react-router-dom";
 
 interface ISortPopupProps {
   sortObj: Sort;
@@ -14,40 +16,26 @@ interface ISortPopupProps {
 
 const SortPopup: FC<ISortPopupProps> = memo(({ sortObj }) => {
   const dispatch = useAppDispatch();
-
   const sortRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
+  const { sort, currentPage, category, manufacturer, installment, filter } =
+    useSelector(selectAllFurnitureData);
 
-  const onClickSortListItem = (sortType: any) => {
-    if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1));
-
-      const qeueryParams = {
-        sortBy: sortType.sortBy.replace("-", ""),
-        category: String(params.category),
-        currentPage: Number(params.page),
-        filter: String(params.filter),
-        installment: Boolean(params.installment),
-        manufacturer: String(params.manufacturer),
-        order: sortType.sortBy.includes("-") ? "asc" : "desc",
-      };
-      dispatch(fetchAllFurnitures(qeueryParams));
-    } else {
-      const qeueryParams = {
-        sortBy: sortType.sortBy.replace("-", ""),
-        category: "",
-        currentPage: 1,
-        filter: "",
-        installment: false,
-        manufacturer: "",
-        order: sortType.sortBy.includes("-") ? "asc" : "desc",
-      };
-      dispatch(fetchAllFurnitures(qeueryParams));
-    }
+  const onClickSortListItem = (sortObj: any) => {
+    const queryParms = {
+      currentPage: currentPage,
+      filter: filter,
+      installment: installment,
+      manufacturer: manufacturer,
+      category: category,
+      sortBy: sortObj.sortBy.replace("-", ""),
+      order: sortObj.sortBy.includes("-") ? "asc" : "desc",
+    };
+    dispatch(setSort(sortObj));
+    dispatch(fetchAllFurnitures(queryParms));
 
     setOpen(false);
   };
-
   const handleSort = () => {
     setOpen((prev) => !prev);
   };
@@ -80,8 +68,8 @@ const SortPopup: FC<ISortPopupProps> = memo(({ sortObj }) => {
 
   return (
     <div ref={sortRef} className={`sort ${open ? "active" : ""}`}>
-      <div onClick={() => setOpen(true)} className="sort__label">
-        <span onClick={handleSort}>Сортировка по</span>
+      <div onClick={() => setOpen(!open)} className="sort__label">
+        <span onClick={handleSort}>{sort.name}</span>
         <SvgTriangle />
       </div>
 

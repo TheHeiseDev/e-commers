@@ -1,6 +1,5 @@
 import "./Catalog.css";
-import { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "store/store";
 import { fetchAllFurnitures } from "store/slice/filterSlice/filterThunk";
@@ -18,15 +17,13 @@ import SortPopup from "components/ui/SortPopup/SortPopup";
 import { Pagination } from "@mui/material";
 import { smoothScroll } from "utils/smoothScroll";
 import { useTitle } from "hooks/use-title";
-import qs from "qs";
 
 const Catalog = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+
   const { data, status } = useSelector(selectAllFurniture);
   const { currentPage, category, sort, filter, installment, manufacturer } =
     useSelector(selectAllFurnitureData);
-  const isMounted = useRef(false);
 
   const setPageHandle = (page: number) => {
     smoothScroll(500);
@@ -36,36 +33,20 @@ const Catalog = () => {
   useEffect(() => {
     smoothScroll(500);
   }, []);
+
   //Request data on first render
   useEffect(() => {
     const queryParams = {
       currentPage: currentPage,
-      sortBy: sort.sortBy,
-      order: "",
+      sortBy: sort.sortBy.replace("-", ""),
+      order: sort.sortBy.includes("-") ? "asc" : "desc",
       category: category,
       filter: filter,
       installment: installment,
       manufacturer: manufacturer,
     };
-
     dispatch(fetchAllFurnitures(queryParams));
   }, [currentPage, sort.sortBy]);
-
-  useEffect(() => {
-    if (isMounted.current) {
-      const queryString = qs.stringify({
-        page: currentPage,
-        filter: filter,
-        sortBy: sort.sortBy,
-        order: sort.sortBy.includes("-" ? "asc" : "desc"),
-        category: category,
-        installment: installment,
-        manufacturer: manufacturer,
-      });
-      navigate(`?${queryString}`);
-    }
-    isMounted.current = true;
-  }, [category, filter, currentPage, sort.sortBy, installment, manufacturer]);
 
   useTitle("Каталог товаров");
 
