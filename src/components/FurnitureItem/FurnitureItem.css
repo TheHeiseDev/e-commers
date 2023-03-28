@@ -95,11 +95,25 @@ header .shop-cart-button-mobile.active {
   color: #43884a;
 }
 
+@media (max-width: 500px) {
+  header .shop-cart {
+    min-width: 100px !important;
+  }
+  header .shop-cart .item {
+    margin-bottom: 10px;
+  }
+  header .shop-cart .item-box {
+    overflow: hidden;
+  }
+  header .shop-cart .item-box a {
+    height: 100%;
+  }
+}
 header .shop-cart {
   position: absolute;
   top: 80px;
   right: 0;
-  min-width: 300px;
+  min-width: 500px;
   background: #fafafa;
   box-shadow: 4px 5px 15px -7px #606060;
   z-index: 100;
@@ -127,7 +141,6 @@ header .shop-cart .item {
   flex-direction: row;
   align-items: center;
   width: 100%;
-  margin-bottom: 20px;
   padding: 10px;
   border-radius: 10px 0 0 10px;
   transform: translate(5px);

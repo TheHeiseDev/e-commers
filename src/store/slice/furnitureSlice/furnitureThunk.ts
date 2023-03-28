@@ -6,21 +6,27 @@ import { FurnitureType, ParamsType } from "./furnitueTypes";
 export const fetchFurnitures = createAsyncThunk(
   "furniture/fetchFurnitures",
   async (params: ParamsType) => {
-    const { category, postLimit, installment } = params;
+    const { category, postLimit } = params;
 
-    const { data } = await axios.get<FurnitureType[]>(
-      `${apiService.getFurniture}${postLimit}${category}${installment ? installment : ""}`
-    );
+    const { data } = await axios<FurnitureType[]>({
+      method: "GET",
+      url: apiService.getFurniture,
+      params: {
+        limit: postLimit,
+        category: category,
+      },
+    });
+
     return data;
   }
 );
 export const fetchFurnitureById = createAsyncThunk(
   "furniture/fetchFurnitureById",
   async (id: string) => {
-    const { data } = await axios.get<FurnitureType>(
-      `${apiService.getFurnitureById}${id}`
-    );
-
+    const { data } = await axios<FurnitureType>({
+      method: "GET",
+      url: `${apiService.getFurnitureById}${id}`,
+    });
     return data;
   }
 );

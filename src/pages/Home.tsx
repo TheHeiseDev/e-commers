@@ -21,8 +21,7 @@ const Home = () => {
 
   // fetchData from mockapi.io
   useEffect(() => {
-    const category = `&category=${categoyName}`;
-
+    const category = categoyName;
     dispatch(fetchFurnitures({ category, postLimit }));
   }, [categoyName, postLimit]);
 

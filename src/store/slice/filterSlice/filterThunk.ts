@@ -4,6 +4,14 @@ import { apiService } from "../../../api/apiService";
 import { FurnitureType } from "../furnitureSlice/furnitueTypes";
 import { FilterParams } from "./filterTypes";
 
+// ! Don't use the axios structure in the following format.
+// axios({
+//   params: {}
+//   }
+//   )
+// In this case, such an unclean way of constructing
+// url parameters is used due to mockapi limitations
+
 export const fetchAllFurnitures = createAsyncThunk(
   "filter/fetchAllFurnitures",
   async (params: FilterParams) => {

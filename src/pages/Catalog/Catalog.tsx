@@ -70,7 +70,6 @@ const Catalog = () => {
       installment: installment,
       manufacturer: manufacturer,
     };
-
     dispatch(fetchAllFurnitures(queryParams));
   }, [currentPage, category, manufacturer, installment, filter, sort]);
 

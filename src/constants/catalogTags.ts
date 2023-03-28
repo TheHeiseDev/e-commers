@@ -18,7 +18,7 @@ export const tagsListCategory = [
     order: "asc",
   },
   {
-    name: "Топ рейтингових",
+    name: "Топ продаж",
     path: "",
     sortBy: "rating",
     order: "desc",
@@ -32,13 +32,13 @@ export const tagsListCountry = [
     order: "",
   },
   {
-    name: "Французкиая мебель",
+    name: "Французкая мебель",
     path: "France",
     sortBy: "",
     order: "",
   },
   {
-    name: "Топ из Германии",
+    name: "Мебель из Германии",
     path: "Germany",
     sortBy: "",
     order: "",
