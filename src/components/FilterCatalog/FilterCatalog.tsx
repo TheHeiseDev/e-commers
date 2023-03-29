@@ -2,8 +2,8 @@ import "./FilterCatalog.css";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import InputCategory from "components/ui/Input/InputCategory";
-import SwitchLabels from "components/ui/Toogle/Toogle";
+import InputCategory from "components/UI/Input/InputCategory";
+import SwitchLabels from "components/UI/Toogle/Toogle";
 import { useAppDispatch } from "store/store";
 import { fetchAllFurnitures } from "store/slice/filterSlice/filterThunk";
 import { setCategiesName, setManufacturerName } from "utils/TranslationOfMeanings";
@@ -15,7 +15,7 @@ import {
   setManufacturer,
   setSort,
 } from "store/slice/filterSlice/filterSlice";
-import SvgTriangle from "components/ui/SVG/SvgTriangle";
+import SvgTriangle from "components/UI/SVG/SvgTriangle";
 
 const FilterCatalog = () => {
   const dispatch = useAppDispatch();

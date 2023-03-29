@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 import { useAuth } from "../../../hooks/use-auth";
-import { Form } from "../../ui/Form/Form";
+import { Form } from "../../UI/Form/Form";
 import { useAppDispatch } from "../../../store/store";
 import { setError } from "../../../store/slice/userSlice/userSlice";
 

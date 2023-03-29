@@ -8,7 +8,7 @@ import { useHistory } from "hooks/use-history";
 import { useAuth } from "hooks/use-auth";
 
 import { saveInLocalStorage } from "utils/saveInLocalStorage";
-import { Form } from "../../ui/Form/Form";
+import { Form } from "../../UI/Form/Form";
 import { smoothScroll } from "utils/smoothScroll";
 
 enum ErrorCodeSignIn {

@@ -2,7 +2,7 @@ import "./Subscribe.css";
 import { useState, useEffect, useRef } from "react";
 
 import { AiOutlineMail } from "react-icons/ai";
-import CustomizedSnackbars from "../ui/Alerts/Alert";
+import CustomizedSnackbars from "../UI/Alerts/Alert";
 
 import { selectList, SelectListType } from "constants/subscribeItem";
 import { useInput, UseInputType, UseValidationType } from "hooks/use-validateForm";

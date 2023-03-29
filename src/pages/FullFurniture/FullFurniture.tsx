@@ -10,10 +10,10 @@ import FmdGoodIcon from "@mui/icons-material/FmdGood"; // на экспозиц�
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"; //календарь
 import LocalShippingIcon from "@mui/icons-material/LocalShipping"; // доставка
 
-import Loader from "components/ui/Loader/Loader";
-import LabTabs from "components/ui/Tabs/Tabs";
-import Carousel from "components/ui/Carousel/Carousel";
-import HalfRating from "components/ui/Rating/Rating";
+import Loader from "components/UI/Loader/Loader";
+import LabTabs from "components/UI/Tabs/Tabs";
+import Carousel from "components/UI/Carousel/Carousel";
+import HalfRating from "components/UI/Rating/Rating";
 import FurnitureItem from "components/FurnitureItem/FurnitureItem";
 import FurnitureSkeleton from "components/FurnitureItem/FurnitureSkeleton";
 

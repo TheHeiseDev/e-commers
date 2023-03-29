@@ -12,7 +12,7 @@ import {
 import CatalogItem from "components/CatalogItem/CatalogItem";
 import FilterCatalog from "components/FilterCatalog/FilterCatalog";
 import CatalogSkeleton from "components/CatalogItem/CatalogSkeleton";
-import SortPopup from "components/ui/SortPopup/SortPopup";
+import SortPopup from "components/UI/SortPopup/SortPopup";
 
 import { Pagination } from "@mui/material";
 import { smoothScroll } from "utils/smoothScroll";
