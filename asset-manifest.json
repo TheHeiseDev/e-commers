@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/e-commers/static/css/main.c022e7d3.css",
+    "main.js": "/e-commers/static/js/main.a7a27eb3.js",
+    "static/css/637.e410af2a.chunk.css": "/e-commers/static/css/637.e410af2a.chunk.css",
+    "static/js/637.2f488dd4.chunk.js": "/e-commers/static/js/637.2f488dd4.chunk.js",
+    "static/css/197.fabfe91c.chunk.css": "/e-commers/static/css/197.fabfe91c.chunk.css",
+    "static/js/197.618b28b0.chunk.js": "/e-commers/static/js/197.618b28b0.chunk.js",
+    "static/css/50.895c94ea.chunk.css": "/e-commers/static/css/50.895c94ea.chunk.css",
+    "static/js/50.9edec44b.chunk.js": "/e-commers/static/js/50.9edec44b.chunk.js",
+    "static/css/157.dde393e8.chunk.css": "/e-commers/static/css/157.dde393e8.chunk.css",
+    "static/js/157.9f19bdba.chunk.js": "/e-commers/static/js/157.9f19bdba.chunk.js",
+    "static/js/499.42b9d82c.chunk.js": "/e-commers/static/js/499.42b9d82c.chunk.js",
+    "static/js/67.8cebdbf2.chunk.js": "/e-commers/static/js/67.8cebdbf2.chunk.js",
+    "static/js/71.bda42331.chunk.js": "/e-commers/static/js/71.bda42331.chunk.js",
+    "static/media/home.jpeg": "/e-commers/static/media/home.e93076dc069df05ddbb2.jpeg",
+    "index.html": "/e-commers/index.html",
+    "main.c022e7d3.css.map": "/e-commers/static/css/main.c022e7d3.css.map",
+    "main.a7a27eb3.js.map": "/e-commers/static/js/main.a7a27eb3.js.map",
+    "637.e410af2a.chunk.css.map": "/e-commers/static/css/637.e410af2a.chunk.css.map",
+    "637.2f488dd4.chunk.js.map": "/e-commers/static/js/637.2f488dd4.chunk.js.map",
+    "197.fabfe91c.chunk.css.map": "/e-commers/static/css/197.fabfe91c.chunk.css.map",
+    "197.618b28b0.chunk.js.map": "/e-commers/static/js/197.618b28b0.chunk.js.map",
+    "50.895c94ea.chunk.css.map": "/e-commers/static/css/50.895c94ea.chunk.css.map",
+    "50.9edec44b.chunk.js.map": "/e-commers/static/js/50.9edec44b.chunk.js.map",
+    "157.dde393e8.chunk.css.map": "/e-commers/static/css/157.dde393e8.chunk.css.map",
+    "157.9f19bdba.chunk.js.map": "/e-commers/static/js/157.9f19bdba.chunk.js.map",
+    "499.42b9d82c.chunk.js.map": "/e-commers/static/js/499.42b9d82c.chunk.js.map",
+    "67.8cebdbf2.chunk.js.map": "/e-commers/static/js/67.8cebdbf2.chunk.js.map",
+    "71.bda42331.chunk.js.map": "/e-commers/static/js/71.bda42331.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c022e7d3.css",
+    "static/js/main.a7a27eb3.js"
+  ]
+}
