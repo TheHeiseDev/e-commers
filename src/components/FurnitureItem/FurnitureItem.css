@@ -247,6 +247,7 @@ header .shop-cart .summa {
   z-index: 2;
   cursor: pointer;
   transition: all 0.3s ease;
+  max-width: 34px;
 }
 
 .item__infavorite svg {
