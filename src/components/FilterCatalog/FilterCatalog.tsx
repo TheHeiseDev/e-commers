@@ -1,15 +1,11 @@
 import "./FilterCatalog.css";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-
 import InputCategory from "components/UI/Input/InputCategory";
 import SwitchLabels from "components/UI/Toogle/Toogle";
 import { useAppDispatch } from "store/store";
-import { fetchAllFurnitures } from "store/slice/filterSlice/filterThunk";
 import { setCategiesName, setManufacturerName } from "utils/TranslationOfMeanings";
 import { filterCategoires, filterManufacturers } from "constants/catalogFilterItem";
 import {
-  selectAllFurnitureData,
   setCategory,
   setInstallment,
   setManufacturer,
@@ -23,8 +19,6 @@ const FilterCatalog = () => {
   const [categoryValue, setCategoryValue] = useState("");
   const [manufacturerValue, setManufacturerValue] = useState("");
   const [installmentValue, setInstallmentValue] = useState<boolean>(false);
-  const { sort, currentPage, category, filter, installment, manufacturer } =
-    useSelector(selectAllFurnitureData);
 
   const handleClearFilter = () => {
     setCategoryValue("");
@@ -35,20 +29,10 @@ const FilterCatalog = () => {
 
   //Запрос данных при первом рендере
   useEffect(() => {
-    const queryParams = {
-      sortBy: sort.sortBy.replace("-", ""),
-      order: sort.sortBy.includes("-") ? "asc" : "desc",
-      category: categoryValue,
-      filter: filter,
-      currentPage: 1,
-      installment: installmentValue,
-      manufacturer: manufacturerValue,
-    };
     dispatch(setCategory(categoryValue));
     dispatch(setInstallment(installmentValue));
     dispatch(setManufacturer(manufacturerValue));
-    // dispatch(fetchAllFurnitures(queryParams));
-  }, [categoryValue, filter, installmentValue, manufacturerValue]);
+  }, [categoryValue, installmentValue, manufacturerValue]);
 
   return (
     <>
