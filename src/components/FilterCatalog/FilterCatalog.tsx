@@ -1,25 +1,26 @@
 import "./FilterCatalog.css";
 import { useEffect, useState } from "react";
-import InputCategory from "components/UI/Input/InputCategory";
-import SwitchLabels from "components/UI/Toogle/Toogle";
 import { useAppDispatch } from "store/store";
-import { setCategiesName, setManufacturerName } from "utils/TranslationOfMeanings";
-import { filterCategoires, filterManufacturers } from "constants/catalogFilterItem";
 import {
   setCategory,
   setInstallment,
   setManufacturer,
   setSort,
 } from "store/slice/filterSlice/filterSlice";
+import InputCategory from "components/UI/Input/InputCategory";
+import SwitchLabels from "components/UI/Toogle/Toogle";
 import SvgTriangle from "components/UI/SVG/SvgTriangle";
+import { setCategiesName, setManufacturerName } from "utils/TranslationOfMeanings";
+import { filterCategoires, filterManufacturers } from "constants/catalogFilterItem";
 
 const FilterCatalog = () => {
   const dispatch = useAppDispatch();
   const [filterToogle, setFilterToogle] = useState(false);
-  const [categoryValue, setCategoryValue] = useState("");
-  const [manufacturerValue, setManufacturerValue] = useState("");
+  const [categoryValue, setCategoryValue] = useState<string>("");
+  const [manufacturerValue, setManufacturerValue] = useState<string>("");
   const [installmentValue, setInstallmentValue] = useState<boolean>(false);
 
+  // Reset all filter properties to default
   const handleClearFilter = () => {
     setCategoryValue("");
     setManufacturerValue("");
@@ -27,7 +28,7 @@ const FilterCatalog = () => {
     dispatch(setSort({ name: "Популярности", sortBy: "" }));
   };
 
-  //Запрос данных при первом рендере
+  // Setting filter options
   useEffect(() => {
     dispatch(setCategory(categoryValue));
     dispatch(setInstallment(installmentValue));

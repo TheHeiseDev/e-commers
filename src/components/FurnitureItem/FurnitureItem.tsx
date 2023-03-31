@@ -23,15 +23,16 @@ interface IFurnitureItemProps {
 const FurnitureItem = memo(({ item }: IFurnitureItemProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { pathname } = useLocation();
-  const orders = useSelector(selectOrderData);
 
-  // Search for item in cart, if item found then get true, else false
-  const checkItemInCart = searchCardInBasket(orders, item);
+  const orders = useSelector(selectOrderData);
+  const { pathname } = useLocation();
 
   const isFavorite = useFavorite(item);
   const { isAuth } = useAuth();
   const { setPathname } = useHistory();
+
+  // Search for item in cart, if item found then get true, else false
+  const checkItemInCart = searchCardInBasket(orders, item);
 
   const onAddToCart = () => {
     dispatch(addOrder(item));

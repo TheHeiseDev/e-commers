@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { fetchAllFurnitures } from "./filterThunk";
 import { FilterSliceStateType } from "./filterTypes";
+import { Sort } from "./filterTypes";
 
 const initialState: FilterSliceStateType = {
   items: {
@@ -24,19 +25,19 @@ export const filterSlice = createSlice({
   initialState,
 
   reducers: {
-    setInstallment(state, action) {
+    setInstallment(state, action: PayloadAction<any>) {
       state.installment = action.payload;
     },
-    setSort(state, action) {
+    setSort(state, action: PayloadAction<Sort>) {
       state.sort = action.payload;
     },
-    setManufacturer(state, action) {
+    setManufacturer(state, action: PayloadAction<string>) {
       state.manufacturer = action.payload;
     },
-    setCurrentPage(state, action) {
+    setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload;
     },
-    setCategory(state, action) {
+    setCategory(state, action: PayloadAction<string>) {
       state.category = action.payload;
     },
     setFilters(state, action) {
@@ -50,10 +51,12 @@ export const filterSlice = createSlice({
       } else {
         state.currentPage = 1;
         state.filter = "";
+        state.manufacturer = "";
+        state.installment = false;
         state.category = "";
         state.sort = {
           name: "Популярности",
-          sortBy: "rating",
+          sortBy: "",
         };
       }
     },

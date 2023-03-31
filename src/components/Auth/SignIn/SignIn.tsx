@@ -50,7 +50,10 @@ export const SignIn = () => {
 
   useEffect(() => {
     smoothScroll(500);
-    dispatch(setError(null));
+
+    return () => {
+      dispatch(setError(null));
+    };
   }, []);
 
   const handleLogin = (email: string, password: string) => {

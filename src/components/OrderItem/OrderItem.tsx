@@ -1,7 +1,8 @@
 import "./OrderItem.css";
-import { AiFillDelete } from "react-icons/ai";
+import { memo } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { FurnitureType } from "../../store/slice/furnitureSlice/furnitueTypes";
 import {
   deleteOrder,
   minusOrderCount,
@@ -9,14 +10,14 @@ import {
 } from "../../store/slice/orderSlice/orderSlice";
 import { IoRemoveCircleOutline } from "react-icons/io5";
 import { IoAddCircleOutline } from "react-icons/io5";
-import { FurnitureType } from "../../store/slice/furnitureSlice/furnitueTypes";
-import { memo } from "react";
+import { AiFillDelete } from "react-icons/ai";
 
 interface IOrderItemProps {
   item: FurnitureType;
 }
 const OrderItem = memo(({ item }: IOrderItemProps) => {
   const dispatch = useDispatch();
+  const totalSum = (item.count! * Number(item.price)).toFixed(2);
 
   const handleCartRemove = () => {
     dispatch(deleteOrder(item.id));
@@ -27,7 +28,7 @@ const OrderItem = memo(({ item }: IOrderItemProps) => {
   const minusProductCount = () => {
     dispatch(minusOrderCount(item.productCode));
   };
-  const totalSum = (item.count! * Number(item.price)).toFixed(2);
+  
 
   return (
     <div className="order__item-wrapper">

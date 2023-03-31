@@ -7,28 +7,17 @@ import { Sort } from "store/slice/filterSlice/filterTypes";
 import SvgTriangle from "../SVG/SvgTriangle";
 import { sortList } from "constants/sortList";
 
-
 interface ISortPopupProps {
   sortObj: Sort;
 }
 
 const SortPopup: FC<ISortPopupProps> = memo(({ sortObj }) => {
   const dispatch = useAppDispatch();
+  const { sort } = useSelector(selectAllFurnitureData);
   const sortRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
-  const { sort, currentPage, category, manufacturer, installment, filter } =
-    useSelector(selectAllFurnitureData);
 
   const onClickSortListItem = (sortObj: any) => {
-    const queryParms = {
-      currentPage: currentPage,
-      filter: filter,
-      installment: installment,
-      manufacturer: manufacturer,
-      category: category,
-      sortBy: sortObj.sortBy.replace("-", ""),
-      order: sortObj.sortBy.includes("-") ? "asc" : "desc",
-    };
     dispatch(setSort(sortObj));
     setOpen(false);
   };

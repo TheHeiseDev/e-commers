@@ -40,11 +40,15 @@ export const SignUp = () => {
   };
 
   useEffect(() => {
-    dispatch(setError(null));
+    return () => {
+      dispatch(setError(null));
+    };
   }, []);
+
   const handleRegister = (email: string, password: string) => {
     setLoading(true);
     const auth = getAuth();
+
     createUserWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         if (user) {

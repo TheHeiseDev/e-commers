@@ -10,7 +10,7 @@ export const historySlice = createSlice({
   name: "history",
   initialState,
   reducers: {
-    setHistory(state, action) {
+    setHistory(state, action: PayloadAction<string | null>) {
       state.pathname = action.payload;
     },
   },
