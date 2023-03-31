@@ -25,7 +25,7 @@ const CatalogItem = ({ item }: ICatalogItem) => {
   const { pathname } = useLocation();
   const orders = useSelector(selectOrderData);
 
-  const checkItemInCart = item && searchCardInBasket(orders, item);
+  const checkItemInCart = searchCardInBasket(orders, item);
   const isFavorite = useFavorite(item);
   const { isAuth } = useAuth();
   const { setPathname } = useHistory();

@@ -16,14 +16,13 @@ const Header = memo(() => {
   const orders = useSelector(selectOrderData);
   const { pathname } = useLocation();
   const { isAuth } = useAuth();
+  const { totalPrice } = useCalculateTotalPrice();
 
   const [cartOpen, setCartOpen] = useState(false);
   const [cartOpenMobile, setCartOpenMobile] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const orderRef = useRef(null);
   const orderRefDouble = useRef(null);
-
-  const { totalPrice } = useCalculateTotalPrice();
 
   const hiddenBody = () => {
     if (openMenu) {

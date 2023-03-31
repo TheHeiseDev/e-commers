@@ -203,6 +203,7 @@ header .shop-cart .summa {
 
 .item__picture {
   position: relative;
+  height: 289px;
 }
 
 .item__instock {
