@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import CustomizedSnackbars from "../UI/Alerts/Alert";
 
-import { selectList, SelectListType } from "constants/subscribeItem";
+import { selectList, SelectListType } from "utils/constants/subscribeItem";
 import { useInput, UseInputType, UseValidationType } from "hooks/use-validateForm";
 
 const SubscribeType = {
@@ -73,6 +73,7 @@ const Subscribe = () => {
     minLengthError: 10,
     emailError: false,
   } as UseInputType);
+
   const phone = useInput("", {
     isEmpty: true,
     minLengthError: 11,

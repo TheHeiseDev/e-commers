@@ -2,14 +2,13 @@ import "./App.css";
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Home from "./pages/Home";
 import MainLayout from "./layout/MainLayout";
-import Loader from "./components/UI/Loader/Loader";
+import Home from "./pages/Home";
+import UserPage from "./pages/UserPage/UserPage";
 import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
-import UserPage from "./pages/UserPage/UserPage";
+import Loader from "./components/UI/Loader/Loader";
 import { PrivateRouter } from "./utils/ router/privateRouter";
-// import Catalog from "pages/Catalog/Catalog";
 
 const FullFurniture = lazy(
   () =>

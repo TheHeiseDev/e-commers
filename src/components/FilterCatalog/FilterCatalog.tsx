@@ -11,7 +11,7 @@ import InputCategory from "components/UI/Input/InputCategory";
 import SwitchLabels from "components/UI/Toogle/Toogle";
 import SvgTriangle from "components/UI/SVG/SvgTriangle";
 import { setCategiesName, setManufacturerName } from "utils/TranslationOfMeanings";
-import { filterCategoires, filterManufacturers } from "constants/catalogFilterItem";
+import { filterCategoires, filterManufacturers } from "utils/constants/catalogFilterItem";
 
 const FilterCatalog = () => {
   const dispatch = useAppDispatch();

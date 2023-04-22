@@ -2,9 +2,7 @@ import "./FullOrder.css";
 import { memo } from "react";
 import { useSelector } from "react-redux";
 import { selectOrderData } from "store/slice/orderSlice/orderSlice";
-
 import OrderItem from "components/OrderItem/OrderItem";
-
 import { useTitle } from "hooks/use-title";
 import { useCalculateTotalPrice } from "hooks/use-totalPrice";
 

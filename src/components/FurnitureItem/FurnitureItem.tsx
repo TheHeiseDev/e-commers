@@ -6,12 +6,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import VerifiedIcon from "@mui/icons-material/Verified"; // товар в наличии
 import FavoriteIcon from "@mui/icons-material/Favorite"; //избранное
 
-import { searchCardInBasket } from "utils/searchCardInBasket";
-
 import { addOrder, selectOrderData } from "store/slice/orderSlice/orderSlice";
 import { FurnitureType } from "store/slice/furnitureSlice/furnitueTypes";
 import { addFavorite } from "store/slice/favoriteSlice/favoriteSlice";
 
+import { searchCardInBasket } from "utils/searchCardInBasket";
 import { useAuth } from "hooks/use-auth";
 import { useHistory } from "hooks/use-history";
 import { useFavorite } from "hooks/use-favorite";

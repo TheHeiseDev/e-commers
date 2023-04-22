@@ -23,11 +23,11 @@ import { selectFurnitureByIdData } from "store/slice/furnitureSlice/furnitureSli
 import { fetchFurnitureById } from "store/slice/furnitureSlice/furnitureThunk";
 import { addFavorite } from "store/slice/favoriteSlice/favoriteSlice";
 
+import { useAuth } from "hooks/use-auth";
 import { useTitle } from "hooks/use-title";
 import { useFavorite } from "hooks/use-favorite";
-import { searchCardInBasket } from "utils/searchCardInBasket";
-import { useAuth } from "hooks/use-auth";
 import { useHistory } from "hooks/use-history";
+import { searchCardInBasket } from "utils/searchCardInBasket";
 import { smoothScroll } from "utils/smoothScroll";
 
 const FullFurniture = () => {

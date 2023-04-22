@@ -16,8 +16,8 @@ import SortPopup from "components/UI/SortPopup/SortPopup";
 
 import { Pagination } from "@mui/material";
 import { smoothScroll } from "utils/smoothScroll";
+import { tagsListCategory, tagsListCountry } from "utils/constants/catalogTags";
 import { useTitle } from "hooks/use-title";
-import { tagsListCategory, tagsListCountry } from "constants/catalogTags";
 
 const Catalog = () => {
   const dispatch = useAppDispatch();

@@ -1,4 +1,4 @@
-import { regexEmail, regexPhone } from "constants/regex";
+import { regexEmail, regexPhone } from "utils/constants/regex";
 import React, { ChangeEvent, FocusEvent, useState, useEffect } from "react";
 
 export type UseInputType = {

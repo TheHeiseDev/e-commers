@@ -5,7 +5,7 @@ import { useAppDispatch } from "store/store";
 import { selectAllFurnitureData, setSort } from "store/slice/filterSlice/filterSlice";
 import { Sort } from "store/slice/filterSlice/filterTypes";
 import SvgTriangle from "../SVG/SvgTriangle";
-import { sortList } from "constants/sortList";
+import { sortList } from "utils/constants/sortList";
 
 interface ISortPopupProps {
   sortObj: Sort;

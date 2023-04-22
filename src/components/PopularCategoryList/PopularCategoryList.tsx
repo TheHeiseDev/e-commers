@@ -1,7 +1,7 @@
 import "./PopularCategoryList.css";
 import PopularBigCard from "./PopularBigCard/PopularBigCard";
 import PopularSmallCard from "./PopularSmallCard/PopularSmallCard";
-import { populaCategoryAll, populaCategoryBig } from "constants/productCategories";
+import { populaCategoryAll, populaCategoryBig } from "utils/constants/productCategories";
 
 const PopularCategoryList = () => {
   return (

@@ -1,4 +1,4 @@
-import { PopulaCategoryType } from "constants/productCategories";
+import { PopulaCategoryType } from "utils/constants/productCategories";
 
 interface IPopularBigCardProps {
   item: PopulaCategoryType[];

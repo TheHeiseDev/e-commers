@@ -20,10 +20,10 @@ const UserPage = () => {
   useTitle("Личный кабинет");
 
   const handleExit = () => {
-    dispatch(removeUser());
-    dispatch(clearFavorites());
-    clearLocalStorage();
-    claerHistory();
+    dispatch(removeUser()); // Clearing auth
+    dispatch(clearFavorites()); //Clearing favorite
+    clearLocalStorage(); // Clearing local storage
+    claerHistory(); // Clearing history route
   };
   return (
     <div className="user__wrapper">
